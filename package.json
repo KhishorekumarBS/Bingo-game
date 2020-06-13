@@ -1,0 +1,32 @@
+{
+  "name": "bingo",
+  "version": "1.0.0",
+  "description": "A casual bingo game that can be played online with friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KhishorekumarBS/Bingo-game.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Khishorekumar BS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KhishorekumarBS/Bingo-game/issues"
+  },
+  "homepage": "https://github.com/KhishorekumarBS/Bingo-game#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.18",
+    "mongoose-user": "0.0.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
+}
