@@ -1,0 +1,90 @@
+<html>
+    <body>
+        
+        <div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+                <form [formGroup]="signinForm" #sform="ngForm" (ngSubmit)="onSubmitsignin()">
+				<div class="group">
+					<label for="user" class="label">Username</label>
+					<input id="user" type="text" formControlName="USERNAME" class="input" [ngClass]="{ 'is-invalid': submit_signin &amp;&amp; signinForm.controls.USERNAME.errors }"  />
+                    <error-message [control]="signinForm.controls.USERNAME" *ngIf="submit_signin"></error-message>
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" type="password" formControlName="PASSWORD" class="input" [ngClass]="{ 'is-invalid': submit_signin &amp;&amp; signinForm.controls.PASSWORD.errors }"  />
+                    <error-message [control]="signinForm.controls.PASSWORD" *ngIf="submit_signin"></error-message>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign In">
+				</div>
+                </form>
+			</div>
+			<div class="sign-up-htm">
+                
+            <!--<form novalidate [formGroup]="signupForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+				<div class="group">
+					<label for="user" class="label">Username</label>
+					<input id="user" type="text" formControlName="USERNAME" class="input">
+                    <mat-error *ngIf="signupForm.get('USERNAME').hasError('required') && signupForm.get('USERNAME').touched">Username is required</mat-error>
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" type="password" formControlName="PASSWORD" class="input" data-type="password">
+                     <mat-error *ngIf="signupForm.get('PASSWORD').hasError('required') && signupForm.get('PASSWORD').touched">password is required</mat-error>
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Repeat Password</label>
+					<input id="pass" type="password" formControlName="REPEATPASSWORD" class="input" data-type="password">
+                     <mat-error *ngIf="signupForm.get('REPEATPASSWORD').hasError('required') && signupForm.get('REPEATPASSWORD').touched">Repeat password is required</mat-error>
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Email Address</label>
+					<input id="pass" type="text" formControlName="EMAILADDRESS" class="input">
+                     <mat-error *ngIf="signupForm.get('EMAILADDRESS').hasError('required') && signupForm.get('EMAILADDRESS').touched">Email id is required</mat-error>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign Up">
+				</div>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<a label for="tab-1">Already Member?</a>
+				</div>
+                </form>-->
+                <form [formGroup]="signupForm" #fform="ngForm" (ngSubmit)="onSubmitsignup()">
+				<div class="group">
+					<label for="user" class="label">Username</label>
+					<input id="user" type="text" formControlName="USERNAME" class="input" [ngClass]="{ 'is-invalid': submit_signup &amp;&amp; signupForm.controls.USERNAME.errors }"  />
+                    <error-message [control]="signupForm.controls.USERNAME" *ngIf="submit_signup"></error-message>
+                </div>
+
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" type="password" formControlName="PASSWORD" class="input" [ngClass]="{ 'is-invalid': submit_signup &amp;&amp; signupForm.controls.PASSWORD.errors }"  />
+                    <error-message [control]="signupForm.controls.PASSWORD" *ngIf="submit_signup"></error-message>
+                    
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Repeat Password</label>
+					<input id="pass" type="password" formControlName="REPEATPASSWORD"  class="input" [ngClass]="{ 'is-invalid': submit_signup &amp;&amp; signupForm.controls.REPEATPASSWORD.errors }"  />
+                    <error-message [control]="signupForm.controls.REPEATPASSWORD" *ngIf="submit_signup"></error-message>
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Email Address</label>
+					<input id="pass" type="text" formControlName="EMAILADDRESS"  class="input" [ngClass]="{ 'is-invalid': submit_signup &amp;&amp; signupForm.controls.EMAILADDRESS.errors }"  />
+                    <error-message [control]="signupForm.controls.EMAILADDRESS" *ngIf="submit_signup"></error-message>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign Up">
+				</div>
+				
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
+    </body>
+</html>
