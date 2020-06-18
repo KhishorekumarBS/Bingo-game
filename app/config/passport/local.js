@@ -6,19 +6,23 @@ module.exports = new LocalStrategy({
     passwordField: 'password'
   },
   function(email, password, done) {
+    console.log("local.js");
+    console.log(email);
+    console.log(password);
     var options = {
       criteria: { email: email },
       select: 'name email hashed_password salt'
     };
     User.load(options, function (err, user) {
-      if (err) return done(err)
       if (!user) {
         return done(null, false, { message: 'Unknown user' });
       }
-      if (!user.authenticate(password)) {
+      else if (!user.authenticate(password)) {
         return done(null, false, { message: 'Invalid password' });
       }
-      return done(null, user);
+      else { 
+        return done(null, user);
+      }
     });
   }
 );

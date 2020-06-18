@@ -28,7 +28,6 @@ import 'hammerjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RoomComponent } from './room/room.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginComponent } from './login/login.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { ValidationService } from './service/validation.service';
@@ -63,8 +62,7 @@ import { ValidationService } from './service/validation.service';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatSliderModule,
-    HttpClientModule,
-    FontAwesomeModule
+    HttpClientModule
   ],
   providers: [ ValidationService ],
   

@@ -18,8 +18,15 @@ require('./app/config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Bootstrap routes
 require('./app/routes')(app, passport);
+
+app.get('/testing', function(req, res) {
+	if(!req.session.passport)
+		res.json({ data:"Login pantu va da mayiru" });	
+	else
+		res.json({ data:"Va da va da" }); 
+});
+
 
 app.listen(port);
 console.log('Express app started on port ' + port);

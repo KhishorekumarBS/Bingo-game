@@ -28,6 +28,10 @@ UserSchema.statics = {
     },
     create: function(data, callback) {
         var user = new this(data);
+        console.log("Model:")
+        console.log(data);
+        console.log(user);
+        
         user.save(callback);
     },
     get: function(id, callback) {
@@ -44,6 +48,7 @@ var validatePresenceOf = function (value) {
 
 UserSchema.methods = {
   authenticate: function (plainText) {
+    console.log("User authenticate fn");
     return this.encryptPassword(plainText) === this.hashed_password;
   },
   makeSalt: function () {
