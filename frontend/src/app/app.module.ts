@@ -31,6 +31,7 @@ import { RoomComponent } from './room/room.component';
 import { LoginComponent } from './login/login.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { ValidationService } from './service/validation.service';
+import { BingocardComponent } from './bingocard/bingocard.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ValidationService } from './service/validation.service';
     RoomComponent,
     LoginComponent,
     ErrorMessageComponent,
+    BingocardComponent,
     
   ],
   imports: [

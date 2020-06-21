@@ -1,0 +1,31 @@
+<html>
+<body>
+
+
+    
+    <div fxLayout="column"
+         fxLayoutGap="25px"
+         class="container">
+        <div class="example-button-row">
+        <button (click)="rand()" mat-stroked-button color="warn">Generate</button>
+        </div>
+        
+  <div class="row">
+    <div class="card column column-50">
+      
+            <div class="grid-container">
+
+                <div class="grid-item">B</div>
+                <div class="grid-item">I</div>
+                <div class="grid-item">N</div>  
+                <div class="grid-item">G</div>
+                <div class="grid-item">O</div>
+
+                
+                <div class="grid-item" *ngFor= "let random_number of random_numbers">{{random_number}}</div>
+            </div>
+      </div>
+    </div>
+    </div>
+    </body>
+    </html>

@@ -31,10 +31,11 @@ export class LoginComponent implements OnInit {
 
   createsignupForm() {
     this.signupForm = this.fb.group({
-      USERNAME:  ['', Validators.required ],
-      PASSWORD:  ['', [Validators.required, Validators.minLength(6),ValidationService.password]],
-      REPEATPASSWORD:  ['', [Validators.required, ValidationService.password]],
       EMAILADDRESS:  ['', [Validators.required, Validators.email]],
+      USERNAME:  ['', Validators.required ],
+      PASSWORD:  ['', [Validators.required,ValidationService.password]],
+      REPEATPASSWORD:  ['', [Validators.required]],
+      
     },{
   validator: [
     ValidationService.match('PASSWORD', 'REPEATPASSWORD'),
@@ -58,8 +59,8 @@ export class LoginComponent implements OnInit {
   }
   createsigninForm() {
     this.signinForm = this.sb.group({
-      USERNAME:  ['', Validators.required ],
-      PASSWORD:  ['', [Validators.required, Validators.minLength(6),ValidationService.password]]
+      EMAILADDRESS:  ['', [Validators.required, Validators.email]],
+      PASSWORD:  ''
 });
   }
   onSubmitsignin() {

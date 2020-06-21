@@ -1,13 +1,14 @@
 export class Signup {
+    EMAILADDRESS: string;
     USERNAME: string;
     PASSWORD: string;
     REPEATPASSWORD: string;
-    EMAILADDRESS: string;
+    
     
 };
 
 export class Signin {
-    USERNAME: string;
+    EMAILADDRESS: string;
     PASSWORD: string;
     
 };

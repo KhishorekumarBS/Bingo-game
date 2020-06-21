@@ -156,3 +156,29 @@ a{color:inherit;text-decoration:none}
 .foot-lnk{
 	text-align:center;
 }
+.container{
+    
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px 100px;
+  background-color: darkorange;
+  padding: 4px;
+    
+}
+.grid-item {
+  background-color: rgba(255, 255, 153);
+  border: 1px solid rgba(255, 140, 0, 1);
+  padding: 30px;
+  font-size: 25px;
+    color: black;
+  text-align: center;
+      
+}
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+  background-color: white;
+  font-size: 16px;
+  width: 100px;
+}
