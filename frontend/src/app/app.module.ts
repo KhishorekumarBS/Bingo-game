@@ -33,6 +33,7 @@ import { LoginComponent } from './login/login.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { ValidationService } from './service/validation.service';
 import { BingocardComponent } from './bingocard/bingocard.component';
+import { RoomcodeComponent } from './roomcode/roomcode.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { BingocardComponent } from './bingocard/bingocard.component';
     LoginComponent,
     ErrorMessageComponent,
     BingocardComponent,
+    RoomcodeComponent,
     
     
   ],
