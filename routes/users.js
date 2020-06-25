@@ -21,11 +21,10 @@ router.post('/signup', (req, res, next) => {
 	console.log(req.body.username);
 	console.log(req.body.password);
 	
-	User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
+	User.register(new User({username: req.body.username,name: req.body.name}), req.body.password, (err, user) => {
     if(err) {
-		res.statusCode = 500;
-		res.setHeader('Content-Type', 'application/json');
-		res.json({err: err});
+			res.setHeader('Content-Type', 'application/json');
+			res.json({success: false, status: err.name});
     }
     else {
 		passport.authenticate('local')(req, res, () => {
@@ -50,7 +49,7 @@ router.post('/login', (req, res, next) => {
 			req.logIn(user, (err) => {
 				var token = authenticate.getToken({_id: req.user._id});
 				res.setHeader('Content-Type', 'application/json');
-				res.json({success: true, status: 'Login Successful!', token: token});
+				res.json({success: true, status: 'Login Successful!', token: token,name: user.name});
 			}); 
     	}
 	}) (req, res, next);

@@ -10,6 +10,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule } from '@angular/material/slider';
 import { HttpClientModule} from '@angular/common/http';
+import { AuthInterceptor } from './service/auth.interceptor';
 
 
 import 'hammerjs';
@@ -68,7 +71,13 @@ import { BingocardComponent } from './bingocard/bingocard.component';
     MatSliderModule,
     HttpClientModule,
   ],
-  providers: [ ValidationService ],
+  providers: [     
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    ValidationService ],
   
   
   

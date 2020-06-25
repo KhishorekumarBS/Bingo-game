@@ -53,4 +53,11 @@ app.use(function(err, req, res, next) {
 
 app.use('/users', usersRouter);
 
+app.post('/createroom',authenticate.verifyUser,function(req, res, next) {
+	room_code = Math.floor(100000 + Math.random() * 900000);
+	res.setHeader('Content-Type', 'application/json');
+	res.json({roomcode:room_code});
+});
+
+
 module.exports = app;
