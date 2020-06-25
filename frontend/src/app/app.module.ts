@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,6 +43,7 @@ import { BingocardComponent } from './bingocard/bingocard.component';
     ErrorMessageComponent,
     BingocardComponent,
     
+    
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,7 @@ import { BingocardComponent } from './bingocard/bingocard.component';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatSliderModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [ ValidationService ],
   

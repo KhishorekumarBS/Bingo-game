@@ -1,4 +1,5 @@
 <html>
+
 <body>
 
 
@@ -15,14 +16,15 @@
       
             <div class="grid-container">
 
-                <div class="grid-item">B</div>
+               <div class="grid-item">B</div>
                 <div class="grid-item">I</div>
                 <div class="grid-item">N</div>  
                 <div class="grid-item">G</div>
                 <div class="grid-item">O</div>
 
                 
-                <div class="grid-item" *ngFor= "let random_number of random_numbers">{{random_number}}</div>
+                
+                <div class="grid-item" id="count" *ngFor="let random_number of random_numbers">{{random_number}}</div>
             </div>
       </div>
     </div>
