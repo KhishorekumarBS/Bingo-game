@@ -18,12 +18,10 @@ export class AuthService {
      this.isAuthenticated=true;
      this.nameofuser=credentials.name;
      this.authToken=credentials.token;
-     this.createRoom("summa");
   }
 
-  createRoom(roomcode: string) {
-     console.log('room-code', roomcode);
-     this.http.post('/api/users/hloo', {}).subscribe((res)=>{
+  createRoom() {
+     this.http.post('/api/createroom', {}).subscribe((res)=>{
           console.log('res is ', res)
       },(error) => {
           console.log('error is ', error)
