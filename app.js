@@ -7,6 +7,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var authenticate = require('./authenticate');
 var config = require('./config');
+var rooms = require('./room');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -52,5 +53,26 @@ app.use(function(err, req, res, next) {
 });
 
 app.use('/users', usersRouter);
+
+app.post('/createroom',authenticate.verifyUser,function(req, res, next) {
+	room_code=rooms.createRoom();
+	rooms.joinRoom(room_code,req.user.username);
+	res.setHeader('Content-Type', 'application/json');
+	res.json({roomcode:room_code});
+});
+
+// app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {
+// 	room_code=rooms.createRoom();
+// 	rooms.joinRoom(room_code,req.user.username);
+// 	res.setHeader('Content-Type', 'application/json');
+// 	res.json({roomcode:room_code});
+// });
+
+// app.post('/updatescore',authenticate.verifyUser,function(req, res, next) {
+// 	rooms.updatescore(room_code,req.user.username,req.body.score);
+// 	res.setHeader('Content-Type', 'application/json');
+// 	res.json({roomcode:room_code});
+// });
+
 
 module.exports = app;
