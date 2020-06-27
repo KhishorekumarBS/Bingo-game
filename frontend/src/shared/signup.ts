@@ -12,3 +12,9 @@ export class Signin {
     PASSWORD: string;
     
 };
+
+export class ResponseType
+{
+    success:boolean;
+    status:string;
+};

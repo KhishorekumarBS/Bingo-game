@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../service/validation.service';
 import { SignupService } from '../service/signup.service';
-
+//import { RouterModule, Routes} from '@angular/router';
+import { Router,Params,ActivatedRoute } from '@angular/router';
 import { Signup, Signin } from '../../shared/signup';
 
 @Component({
@@ -19,14 +20,22 @@ export class LoginComponent implements OnInit {
   signinForm: FormGroup;
   signin: Signin;
   submit_signin=false;
+  data: boolean;
+  infoMessage = 'Heloooooo';
   
-  
-   constructor(private fb: FormBuilder,private sb: FormBuilder, private signupservice: SignupService) {
+   constructor(private fb: FormBuilder,private sb: FormBuilder, private signupservice: SignupService,private route:ActivatedRoute ) {
     this.createsignupForm();
     this.createsigninForm();
   }
 
   ngOnInit() {
+  //this.signupservice.signupstore().subscribe(data => this.data = canshow);
+  /*this.route.queryParams
+      .subscribe(params => {
+        if(params.success !== undefined && params.success === 'true') {
+            this.infoMessage = 'Registration Successful! Please Login!';
+        }
+      });*/
   }
 
   createsignupForm() {
@@ -50,10 +59,10 @@ export class LoginComponent implements OnInit {
     }
     else{
     this.signup = this.signupForm.value;
-    
-    this.signupservice.signupstore(this.signup);
+    this.signupservice.signupstore(this.signup).subscribe(data => this.infoMessage=data);
     this.submit_signup=false;
      this.signupForm.reset();
+     console.log(this.infoMessage);
      }
      
   }

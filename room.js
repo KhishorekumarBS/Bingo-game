@@ -33,4 +33,4 @@ rc2=createRoom();
 joinRoom(rc1,"bsk1");
 joinRoom(rc1,"bsk2");
 joinRoom(rc2,"bsk3");
-console.log(room_details);
+//console.log(room_details);

@@ -29,7 +29,7 @@ router.post('/signup', (req, res, next) => {
     else {
 		passport.authenticate('local')(req, res, () => {
 			res.setHeader('Content-Type', 'application/json');
-			res.json({success: true, status: 'Registration Successful!'});
+			res.json({'success': true, 'status': 'Registration Successful!'});
       });
     }
   });

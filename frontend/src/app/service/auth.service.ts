@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-	
+	//Dont access these variables directly. For accessing these we have helper functions.
   isAuthenticated: Boolean = false;
   nameofuser: string = undefined;
   authToken: string = undefined;
@@ -37,7 +37,7 @@ export class AuthService {
    isLoggedIn(): Boolean {
      return this.isAuthenticated;
    }
-
+//Whenever u want the name, u can call this function . Remember that all these works only after login.
    getName(): string {
      return this.nameofuser;
    }
