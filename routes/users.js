@@ -24,7 +24,7 @@ router.post('/signup', (req, res, next) => {
 	User.register(new User({username: req.body.username,name: req.body.name}), req.body.password, (err, user) => {
     if(err) {
 			res.setHeader('Content-Type', 'application/json');
-			res.json({success: false, status: err.name});
+			res.json({'success': false, 'status': err.name});
     }
     else {
 		passport.authenticate('local')(req, res, () => {

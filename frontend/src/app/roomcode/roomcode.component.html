@@ -34,7 +34,6 @@
 			<img src="assets/2.jpg" alt="User Image"/>
 
 			<ul>
-				<li><a href="#" >change Password</a></li>
 				<li><a href="#">Logout</a></li>
 			</ul>
 		</div>
@@ -50,10 +49,14 @@
     <label style="color: black" for="tab2-1">CREATE</label>
     <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
     <div class="textbox" >
-        <div class="container">
+        <div class="container" style="text-align: center;">
             
-            <button  mat-stroked-button color="warn">CREATE ROOM</button>
-    </div>
+            <button (click)="code();" onClick="this.disabled=true;" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;" mat-stroked-button color="warn">CREATE ROOM</button>
+	</div>
+	<div *ngIf="roomcode" style="text-align: center;">
+		<br><br><span>ROOMCODE: {{roomcode}}</span>
+		<br><br><span>Share the code with your friends!<br>Have a happy play!</span>
+	</div>
     <!--<label for="school" style="text-align: justify;margin-left: 10px;" >Room Code:</label>
     <input id="school" name="schoo" type="text" style="width: 50%;margin-left: 10px;color:red" >  --> 
   </div>

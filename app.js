@@ -56,9 +56,9 @@ app.use('/users', usersRouter);
 
 app.post('/createroom',authenticate.verifyUser,function(req, res, next) {
 	room_code=rooms.createRoom();
-	rooms.joinRoom(room_code,req.user.username);
+	rooms.enterRoom(room_code,req.user.username);
 	res.setHeader('Content-Type', 'application/json');
-	res.json({roomcode:room_code});
+	res.json({'roomcode':room_code});
 });
 
 // app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {

@@ -8,7 +8,7 @@
          fxLayoutGap="25px"
          class="container">
         <div class="example-button-row">
-        <button (click)="rand()" mat-stroked-button color="warn">Generate</button>
+        <button (click)="rand()" onClick="this.disabled=true;" mat-stroked-button color="warn">Generate</button>
         </div>
         
   <div class="row">
@@ -24,7 +24,9 @@
 
                 
                 
-                <div class="grid-item" id="count" *ngFor="let random_number of random_numbers">{{random_number}}</div>
+                <!--<div class="grid-item " [ngClass]="['statusClass']"  *ngFor="let random_number of random_numbers" (click)="strike()" >5</div>-->
+                <div class="grid-item "   *ngFor="let random_number of random_numbers"[style.text-decoration]="getstyles()" (click)="showStyle = !showStyle" onclick="this.disabled=true" >{{random_number}}</div>
+                
             </div>
       </div>
     </div>

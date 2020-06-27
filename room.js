@@ -1,7 +1,7 @@
 var room_details={};
 
-// exports.createroom = function()
-function createRoom()
+// function createRoom()
+exports.createRoom = function()
 {
 	room_code=0;
 	while(true)
@@ -16,8 +16,8 @@ function createRoom()
 	return room_code;
 }
 
-// exports.enterroom = function(room_code,username)
-function joinRoom(room_code,username)
+// function joinRoom(room_code,username)
+exports.enterRoom = function(room_code,username)
 {	
 	room_details[room_code]["users"][username]=5;
 	console.log(room_details);
@@ -28,9 +28,9 @@ function joinRoom(room_code,username)
 // 	room_details[room_code][username]["score"]=score;
 // 	console.log(room_details);
 // }
-rc1=createRoom();
-rc2=createRoom();
-joinRoom(rc1,"bsk1");
-joinRoom(rc1,"bsk2");
-joinRoom(rc2,"bsk3");
+// rc1=createRoom();
+// rc2=createRoom();
+// joinRoom(rc1,"bsk1");
+// joinRoom(rc1,"bsk2");
+// joinRoom(rc2,"bsk3");
 //console.log(room_details);

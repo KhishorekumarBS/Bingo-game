@@ -11,10 +11,11 @@ export class BingocardComponent implements OnInit {
 
   random_numbers: number[]=[];
   //i:number=5;
+  statusClass : string;
   constructor() { }
 
   ngOnInit(): void {
-  
+    
 
 
 }
@@ -26,6 +27,20 @@ export class BingocardComponent implements OnInit {
     }
   console.log(this.random_numbers);
  }
+ 
+
+ /*strike(){
+   this.statusClass = 'text-decoration: line-through;';
+   console.log("hello");
+ }*/
+ showStyle = false;
+  getstyles() {
+    if (this.showStyle) {
+      return 'line-through';
+    } else {
+      return '';
+    }
+  }
  
   }
   

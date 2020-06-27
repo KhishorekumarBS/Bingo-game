@@ -19,13 +19,14 @@ export class AuthService {
      this.nameofuser=credentials.name;
      this.authToken=credentials.token;
   }
-
+  //return this.http.post('/api/users/signup', {'username':signup_data.EMAILADDRESS,'name':signup_data.USERNAME,'password':signup_data.PASSWORD});
   createRoom() {
-     this.http.post('/api/createroom', {}).subscribe((res)=>{
+     return this.http.post('/api/createroom', {})
+     /*.subscribe((res)=>{
           console.log('res is ', res)
       },(error) => {
           console.log('error is ', error)
-      })
+      })*/
   }
 
    logOut() {
