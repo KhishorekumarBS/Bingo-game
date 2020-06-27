@@ -23,8 +23,9 @@ export class SignupService {
     getmsg() {
      this.showmsg=true;
     }
+
     
-    signupstore(signup_data): Observable<string> {
+/*    signupstore(signup_data): Observable<string> {
       console.log(signup_data); 
       this.http.post('/api/users/signup', {'username':signup_data.EMAILADDRESS,'name':signup_data.USERNAME,'password':signup_data.PASSWORD}).subscribe((res)=>{
           console.log('res is ', res);
@@ -37,13 +38,14 @@ export class SignupService {
           console.log('error is ', error);
           return error.name;
       })
+    }*/
+
+    signupstore(signup_data) {
+      console.log(signup_data); 
+      return this.http.post('/api/users/signup', {'username':signup_data.EMAILADDRESS,'name':signup_data.USERNAME,'password':signup_data.PASSWORD});
     }
 
- /*   signupstore(signup_data) {
-      console.log(signup_data); 
-      this.http.post('/api/users/signup', {'username':signup_data.EMAILADDRESS,'name':signup_data.USERNAME,'password':signup_data.PASSWORD})
-      .map((response:ResponseType)=>console.log(response.status));
-    }*/
+
     signinstore(signin_data) {
       this.http.post('/api/users/login', {'username':signin_data.EMAILADDRESS,'password':signin_data.PASSWORD}).subscribe((res)=>{
           console.log('res is ', res);

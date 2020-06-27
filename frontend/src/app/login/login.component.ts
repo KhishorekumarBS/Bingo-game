@@ -59,19 +59,27 @@ export class LoginComponent implements OnInit {
     }
     else{
     this.signup = this.signupForm.value;
-    this.signupservice.signupstore(this.signup).subscribe(data => this.infoMessage=data);
+    this.signupservice.signupstore(this.signup).subscribe(data => 
+      {
+        if(data['success']) 
+          this.infoMessage = "Registration successfull. Please login to continue";
+        else
+          this.infoMessage = "Email-id already exists";
+      });
     this.submit_signup=false;
      this.signupForm.reset();
      console.log(this.infoMessage);
      }
      
   }
+  
   createsigninForm() {
     this.signinForm = this.sb.group({
       EMAILADDRESS:  ['', [Validators.required, Validators.email]],
       PASSWORD:  ''
 });
   }
+
   onSubmitsignin() {
    this.submit_signin=true;     
    if (this.signinForm.invalid) {
