@@ -1,35 +1,67 @@
 <html>
+  <head>
 
-<body>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+		<title>User Dropdown Header</title>
+	
+		<link rel="stylesheet" >
+		<link rel="stylesheet" >
+		<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+	
+	
+	</head>
+		
+  <body>
+    <header class="header-user-dropdown">
 
-
+			<div class="header-limiter">
+				<h1>FIN<span>GO</span></h1>
+		
     
+      
+      <div class="header-user-menu">
+        <span style="font:normal 28px URW Chancery L, cursive ;">{{username}}</span>
+  
+        <ul>
+          <li><a (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
+  
+    </div>
+		
+		</header>
     <div fxLayout="column"
          fxLayoutGap="25px"
          class="container">
-        <div class="example-button-row">
-        <button (click)="rand()" onClick="this.disabled=true;" mat-stroked-button color="warn">Generate</button>
+        <!--<div class="example-button-row">
+          <button (click)="rand()" onClick="this.disabled=true;" mat-stroked-button color="warn">Generate</button>
+        </div>-->
+        <br><br>
+        <div class="example-button-row" style="font: italic bold 20px/30px Georgia, serif;">
+          <button (click)="setIntrvl();rand()" onclick="this.disabled=true" style=" width: 100px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white"  mat-stroked-button color="warn">START</button>
+        <span style="font-size: 100%;color:red">{{rando}}</span><br>
+          <br>
+         &nbsp;&nbsp; <span style="font-size: 100%;color:red; ">00:{{tens}}{{ones}}</span>
         </div>
-        
-  <div class="row">
-    <div class="card column column-50">
-      
-            <div class="grid-container">
 
-               <div class="grid-item">B</div>
-                <div class="grid-item">I</div>
-                <div class="grid-item">N</div>  
-                <div class="grid-item">G</div>
-                <div class="grid-item">O</div>
+      <div class="row">
+        <div class="card column column-50">
+          
+          <div class="grid-container grid-container--fill" >
 
-                
-                
-                <!--<div class="grid-item " [ngClass]="['statusClass']"  *ngFor="let random_number of random_numbers" (click)="strike()" >5</div>-->
-                <div class="grid-item "   *ngFor="let random_number of random_numbers"[style.text-decoration]="getstyles()" (click)="showStyle = !showStyle" onclick="this.disabled=true" >{{random_number}}</div>
-                
-            </div>
+               <div class="grid-item" style="border: none black;color:white;font: normal 28px URW Chancery L, cursive ;">F</div>
+                <div class="grid-item" style="border: none black;color:white;font: normal 28px URW Chancery L, cursive ;">I</div>
+                <div class="grid-item" style="border: none black;color:white;font: normal 28px URW Chancery L, cursive ;">N</div>  
+                <div class="grid-item" style="border: none black;color: #bc40df;font: normal 28px URW Chancery L, cursive ;">G</div>
+                <div class="grid-item" style="border: none black;color: #bc40df;font: normal 28px URW Chancery L, cursive ;">O</div>
+                <div class="grid-item"  *ngFor="let random_number of random_numbers;let i = index"  (click)="selectItem($event)" id="r{{random_number}}">{{random_number}}</div> 
+          </div>
+        </div>
       </div>
+      
     </div>
-    </div>
-    </body>
-    </html>
+  </body>
+</html>

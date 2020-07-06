@@ -5,6 +5,7 @@ import { SignupService } from '../service/signup.service';
 //import { RouterModule, Routes} from '@angular/router';
 import { Router,Params,ActivatedRoute } from '@angular/router';
 import { Signup, Signin } from '../../shared/signup';
+import { RoomcodeComponent } from "../roomcode/roomcode.component";
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { Signup, Signin } from '../../shared/signup';
 export class LoginComponent implements OnInit {
  @ViewChild('fform') signupFormDirective;
  @ViewChild('sform') signinFormDirective;
+ //@ViewChild(RoomcodeComponent) childmessage;
   signupForm: FormGroup;
   signup: Signup ; 
   submit_signup= false;
@@ -22,13 +24,14 @@ export class LoginComponent implements OnInit {
   submit_signin=false;
   data: boolean;
   infoMessage = '';
-  
+ // message='';
    constructor(private fb: FormBuilder,private sb: FormBuilder, private signupservice: SignupService,private route:ActivatedRoute ) {
     this.createsignupForm();
     this.createsigninForm();
   }
 
   ngOnInit() {
+    //this.message=this.childmessage.msg;
   //this.signupservice.signupstore().subscribe(data => this.data = canshow);
   /*this.route.queryParams
       .subscribe(params => {
@@ -95,6 +98,7 @@ export class LoginComponent implements OnInit {
      }
      
   }
+ 
   }
 
 

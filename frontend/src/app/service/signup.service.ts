@@ -51,9 +51,11 @@ export class SignupService {
           console.log('res is ', res);
           //This line stores the user name, token in auth.service 
           this.authService.storeUserCredentials(res);
-          //if(res.auth==="1"){
-          //this.router.navigate(['/bingocard'])
-          //}
+          //console.log(res['success']);
+          if(res['success']==true){
+            //console.log(res['success']);
+          this.router.navigate(['/roomcode'])
+          }
       },(error) => {
           console.log('error is ', error)
       })        

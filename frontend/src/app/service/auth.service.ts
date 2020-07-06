@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ export class AuthService {
   isAuthenticated: Boolean = false;
   nameofuser: string = undefined;
   authToken: string = undefined;
+  logged_out=true;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
   storeUserCredentials(credentials: any) {
      console.log('storeUserCredentials ', credentials);
@@ -21,7 +23,9 @@ export class AuthService {
   }
   //return this.http.post('/api/users/signup', {'username':signup_data.EMAILADDRESS,'name':signup_data.USERNAME,'password':signup_data.PASSWORD});
   createRoom() {
+    //this.router.navigate(['/bingocard'])
      return this.http.post('/api/createroom', {})
+     //this.router.navigate(['/bingocard'])
      /*.subscribe((res)=>{
           console.log('res is ', res)
       },(error) => {
@@ -33,6 +37,9 @@ export class AuthService {
      this.isAuthenticated = false;
      this.nameofuser = undefined;
      this.authToken = undefined;
+     return this.logged_out;
+
+     
    }
 
    isLoggedIn(): Boolean {
@@ -46,6 +53,7 @@ export class AuthService {
 
    getToken(): string {
      return this.authToken;
+     //console.log(this.authToken)
    }
 
 }
