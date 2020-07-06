@@ -55,6 +55,29 @@ router.post('/login', (req, res, next) => {
 	}) (req, res, next);
 });
 
+router.post('/changepassword',authenticate.verifyUser, (req, res, next) => {
+	User.findByUsername(req.user.username).then(function(sanitizedUser){
+    if (sanitizedUser){
+        sanitizedUser.setPassword(req.body.newpassword, function(){
+            sanitizedUser.save();
+            res.status(200).json({message: 'password reset successful'});
+        });
+    } else {
+        res.status(500).json({message: 'This user does not exist'});
+    }
+},function(err){
+    console.error(err);
+})
+});
+
+router.post('/changename',authenticate.verifyUser, (req, res, next) => {
+	User.updateOne({ _id:req.user._id }, { name: req.body.newname }, function(err,result) 
+	{
+		if (err) { res.json({'status':false,'error':err});} 
+		else { res.json({'status':false,'user':result});}
+	});
+});
+
 
 router.post('/hloo',authenticate.verifyUser,function(req, res, next) {
 	// const usertoken = req.headers.authorization;
