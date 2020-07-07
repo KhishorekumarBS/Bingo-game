@@ -74,7 +74,7 @@ router.post('/changename',authenticate.verifyUser, (req, res, next) => {
 	User.updateOne({ _id:req.user._id }, { name: req.body.newname }, function(err,result) 
 	{
 		if (err) { res.json({'status':false,'error':err});} 
-		else { res.json({'status':false,'user':result});}
+		else { res.json({'status':true,'user':result});}
 	});
 });
 

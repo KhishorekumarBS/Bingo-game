@@ -62,14 +62,12 @@ app.post('/createroom',authenticate.verifyUser,function(req, res, next) {
 
 app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {
 	// let message = await rooms.enterRoom(room_code,req.user.username);
-	rooms.enterRoom(req.body.roomcode,req.user.username).then(function(message) {
+	rooms.joinRoom(req.body.roomcode,req.user.username).then(function(players_status) {
 		res.setHeader('Content-Type', 'application/json');
-		if(message=="UserLimitExceeded")
-			res.json({'status':false,'message':"Room Capacity exceeded"});
-		else if(message=="Joined")
-			res.json({'status':true});
+		if(players_status=="UserLimitExceeded")
+			res.json({'status':false,'status':"Room Capacity exceeded"});
 		else
-			res.json({'status':false,'message':"Please try again"});
+			res.json({'status':true,'players':players_status});
 	});
 });
 
@@ -79,11 +77,13 @@ app.post('/updatescore',authenticate.verifyUser,function(req, res, next) {
 	res.json({'status':true});
 });
 
-app.post('/getnumandscore',authenticate.verifyUser,function(req, res, next) {
-	num=rooms.getRandomCall(req.body.roomcode,req.body.index);
-	updated_score=rooms.updateScore(req.body.roomcode,req.user.username,req.body.score);
-	res.setHeader('Content-Type', 'application/json');
-	res.json({'random_number':num , 'score':updated_score });
+app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
+	rooms.getRandomCall(req.body.roomcode,req.body.turn,req.body.randnum,req.body.index)
+	.then(function(randnum) {
+		updated_score=rooms.updateScore(req.body.roomcode,req.user.username,req.body.score);
+		res.setHeader('Content-Type', 'application/json');
+		res.json({'random_number':randnum,'score':updated_score});
+	});	
 });
 
 app.post('/getwinner',authenticate.verifyUser,function(req, res, next) {

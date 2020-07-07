@@ -1,0 +1,14 @@
+List of Api interactions 
+
+/createroom
+<Nothing>
+
+/joinroom
+roomcode
+
+/getrandomcall
+roomcode
+turn (true or false - whether its that person's turn or not)
+randnum (If turn is true, whats the entered number. else -1)
+index (Which'th call is this)
+

@@ -1,23 +1,5 @@
 var room_details={};
 
-async function haveAllPlayersArrived() {
-	return new Promise(resolve => {
-    function checkCount() {
-	users_count = Object.keys(room_details[room_code]["users"]).length;	
-     if (users_count>=2) {
-       console.log('met');
-       resolve();
-     } else {
-     	console.log("Next checking haveAllPlayersArrived");
-     	console.log("Users count:");
-     	console.log(users_count);
-		setTimeout(checkCount, 2000); 
-     }
-   }
-   checkCount();
-  });
- }
-
 
 // function createRoom()
 exports.createRoom = function()
@@ -32,32 +14,72 @@ exports.createRoom = function()
 	room_code=room_code.toString();
 	room_details[room_code]={};
 	room_details[room_code]["users"]={};
-	room_details[room_code]["randomcalls"]= Array.from({length: 25}, () => Math.floor(Math.random() * 100)+1);
+	room_details[room_code]["randomcalls"]= [];
 	return room_code;
 }
 
 // function joinRoom(room_code,username)
-async function enterroom(room_code,username)
+async function joinroom(room_code,username)
 {	
-	return new Promise(function(resolve, reject) {
-	users_count = Object.keys(room_details[room_code]["users"]).length;
-	console.log("Enter room");
-	console.log("Users count:");
-	console.log(users_count);
-    if (users_count>2) {
-      resolve("UserLimitExceeded");
-    }
-    else
-    {
-		room_details[room_code]["users"][username]="-1";
-		console.log(username);
-		console.log("is in the game");	
-		console.log(room_details);
-		haveAllPlayersArrived().then(function() {
-			resolve("Joined");
-		});
-    }
-  });
+	return new Promise(function(resolve, reject) 
+	{
+		function checkUserCount() 
+	    {
+			users_count = Object.keys(room_details[room_code]["users"]).length;	
+     		console.log("Users count:");
+   			console.log(users_count);
+			if (users_count>=2) 
+			{
+				console.log('met');
+				players=[];
+				for(var player in room_details[room_code]["users"]) players.push(player);
+				resolve(players);
+     		} 
+     		else 
+     		{
+     			room_details[room_code]["users"][username]="-1";
+     			console.log(room_details);
+     			console.log("Added.. Next checking");
+				setTimeout(checkUserCount, 2000); 
+     		}
+		}
+		checkUserCount();
+  	});
+}
+
+async function getRandomCall(room_code,turn,randnum,indextobecalled) 
+{
+	return new Promise(function(resolve, reject) 
+	{
+		current_length = Object.keys(room_details[room_code]["randomcalls"]).length;
+		console.log(current_length);
+		if(turn=="true")
+		{
+			room_details[room_code]["randomcalls"].push(randnum);
+			console.log("Number assigned");
+			resolve(randnum);
+		}
+		else
+		{
+		    function checkCallCount() 
+		    {
+				current_length = Object.keys(room_details[room_code]["randomcalls"]).length;
+				console.log("checkCallCount");
+				console.log(current_length);	
+				if(current_length>=indextobecalled)
+				{
+					console.log("Resolved");
+					resolve(room_details[room_code]["randomcalls"][indextobecalled-1]);
+				}
+     			else 
+     			{
+					console.log(room_details);
+					setTimeout(checkCallCount, 2000); 
+     			}
+			}
+			checkCallCount();
+		}
+	});
 }
 
 exports.updateScore = function(room_code,username,score)
@@ -73,21 +95,22 @@ exports.getWinner = function(room_code,score)
 	return Object.keys(room_details[room_code]["users"]).reduce((a, b) => parseInt(room_details[room_code]["users"][a]) > parseInt(room_details[room_code]["users"][b]) ? a : b);
 }
 
-exports.getRandomCall= function(room_code,index)
-{	
-	index= parseInt(index)+1;
-	if(index>=room_details[room_code]["randomcalls"].length-1)
-	{
-		temp=Array.from({length: 10}, () => Math.floor(Math.random() * 100)+1);
-		room_details[room_code]["randomcalls"].push.apply(room_details[room_code]["randomcalls"],temp);
-	}
+// exports.getRandomCall= function(room_code,index)
+// {	
+// 	index= parseInt(index)+1;
+// 	if(index>=room_details[room_code]["randomcalls"].length-1)
+// 	{
+// 		temp=Array.from({length: 10}, () => Math.floor(Math.random() * 100)+1);
+// 		room_details[room_code]["randomcalls"].push.apply(room_details[room_code]["randomcalls"],temp);
+// 	}
 
 
-	console.log(room_details);
-	return room_details[room_code]["randomcalls"][index];
-}
+// 	console.log(room_details);
+// 	return room_details[room_code]["randomcalls"][index];
+// }
 
-exports.enterRoom = enterroom;
+exports.joinRoom = joinroom;
+exports.getRandomCall = getRandomCall;
 
 // exports.updatescore = function(room_code,username,score)
 // {
