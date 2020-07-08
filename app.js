@@ -62,7 +62,7 @@ app.post('/createroom',authenticate.verifyUser,function(req, res, next) {
 
 app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {
 	// let message = await rooms.enterRoom(room_code,req.user.username);
-	rooms.joinRoom(req.body.roomcode,req.user.username).then(function(players_status) {
+	rooms.joinRoom(req.body.roomcode,req.user.name).then(function(players_status) {
 		res.setHeader('Content-Type', 'application/json');
 		if(players_status=="UserLimitExceeded")
 			res.json({'status':false,'status':"Room Capacity exceeded"});
