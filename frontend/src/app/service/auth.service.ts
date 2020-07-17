@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Router } from "@angular/router";
+//import {RoomserviceService } from "./roomservice.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class AuthService {
   nameofuser: string = undefined;
   authToken: string = undefined;
   logged_out=true;
+ 
 
   constructor(private http: HttpClient,private router: Router) { }
 
@@ -23,16 +25,12 @@ export class AuthService {
   }
   //return this.http.post('/api/users/signup', {'username':signup_data.EMAILADDRESS,'name':signup_data.USERNAME,'password':signup_data.PASSWORD});
   createRoom() {
-    //this.router.navigate(['/bingocard'])
      return this.http.post('/api/createroom', {})
-     //this.router.navigate(['/bingocard'])
-     /*.subscribe((res)=>{
-          console.log('res is ', res)
-      },(error) => {
-          console.log('error is ', error)
-      })*/
   }
-
+  
+  getrandnum(){
+     return this.http.post('/api/getrandomcall',{});
+  }
    logOut() {
      this.isAuthenticated = false;
      this.nameofuser = undefined;

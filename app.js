@@ -78,9 +78,9 @@ app.post('/updatescore',authenticate.verifyUser,function(req, res, next) {
 });
 
 app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
-	rooms.getRandomCall(req.body.roomcode,req.body.turn,req.body.randnum,req.body.iterations)
+	rooms.getRandomCall(req.body.roomcode,req.body.turnsend,req.body.random_number,req.body.iterations)
 	.then(function(randnum) {
-		updated_score=rooms.updateScore(req.body.roomcode,req.user.username,req.body.score);
+		updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
 		res.setHeader('Content-Type', 'application/json');
 		res.json({'random_number':randnum,'score':updated_score});
 	});	

@@ -51,6 +51,10 @@ async function getRandomCall(room_code,turn,randnum,indextobecalled)
 {
 	return new Promise(function(resolve, reject) 
 	{
+		console.log(room_details);
+		console.log(randnum);
+		console.log("In room.js");
+		console.log(turn);
 		current_length = Object.keys(room_details[room_code]["randomcalls"]).length;
 		console.log(current_length);
 		if(turn=="true")

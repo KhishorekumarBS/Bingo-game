@@ -51,13 +51,19 @@
     <div class="textbox" >
         <div class="container" style="text-align: center;">
             
-            <button (click)="code();" onClick="this.disabled=true;" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button>
+            <button (click)="getroomcode();" onClick="this.disabled=true;" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button>
 	</div>
 	<div *ngIf="roomcode" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 		<br><br>ROOMCODE:<span class="change"><b>{{roomcode}}</b></span>
 		<br><br><span>Share the code with your friends!<br>Have a happy play!</span>
-		<br><br><button style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn" [routerLink]="['/bingocard']">PLAY</button>
+		<br><br><button *ngIf="other_players" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn" [routerLink]="['/bingocard']">PLAY</button>
 	</div>
+	<div *ngIf="icreatedroom" [@visibility]="visibility" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
+		<br>{{other_players}} has joined!
+	</div>
+	<div [hidden]="other_players">
+		<mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+		  </div>
     <!--<label for="school" style="text-align: justify;margin-left: 10px;" >Room Code:</label>
     <input id="school" name="schoo" type="text" style="width: 50%;margin-left: 10px;color:red" >  --> 
   </div>
@@ -66,11 +72,30 @@
     <label for="tab2-2" style="color: black;font: normal 20px URW Chancery L, cursive ;">JOIN</label>
     <input id="tab2-2" name="tabs-two" type="radio">
     <div class="textbox">
-      <!--<label for="school" style="text-align: justify;margin-left: 10px;" >Room Code:</label>
-    <input id="school" name="schoo" type="text" style="width: 50%;margin-left: 10px;color:red" > -->
+	  <label for="school" style="text-align: center;margin-left: 10px;" >Room Code:</label>
+	  <div style="text-align: center;">
+	<input #code id="school" name="schoo" type="text" style="width: 40%;color:red;" > </div><br><br>
+	<div class="container" style="text-align: center;">
+            
+		<button  (click)=setroomcode(code.value); onClick="this.disabled=true;" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn">JOIN ROOM</button>
+</div>
+<div *ngIf="ijoinedroom" [@visibility]="visibility" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
+	<br>{{other_players}} has joined!
+</div>
     </div>
   </div>
+  <!--<hr style="width: 100%;
+height: 3px;
+margin-left: auto;
+border:1px solid black;
+margin-right: auto;
+background-color: white">
+<div>INSTRUCTIONS:<br><br>
+	1. FINGO cards have 25(5*5) randomly numbered squares on them. <br><br>
+	2. Each player gets a turn alternatively to draw a number to be striked.<br><br>
+</div>-->
 </div>
+
     </div>
     </body>
 </html>

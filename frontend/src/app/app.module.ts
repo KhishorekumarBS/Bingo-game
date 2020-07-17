@@ -38,6 +38,7 @@ import { ValidationService } from './service/validation.service';
 import { BingocardComponent } from './bingocard/bingocard.component';
 import { RoomcodeComponent } from './roomcode/roomcode.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { LogoutComponent } from './logout/logout.component';
     BingocardComponent,
     RoomcodeComponent,
     LogoutComponent,
+    ProfileComponent,
     
     
   ],

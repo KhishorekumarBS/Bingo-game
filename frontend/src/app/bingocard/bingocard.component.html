@@ -41,10 +41,16 @@
         </div>-->
         <br><br>
         <div class="example-button-row" style="font: italic bold 20px/30px Georgia, serif;">
-          <button (click)="setIntrvl();rand()" onclick="this.disabled=true" style=" width: 100px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white"  mat-stroked-button color="warn">START</button>
+          <button (click)="rand()" onclick="this.disabled=true" style=" width: 100px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white"  mat-stroked-button color="warn">START</button>
         <span style="font-size: 100%;color:red">{{rando}}</span><br>
           <br>
          &nbsp;&nbsp; <span style="font-size: 100%;color:red; ">00:{{tens}}{{ones}}</span>
+         &nbsp;&nbsp;<div *ngIf="iamsending"><input [(ngModel)]="send"  id="school" name="schoo" type="text" style="width: 20%;color:red;" ><br></div> 
+         <button *ngIf="iamsending" (click)="sendrand()" onClick="this.disabled=true">ok</button>
+         <div *ngIf="iamreceiving">
+           <div *ngIf="receive" [@visibility]="visibility">{{receive}}</div>
+           <div [hidden]="receive">waiting...</div>
+          </div>
         </div>
 
       <div class="row">

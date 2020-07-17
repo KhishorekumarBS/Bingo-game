@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <div class="login-wrap">
+            <div class="login-html">
+                Email Address <br><br><input [ngModel]="mailid" readonly="!editable" />
+                Username <br><br><input  value={{name}} [readonly]="isReadonly" >
+                Old Password <br><br><input type="password" value="............." [readonly]="isReadonly" >
+                New Password <br><br><input type="password" value=" ............." [readonly]="isReadonly" >
+<br><br><button type="button" (click)="toggleReadonly()">Edit</button>
+            </div>
+
+        </div>
+    </body>
+</html>
+<!---->
