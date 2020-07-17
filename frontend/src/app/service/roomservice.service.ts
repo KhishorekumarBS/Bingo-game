@@ -15,13 +15,11 @@ export class RoomserviceService {
   myindex:number;
   all_players:string[];
   i:number;
-  randnum:string;
+  randnum:number;
   iterations:number=1;
   constructor(private authservice:AuthService,private http: HttpClient,private router: Router) { }
 
   createRoom() {
-      // this.creator_name=this.authservice.getName();
-      // console.log(this.creator_name);
       return new Promise<string>((resolve,reject)=> {
         this.http.post('/api/createroom', {}).subscribe(res=>{
           this.roomcode= res['roomcode'];
@@ -29,8 +27,7 @@ export class RoomserviceService {
           resolve(this.roomcode);    
       })
      });
-    //  return this.roomcode;
-  }
+    }
   getcode(): string {
     return this.roomcode;
   }
@@ -42,14 +39,13 @@ export class RoomserviceService {
   }
 joinRoom() {
   
-  return new Promise<string[]>((resolve,reject)=> {
+  return new Promise((resolve,reject)=> {
     
     this.http.post('/api/joinroom', {'roomcode':this.roomcode}).subscribe(res=>{
+      this.all_players=res['players'];
       console.log(res);  
       if(res['status']==true) {
-      this. all_players=res['players'];
-      
-      resolve(this.all_players);
+      resolve(res);
     }
   })
  });
@@ -62,16 +58,9 @@ setcode(joincode) {
 
 putrandnum(rand_no,turn_send){
   return new Promise<string>((resolve,reject)=> {
-    console.log("In service");
-    console.log(this.roomcode);
-    console.log(rand_no);
-    console.log(this.iterations);
-  this.http.post('/api/getrandomcall',{'roomcode':this.roomcode,'turnsend':turn_send,'random_number':rand_no,'iterations':String(this.iterations) }).subscribe(res=>
-    {
-    this.randnum=res['random_number'];
-    this.iterations++;
-    resolve(this.randnum); 
-    })   
+    this.randnum=Math.floor(Math.random() * 50)+1;
+    resolve(String(this.randnum)); 
+  
   });
 }
 

@@ -6,8 +6,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LogoutComponent } from '../logout/logout.component';
 import { visibility,  expand } from '../animations/animation';
 
-//import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-
 
 
 @Component({
@@ -37,38 +35,28 @@ export class RoomcodeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  //
+  
   username:string=this.authservice.getName();
   getroomcode() {
-    // this.roomcode=this.roomservice.createRoom();
     this.roomservice.createRoom().then(data => 
     {
       this.roomcode=data;
       console.log(data);
       this.roomservice.joinRoom().then(data=>
         {
-         this.all_players=data;
+         this.all_players=data['players'];
          console.log("Player in component");
-         //console.log(typeof(this.all_players));
         var myname=this.authservice.getName();
        
         for(var i=0;i<this.all_players.length;i++){
             if(this.all_players[i]!=myname){
-              //this.index=i;
-              //console.log(this.index);
               console.log(this.all_players[i]);
               this.other_players.push(this.all_players[i]);
-              //console.log(this.other_players[i]);
-              
             }
-            //else{
-              //this.other_players=this.all_players;
-            //}
         }
         this.icreatedroom=true;
         console.log(this.other_players);
-       
-         
+        this.router.navigate(['/bingocard']);
         });
     });
     
@@ -79,37 +67,27 @@ export class RoomcodeComponent implements OnInit {
      this.router.navigate(['/login']);
      this.msg="Logged out";
      this.dialog.open(LogoutComponent, {width: '200px', height: '150px'});
-     // alert("Successfully logged out");
-  
    }
 
    setroomcode(code:string) {
     this.roomservice.setcode(code);
     this.roomservice.joinRoom().then(data=>
       {
-       this.all_players=data;
+       this.all_players=data['players'];
        console.log("Player in component");
-       //console.log(typeof(this.all_players));
       var myname=this.authservice.getName();
      
       for(var i=0;i<this.all_players.length;i++){
           if(this.all_players[i]!=myname){
-            //this.index=i;
-            //console.log(this.index);
             console.log(this.all_players[i]);
             this.other_players.push(this.all_players[i]);
-            //console.log(this.other_players[i]);
-            
           }
-          //else{
-            //this.other_players=this.all_players;
-          //}
       }
       this.ijoinedroom=true;
       console.log(this.other_players);
+      this.router.navigate(['/bingocard']);
       });
-    //console.log(code);
-    
+
   }
    
 }

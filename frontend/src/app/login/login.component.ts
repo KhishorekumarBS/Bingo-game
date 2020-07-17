@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../service/validation.service';
 import { SignupService } from '../service/signup.service';
+import { AuthService } from '../service/auth.service';
 //import { RouterModule, Routes} from '@angular/router';
 import { Router,Params,ActivatedRoute } from '@angular/router';
 import { Signup, Signin } from '../../shared/signup';
@@ -25,20 +26,12 @@ export class LoginComponent implements OnInit {
   data: boolean;
   infoMessage = '';
  // message='';
-   constructor(private fb: FormBuilder,private sb: FormBuilder, private signupservice: SignupService,private route:ActivatedRoute ) {
+   constructor(private fb: FormBuilder,private sb: FormBuilder,private router:Router, private authservice: AuthService,private signupservice: SignupService,private route:ActivatedRoute ) {
     this.createsignupForm();
     this.createsigninForm();
   }
 
   ngOnInit() {
-    //this.message=this.childmessage.msg;
-  //this.signupservice.signupstore().subscribe(data => this.data = canshow);
-  /*this.route.queryParams
-      .subscribe(params => {
-        if(params.success !== undefined && params.success === 'true') {
-            this.infoMessage = 'Registration Successful! Please Login!';
-        }
-      });*/
   }
 
   createsignupForm() {
@@ -91,7 +84,20 @@ export class LoginComponent implements OnInit {
     else{
     this.signin = this.signinForm.value;
     
-    this.signupservice.signinstore(this.signin);
+    this.signupservice.signinstore(this.signin).subscribe(data=>
+      {
+        if(data['status']=="IncorrectUsernameError"){
+          this.infoMessage="Incorrect Usernmame!"
+        }
+        if(data['status']=="IncorrectPasswordError"){
+          this.infoMessage="Incorrect Password!"
+        }
+        this.authservice.storeUserCredentials(data);
+        if(data['success']==true){
+          //console.log(res['success']);
+        this.router.navigate(['/roomcode'])
+        }
+      });
     this.submit_signin=false;
      this.signinForm.reset();
 

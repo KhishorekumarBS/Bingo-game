@@ -47,17 +47,19 @@ export class SignupService {
 
 
     signinstore(signin_data) {
-      this.http.post('/api/users/login', {'username':signin_data.EMAILADDRESS,'password':signin_data.PASSWORD}).subscribe((res)=>{
+      return this.http.post('/api/users/login', {'username':signin_data.EMAILADDRESS,'password':signin_data.PASSWORD})
+        /*.subscribe((res)=>{
           console.log('res is ', res);
           //This line stores the user name, token in auth.service 
-          this.authService.storeUserCredentials(res);
+          
           //console.log(res['success']);
           if(res['success']==true){
             //console.log(res['success']);
           this.router.navigate(['/roomcode'])
           }
+          return res['status'];
       },(error) => {
           console.log('error is ', error)
-      })        
+      })    */    
     }
 }

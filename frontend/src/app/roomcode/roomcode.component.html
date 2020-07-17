@@ -56,7 +56,7 @@
 	<div *ngIf="roomcode" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 		<br><br>ROOMCODE:<span class="change"><b>{{roomcode}}</b></span>
 		<br><br><span>Share the code with your friends!<br>Have a happy play!</span>
-		<br><br><button *ngIf="other_players" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn" [routerLink]="['/bingocard']">PLAY</button>
+		<br><br><button *ngIf="other_players" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn">PLAY</button>
 	</div>
 	<div *ngIf="icreatedroom" [@visibility]="visibility" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 		<br>{{other_players}} has joined!

@@ -28,9 +28,7 @@ export class AuthService {
      return this.http.post('/api/createroom', {})
   }
   
-  getrandnum(){
-     return this.http.post('/api/getrandomcall',{});
-  }
+ 
    logOut() {
      this.isAuthenticated = false;
      this.nameofuser = undefined;
