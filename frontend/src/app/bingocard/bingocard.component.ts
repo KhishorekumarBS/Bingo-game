@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { RoomserviceService } from '../service/roomservice.service';
-import { Router } from "@angular/router";
+import { Router, ResolveEnd } from "@angular/router";
 import { visibility,  expand } from '../animations/animation';
+import { MatTableDataSource} from '@angular/material/table';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LogoutComponent } from '../logout/logout.component';
 
 @Component({
   selector: 'app-bingocard',
@@ -25,8 +28,18 @@ export class BingocardComponent implements OnInit {
   myname:string;
   logged_out:boolean;
   turn:number=0;
+  rand_no:number;
+  value:any;
+  id_arr:any[]=[];
+  id_present:boolean;
+  table_details:any[]=[];
+  score:any[]=[];
+  dataSource = new MatTableDataSource(this.table_details);
+  displayedColumns = ['name', 'position'];
+  userlist: any;
 
-  constructor(private authservice: AuthService,private roomservice: RoomserviceService, private router:Router) { }
+  constructor(private authservice: AuthService,private roomservice: RoomserviceService, private router:Router,public dialog: MatDialog) {
+   }
 
   ngOnInit(): void {
     this.myname=this.authservice.getName();
@@ -34,17 +47,42 @@ export class BingocardComponent implements OnInit {
     this.turn=0;
     this.rand();
     this.getcallnumber();
+    this.rendertable();
   }
   username:string=this.authservice.getName();
+  
+  id_check(){
+    return new Promise((resolve,reject)=> {
+      for(var i=0;i<this.id_arr.length;i++){
+          if(this.id_arr[i]==this.value){
+            this.id_present=false;
+            resolve(this.id_present);
+          }
+      }
+      this.id_present=true; 
+       resolve(this.id_present);
+      })
+  }
 
-  selectedIdx = 0;
   selectItem(event) {
+
    var target = event.target || event.srcElement || event.currentTarget;
    var idAttr = target.attributes.id;
-   var value = idAttr.nodeValue;
-   this.elem = document.querySelector('#'+value) as HTMLElement;
-   (this.elem).style.textDecoration='line-through';
-   (this.elem).style.color='red';
+   this. value = idAttr.nodeValue;
+   if(this.id_arr!=[]){
+     this.id_check().then(id=>
+      {
+        if(id){
+          if(this.elem){
+            (this.elem).style.color='white';
+            (this.elem).style.textDecoration='none';
+           }
+            this.elem = document.querySelector('#'+this.value) as HTMLElement;
+            (this.elem).style.textDecoration='line-through';
+            (this.elem).style.color='orange';
+        }
+      })
+   } 
  }
 
  rand() {
@@ -88,17 +126,21 @@ updatescore(){
 runtime(){
   return new Promise((resolve,reject)=> {
        this.timeLeft=10;  
+       //console.log(this.timeLeft)
       this.ones=this.timeLeft;
       this.timerid=setInterval(() => {
        this.timeLeft--;
+      
      if(this.timeLeft>=0) {
       this.ones=this.timeLeft; 
+      console.log(this.ones);
      }
      else{
       clearTimeout(this.timerid);
-     }
+      console.log("Timer ends");
+      resolve();
+    }
    },1000);
-   resolve();
   });
 }
 
@@ -110,8 +152,39 @@ play(num){
     this.check_no_of_striked();
     this.calculatescore();
     this.updatescore();
+    if(this.elem){
+      (this.elem).style.textDecoration='line-through';
+      (this.elem).style.color='red';
+      this.elem=undefined;
+      this.id_arr.push(this.value);
+      for(var i=0;i<this.all_players.length;i++){
+        if(this.myname==this.table_details[i].name){
+          this.table_details[i].position+=5;
+          console.log(this.table_details[i].position);
+        }
+    }
+   /*let item={name:this.myname ,position:this.score[this.turn]}
+   let index = this.table_details.indexOf(item);
+    item.position = this.score[this.turn]+5;
+    this.table_details[index] = item;*/
+   //this.score[this.turn]+=5;
+   
+   }
+   /*this.userlist=this.table_details.find(obj=>obj.name=== this.myname);
+   console.log("find ans "+this.userlist);
+   if((this.table_details.find(obj=>obj.name=== this.myname))){ 
+
+   this.table_details.map(obj =>obj.position = obj.position+5);
+   }
+   /*this.table_details.filter(function(position){
+     if(position.name==this.myname){
+    return position.position+5;
+     }
+  })*/
+  // console.log("score"+this.score[this.turn]);
+  
+    resolve();
     });
-      resolve();
  });
 }
 
@@ -122,21 +195,47 @@ getcallnumber(){
         {
          this.play(data).then(res=>
           {
+            console.log(this.timeLeft);
             this.increment_turn();
             console.log("Turn incermented");//Run no
-            //this.getcallnumber();
+            this.getcallnumber();
             console.log("insidegetcall");
         }) 
       });
   }
 }
-
+rendertable(){
+  
+  for(var i=0;i<this.all_players.length;i++){
+  this.score.push(0);  
+  this.table_details[i]={name:this.all_players[i],position:0};
+  }
+}
 logout() {
   this.logged_out= this.authservice.logOut();
    this.router.navigate(['/login']);
+   //this.msg="Logged out";
+  this.dialog.open(LogoutComponent, {width: '200px', height: '150px'});
  }
  
  }
+ /*export interface Element {
+  name: string;
+  position: number;
+  all_players:string[]=[];
+}
+//const PLAYERS:[]=this.all_players;
+for(var i=0;i<this.all_players.length;i++){
+  all_players.push({name:this.all_players[i],position:i+1})
+}
+const ELEMENT_DATA: Element[] = 
+/*[
+ 
+  /*{position: i, name: this.all_players[i], },
+  {position: 2, name: 'Helium',},
+  {position: 3, name: 'Lithium', },
+  
+];*/
    
  /*before_start_timer(){
 

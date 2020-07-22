@@ -458,12 +458,23 @@ label, input {
   box-sizing: border-box;
 }
 
-#strike{
-	text-decoration: line-through;
-	color:red
-}
+.example-container {
+	display: flex;
+	flex-direction: column;
+	max-height: 500px;
+	min-width: 300px;
+  }
+  
+  .mat-table {
+	max-height: 500px;
+  }
+  .mat-grid-tile {
+	background: black;
+	border: none black;
+	color:white;
+	font: normal 20px URW Chancery L, cursive ;
+  }
 
-.strike{
-	text-decoration: line-through;
-	color:red
-}
+  .flex-spacer {
+	flex: 1 1 auto;
+  }

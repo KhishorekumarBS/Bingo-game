@@ -15,6 +15,7 @@
 	</head>
 		
   <body>
+
     <header class="header-user-dropdown">
 
 			<div class="header-limiter">
@@ -32,16 +33,17 @@
   
     </div>
 		
-		</header>
-    <div fxLayout="column"
-         fxLayoutGap="25px"
-         class="container">
+    </header>
+    
+    <div class="container" 
+    fxLayout="column"
+         fxLayoutGap="25px">
         <!--<div class="example-button-row">
           <button (click)="rand()" onClick="this.disabled=true;" mat-stroked-button color="warn">Generate</button>
         </div>-->
         <br><br>
         
-        <div class="example-button-row" style="font: italic bold 20px/30px Georgia, serif;">
+        <div fxFlex class="example-button-row" style="font: italic bold 20px/30px Georgia, serif;">
           <button (click)="rand()" onclick="this.disabled=true" style=" width: 100px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white"  mat-stroked-button color="warn">START</button>
         <span style="font-size: 100%;color:red">{{call_number}}</span><br>
           <br>
@@ -53,22 +55,54 @@
            <div [hidden]="receive">waiting...</div>
           </div>-->
         </div>
-
-      <div class="row">
-        <div class="card column column-50">
-          
-          <div class="grid-container grid-container--fill" >
-
-               <div class="grid-item" style="border: none black;color:white;font: normal 28px URW Chancery L, cursive ;">F</div>
-                <div class="grid-item" style="border: none black;color:white;font: normal 28px URW Chancery L, cursive ;">I</div>
-                <div class="grid-item" style="border: none black;color:white;font: normal 28px URW Chancery L, cursive ;">N</div>  
-                <div class="grid-item" style="border: none black;color: #bc40df;font: normal 28px URW Chancery L, cursive ;">G</div>
-                <div class="grid-item" style="border: none black;color: #bc40df;font: normal 28px URW Chancery L, cursive ;">O</div>
-                <div class="grid-item"  *ngFor="let random_number of random_numbers;let i = index"  (click)="selectItem($event)" id="r{{random_number}}">{{random_number}}</div> 
-          </div>
-        </div>
-      </div>
-      
     </div>
+
+        <div class="container flex-container" 
+        fxLayout="row"
+        fxLayout.gt-lg="row"
+        fxLayout.lt-sm="column"
+        fxLayout.gt-md="row"
+        fxLayout.xs="column"
+        fxLayout.sm="columnn"
+        fxLayoutAlign.gt-md="space-around start"
+        fxLayoutGap="20px">
+        
+                <mat-grid-list fxFlex cols="5" rowHeight="2:1">
+                  <mat-grid-tile >F</mat-grid-tile>
+                  <mat-grid-tile>I</mat-grid-tile>
+                  <mat-grid-tile>N</mat-grid-tile>
+                  <mat-grid-tile style="color: #bc40df;">G</mat-grid-tile>
+                  <mat-grid-tile  style="color: #bc40df;">O</mat-grid-tile>
+                
+               <mat-grid-tile *ngFor="let random_number of random_numbers" ><div (click)="selectItem($event)"  id="r{{random_number}}">{{random_number}}</div></mat-grid-tile>
+                
+              </mat-grid-list>    
+              
+     
+        <mat-table fxFlex  #table [dataSource]="dataSource">
+      
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+      
+          
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
+  
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> Score </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      <br><br>
+    </div>
+    
+    
   </body>
 </html>

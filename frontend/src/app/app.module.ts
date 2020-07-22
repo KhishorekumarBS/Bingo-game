@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 
+import {  MatTableModule , MatTableDataSource} from "@angular/material/table";
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -39,6 +40,7 @@ import { BingocardComponent } from './bingocard/bingocard.component';
 import { RoomcodeComponent } from './roomcode/roomcode.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PopupComponent } from './popup/popup.component';
 
 
 @NgModule({
@@ -51,6 +53,7 @@ import { ProfileComponent } from './profile/profile.component';
     RoomcodeComponent,
     LogoutComponent,
     ProfileComponent,
+    PopupComponent,
     
     
   ],
@@ -58,6 +61,7 @@ import { ProfileComponent } from './profile/profile.component';
     BrowserModule,
     AppRoutingModule,
    
+    MatTableModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
