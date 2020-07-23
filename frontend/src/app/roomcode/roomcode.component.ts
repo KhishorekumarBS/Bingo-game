@@ -22,14 +22,8 @@ export class RoomcodeComponent implements OnInit {
   logged_out:boolean;
   icreatedroom = false;
   ijoinedroom=false;
-  msg:string;
   all_players:string[];
   other_players: string[] = [];
-  
-  visibility = 'shown';
-  index:number;
-  i:number;
-  j:number=0;
  
   constructor(private roomservice: RoomserviceService,private authservice:AuthService, private router:Router,public dialog: MatDialog) { }
 
@@ -45,17 +39,17 @@ export class RoomcodeComponent implements OnInit {
       this.roomservice.joinRoom().then(data=>
         {
          this.all_players=data['players'];
-         console.log("Player in component");
+         //console.log("Player in component");
         var myname=this.authservice.getName();
        
         for(var i=0;i<this.all_players.length;i++){
             if(this.all_players[i]!=myname){
-              console.log(this.all_players[i]);
+              //console.log(this.all_players[i]);
               this.other_players.push(this.all_players[i]);
             }
         }
         this.icreatedroom=true;
-        console.log(this.other_players);
+        //console.log(this.other_players);
         this.router.navigate(['/bingocard']);
         });
     });
@@ -65,7 +59,6 @@ export class RoomcodeComponent implements OnInit {
   logout() {
     this.logged_out= this.authservice.logOut();
      this.router.navigate(['/login']);
-     this.msg="Logged out";
      this.dialog.open(LogoutComponent, {width: '200px', height: '150px'});
    }
 
@@ -74,17 +67,17 @@ export class RoomcodeComponent implements OnInit {
     this.roomservice.joinRoom().then(data=>
       {
        this.all_players=data['players'];
-       console.log("Player in component");
+       //console.log("Player in component");
       var myname=this.authservice.getName();
      
       for(var i=0;i<this.all_players.length;i++){
           if(this.all_players[i]!=myname){
-            console.log(this.all_players[i]);
+            //console.log(this.all_players[i]);
             this.other_players.push(this.all_players[i]);
           }
       }
       this.ijoinedroom=true;
-      console.log(this.other_players);
+      //console.log(this.other_players);
       this.router.navigate(['/bingocard']);
       });
 

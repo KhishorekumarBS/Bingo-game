@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
 import { Router } from "@angular/router";
 import {AuthService } from "./auth.service";
-import { rejects } from 'assert';
 
 
 @Injectable({
@@ -14,9 +12,9 @@ export class RoomserviceService {
   
   myindex:number;
   all_players:string[];
-  i:number;
-  randnum:number;
   iterations:number=1;
+  entered_number:string;
+
   constructor(private authservice:AuthService,private http: HttpClient,private router: Router) { }
 
   createRoom() {
@@ -55,12 +53,21 @@ setcode(joincode) {
   this.roomcode=joincode;
   console.log(this.roomcode);
 }
-
-putrandnum(rand_no,turn_send){
-  return new Promise<string>((resolve,reject)=> {
-    this.randnum=Math.floor(Math.random() * 50)+1;
-    resolve(String(this.randnum)); 
+get_entered_number(typed_no){
   
+  this.entered_number=typed_no;
+  console.log(this.entered_number);
+}
+
+putrandnum(turn_send,score){
+  return new Promise((resolve,reject)=> {
+  this.http.post('/api/getrandomcall', {'roomcode':this.roomcode, 'turnsend':turn_send, 
+  'random_number':this.entered_number, 'iterations':this.iterations,'score':String(score)}).subscribe(res=>
+    {
+      this.iterations++;
+      resolve(res); 
+  
+    });
   });
 }
 

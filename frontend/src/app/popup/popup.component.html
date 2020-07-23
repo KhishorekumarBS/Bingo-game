@@ -1,7 +1,10 @@
 <html>
     <body>
-        <div>
-            <button (click)="type_number()">OK</button>
+        <div style="text-align: center;color:black;font:normal 20px URW Chancery L, cursive ;background-color:white;">
+            <span style="font-size: 80%;color:black ">Enter a number in {{ones}} seconds</span><br><br>
+            <input [(ngModel)]="send"  id="school" name="schoo" type="text" style="width: 60%;color:red;border: 1px solid black;" >
+            <br><br>
+            <button (click)="type_number()"  >OK</button>
 
         </div>
     </body>
