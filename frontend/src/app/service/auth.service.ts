@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
 import { Router } from "@angular/router";
-//import {RoomserviceService } from "./roomservice.service";
 
 @Injectable({
   providedIn: 'root'

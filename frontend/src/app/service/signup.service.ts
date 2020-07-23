@@ -14,14 +14,9 @@ import { AuthService } from './auth.service';
 export class SignupService {
   data1: Signup;
   data2: Signin;
-  showmsg: boolean = false;
-  canshow: boolean = false;
   rootURL = 'http://localhost:9000';
     constructor(private http: HttpClient,private router: Router,private authService: AuthService) {
         
-    }
-    getmsg() {
-     this.showmsg=true;
     }
 
     

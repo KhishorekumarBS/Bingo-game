@@ -38,22 +38,14 @@
     <div class="container" 
     fxLayout="column"
          fxLayoutGap="25px">
-        <!--<div class="example-button-row">
-          <button (click)="rand()" onClick="this.disabled=true;" mat-stroked-button color="warn">Generate</button>
-        </div>-->
         <br><br>
         
         <div fxFlex class="example-button-row" style="font: italic bold 20px/30px Georgia, serif;">
           <button (click)="rand()" onclick="this.disabled=true" style=" width: 100px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white"  mat-stroked-button color="warn">START</button>
-        <span style="font-size: 100%;color:red">{{call_number}}</span><br>
+      <div *ngIf="call_number"><span style="font-size: 100%;color:red">{{call_number}}</span><br></div>  
+      <div *ngIf="!call_number"><span style="font-size: 100%;color:white">Waiting for the number...</span><br></div>
           <br>
          &nbsp;&nbsp; <span style="font-size: 100%;color:red; ">{{ones}}</span>
-        <!-- &nbsp;&nbsp;<div *ngIf="iamsending"><input [(ngModel)]="send"  id="school" name="schoo" type="text" style="width: 20%;color:red;" ><br></div> 
-         <button *ngIf="iamsending" (click)="sendrand()" onClick="this.disabled=true">ok</button>
-         <div *ngIf="iamreceiving">
-           <div *ngIf="receive" [@visibility]="visibility">{{receive}}</div>
-           <div [hidden]="receive">waiting...</div>
-          </div>-->
         </div>
     </div>
 
@@ -74,7 +66,7 @@
                   <mat-grid-tile style="color: #bc40df;">G</mat-grid-tile>
                   <mat-grid-tile  style="color: #bc40df;">O</mat-grid-tile>
                 
-               <mat-grid-tile *ngFor="let random_number of random_numbers" ><div (click)="selectItem($event)"  id="r{{random_number}}">{{random_number}}</div></mat-grid-tile>
+               <mat-grid-tile *ngFor="let random_number of random_numbers;let i=index" ><div (click)="selectItem($event)"  id="r{{i+1}}">{{random_number}}</div></mat-grid-tile>
                 
               </mat-grid-list>    
               

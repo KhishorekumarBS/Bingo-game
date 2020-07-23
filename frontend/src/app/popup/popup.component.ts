@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import { LogoutComponent } from '../logout/logout.component';
+import { RoomserviceService } from '../service/roomservice.service';
 
 @Component({
   selector: 'app-popup',
@@ -8,17 +8,37 @@ import { LogoutComponent } from '../logout/logout.component';
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
-
-  constructor(public dialog: MatDialog) { }
+  send='';
+  timeLeft: number 
+  timerid;
+  ones;
+  constructor(public dialogRef: MatDialogRef<PopupComponent>,private roomservice:RoomserviceService) { }
 
   ngOnInit(): void {
+    //console.log(this.send);
+    this.popup();
   }
-  type_number() {
-    const dialogRef =this.dialog.open(LogoutComponent, {width: '200px', height: '150px'});
-    dialogRef.afterOpened().subscribe(_ => {
-      setTimeout(() => {
-         dialogRef.close();
-      }, 10000)
-    })
+  type_number(){
+    this.dialogRef.close();
+    //console.log(this.send);
+    this.roomservice.get_entered_number(String(this.send));
+  }
+  popup(){
+    this.timeLeft=10;  
+   this.ones=this.timeLeft;
+   this.timerid=setInterval(() => {
+    this.timeLeft--;
+   
+  if(this.timeLeft>=0) {
+   this.ones=this.timeLeft; 
+   //console.log(this.ones);
+  }
+  else{
+   clearTimeout(this.timerid);
+   this.dialogRef.close();
+   var send=String(Math.floor(Math.random() * 50)+1);
+   this.roomservice.get_entered_number(send);
+ }
+},1000);
   }
 }

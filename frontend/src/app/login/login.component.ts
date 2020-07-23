@@ -3,10 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../service/validation.service';
 import { SignupService } from '../service/signup.service';
 import { AuthService } from '../service/auth.service';
-//import { RouterModule, Routes} from '@angular/router';
-import { Router,Params,ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { Signup, Signin } from '../../shared/signup';
-import { RoomcodeComponent } from "../roomcode/roomcode.component";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +14,7 @@ import { RoomcodeComponent } from "../roomcode/roomcode.component";
 export class LoginComponent implements OnInit {
  @ViewChild('fform') signupFormDirective;
  @ViewChild('sform') signinFormDirective;
- //@ViewChild(RoomcodeComponent) childmessage;
+ 
   signupForm: FormGroup;
   signup: Signup ; 
   submit_signup= false;
@@ -25,7 +23,7 @@ export class LoginComponent implements OnInit {
   submit_signin=false;
   data: boolean;
   infoMessage = '';
- // message='';
+ 
    constructor(private fb: FormBuilder,private sb: FormBuilder,private router:Router, private authservice: AuthService,private signupservice: SignupService,private route:ActivatedRoute ) {
     this.createsignupForm();
     this.createsigninForm();
@@ -33,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
   createsignupForm() {
     this.signupForm = this.fb.group({
@@ -64,7 +63,7 @@ export class LoginComponent implements OnInit {
       });
     this.submit_signup=false;
      this.signupForm.reset();
-     console.log(this.infoMessage);
+     //console.log(this.infoMessage);
      }
      
   }
