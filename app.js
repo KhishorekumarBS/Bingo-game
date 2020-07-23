@@ -78,20 +78,23 @@ app.post('/updatescore',authenticate.verifyUser,function(req, res, next) {
 });
 
 app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
-	rooms.getRandomCall(req.body.roomcode,req.body.turnsend,req.body.random_number,req.body.iterations)
-	.then(function(randnum) {
-		updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
+	updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
+	if(req.body.gameover=="true")
+	{
+		winner=rooms.getWinner(req.body.roomcode,req.body.index);
 		res.setHeader('Content-Type', 'application/json');
-		res.json({'random_number':randnum,'score':updated_score});
-	});	
+		res.json({'winner':winner,'score':updated_score});
+	}
+	else
+	{
+		rooms.getRandomCall(req.body.roomcode,req.body.turnsend,req.body.random_number
+		,req.body.iterations).then(function(randnum) {
+			res.setHeader('Content-Type', 'application/json');
+			res.json({'random_number':randnum,'score':updated_score});
+		});	
+	
+	}
 });
-
-app.post('/getwinner',authenticate.verifyUser,function(req, res, next) {
-	winner=rooms.getWinner(req.body.roomcode,req.body.index);
-	res.setHeader('Content-Type', 'application/json');
-	res.json({'winner':winner});
-});
-
 
 
 // app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {
