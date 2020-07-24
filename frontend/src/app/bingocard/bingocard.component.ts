@@ -36,8 +36,8 @@ export class BingocardComponent implements OnInit {
   d1_elements:number[]=[5,9,13,17,21];
   d2_elements:number[]=[1,7,13,19,25];
    d1=5;d2=5;
-   rows:number[]=[1,1,0,0,0];
-   cols:number[]=[1,1,0,0,0];
+   rows:number[]=[1,0,0,0,0];
+   cols:number[]=[1,0,0,0,0];
 
   constructor(private authservice: AuthService,private roomservice: RoomserviceService, private router:Router,public dialog: MatDialog) {
    }
@@ -118,15 +118,15 @@ findmyplayerindex(){
   return -1;
 }
 
-game_ended(rows){
+game_ended(){
   console.log("Checkinf if game ended");
   for(let i=0;i<5;i++){
-    console.log(rows[i]);
+    console.log(this.rows[i]);
   }
   for(let i=0;i<5;i++){
     console.log("game ended(rows)");
-    console.log(rows[i]);
-    if(rows[i]!=0){
+    console.log(this.rows[i]);
+    if(this.rows[i]!=0){
       return false;
     }
   }
@@ -182,9 +182,10 @@ updatescore(){
 
   }
   this.myscore+=5;
-  if(this.game_ended(this.rows)){
+  if(this.game_ended){
     console.log("We are in the endgame now");
     this.gameover=true;
+    this.router.navigate(['/winner']);
   }
 }
 
@@ -237,12 +238,15 @@ getcallnumber(){
   //console.log(this.turn);
   if(this.myplayerindex==this.turn){
     //console.log("if part");
-    const dialogRef =this.dialog.open(PopupComponent, {width: '250px', height: '180px'});
+    const dialogRef =this.dialog.open(PopupComponent, {width: '250px', height: '215px'});
     dialogRef.afterClosed().subscribe(_ => {
       this.roomservice.putrandnum("true",this.myscore,"false").then(data=>
         {
-         if(this.gameover){
-           this.router.navigate[('/winner')];
+          console.log(data);
+         if(data['gameended']=="true"){
+           dialogRef.close();
+           this.router.navigate(['/winner']);
+           return;
          } 
          this.play(data['random_number']).then(res=>
           {
@@ -267,10 +271,11 @@ getcallnumber(){
     // console.log(this.turn);
     this.roomservice.putrandnum("false",this.myscore,"false").then(data=>
         {
-          if(this.gameover){
-            this.router.navigate[('/winner')];
+          if(data['gameended']=="true"){
+            this.router.navigate(['/winner']);
+            return;
           } 
-         this.play(data['random_number']).then(res=>
+          this.play(data['random_number']).then(res=>
           {
 
             for(var i=0;i<this.table_details.length;i++)
