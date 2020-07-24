@@ -91,8 +91,7 @@ app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 		,req.body.iterations).then(function(randnum) {
 			res.setHeader('Content-Type', 'application/json');
 			res.json({'random_number':randnum,'score':updated_score});
-		});	
-	
+		});		
 	}
 });
 
