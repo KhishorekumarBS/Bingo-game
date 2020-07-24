@@ -38,7 +38,7 @@ async function joinroom(room_code,username)
      		} 
      		else 
      		{
-     			room_details[room_code]["users"][username]="-1";
+     			room_details[room_code]["users"][username]="0";
      			console.log(room_details);
      			console.log("Added.. Next checking");
 				setTimeout(checkUserCount, 2000); 
