@@ -33,6 +33,11 @@ export class BingocardComponent implements OnInit {
   gameover:boolean=false;
   dataSource = new MatTableDataSource(this.table_details);
   displayedColumns = ['name', 'position'];
+  d1_elements:number[]=[5,9,13,17,21];
+  d2_elements:number[]=[1,7,13,19,25];
+   d1=5;d2=5;
+   rows:number[]=[1,1,0,0,0];
+   cols:number[]=[1,1,0,0,0];
 
   constructor(private authservice: AuthService,private roomservice: RoomserviceService, private router:Router,public dialog: MatDialog) {
    }
@@ -139,45 +144,45 @@ check_no_of_striked(){
 updatescore(){
   var id=Number(this.value.substring(1));
   console.log((this.value.substring(1)+" is striked"));
-  let d1_elements:Array<number>=[5,9,13,17,21];
-  let d2_elements:Array<number>=[1,7,13,19,25];
-  var d1=5,d2=5;
-  let rows:Array<number>=[1,1,0,0,0];
-  let cols:Array<number>=[1,1,0,0,0];
-  if(d1_elements.includes(id)){
-    d1--;
-    if(d1==0){
+   
+  if(this.d1_elements.includes(id)){
+    this.d1--;
+    if(this.d1==0){
       console.log("Diaginal one done");
       this.myscore+=25;
     }
   }
-  if(d2_elements.includes(id)){
-    d2--;
-    if(d2==0){
+  if(this.d2_elements.includes(id)){
+    this.d2--;
+    if(this.d2==0){
       console.log("Diaginal two done");
       this.myscore+=25;
     }
   }
   for(var i=0;i<5;i++){
-    if(id%5==i){
-      cols[i]--;
-      if(cols[i]==0){
+    if((id-1)%5==i){
+      this.cols[i]--;
+      if(this.cols[i]==0){
         console.log("col done "+String(i));
         this.myscore+=20;
       }
     }
-
     if((id>(5*i))&&(id<=(5*(i+1)))){
-      rows[i]--;
-      if(rows[i]==0){
+      this.rows[i]=this.rows[i]-1;
+      if(this.rows[i]==0){
         console.log("row done "+String(i));
 
         this.myscore+=20;
       }
     }
+    console.log("row decremented");
+    for(var i=0;i<5;i++){
+      console.log(this.rows[i]);
+    }
+
   }
   this.myscore+=5;
-  if(this.game_ended(cols)){
+  if(this.game_ended(this.rows)){
     console.log("We are in the endgame now");
     this.gameover=true;
   }
