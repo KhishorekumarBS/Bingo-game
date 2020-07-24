@@ -15,6 +15,7 @@ exports.createRoom = function()
 	room_details[room_code]={};
 	room_details[room_code]["users"]={};
 	room_details[room_code]["randomcalls"]= [];
+	room_details[room_code]["gameended"]=false;
 	return room_code;
 }
 
@@ -67,6 +68,8 @@ async function getRandomCall(room_code,turn,randnum,indextobecalled)
 		{
 		    function checkCallCount() 
 		    {
+				if(room_details[room_code]["gameended"])
+					resolve("game_ended");
 				current_length = Object.keys(room_details[room_code]["randomcalls"]).length;
 				console.log("checkCallCount");
 				console.log(current_length);	
@@ -95,6 +98,7 @@ exports.updateScore = function(room_code,username,score)
 
 exports.getWinner = function(room_code,score)
 {	
+	room_details[room_code]["gameended"]=true;
 	console.log(room_details);
 	return Object.keys(room_details[room_code]["users"]).reduce((a, b) => parseInt(room_details[room_code]["users"][a]) > parseInt(room_details[room_code]["users"][b]) ? a : b);
 }
