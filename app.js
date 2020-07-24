@@ -33,7 +33,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'frontend/dist/bingassign')));
+app.use(express.static(path.join(__dirname, 'frontend/bingassign')));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -55,7 +55,7 @@ app.use(function(err, req, res, next) {
 app.use('/api/users', usersRouter);
 
 app.get('/',function(req, res, next) {
-	res.sendFile(path.join(__dirname, 'frontend/dist/bingassign/index.html'));
+	res.sendFile(path.join(__dirname, 'frontend/bingassign/index.html'));
 });
 
 app.post('/api/createroom',authenticate.verifyUser,function(req, res, next) {
