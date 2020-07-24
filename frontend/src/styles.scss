@@ -467,6 +467,8 @@ label, input {
   
   .mat-table {
 	max-height: 500px;
+	max-width: 350px;
+	
   }
   .mat-grid-tile {
 	background: black;
@@ -478,3 +480,826 @@ label, input {
   .flex-spacer {
 	flex: 1 1 auto;
   }
+
+  
+.hanabi1 > div {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  background-image: radial-gradient(#ffff00, #ffffff);
+  background: linear-gradient(black, black) fixed;
+  animation-delay: 0.4s;
+}
+
+.hanabi2 > div {
+  position: absolute;
+  right: 30%;
+  top: 50%;
+  background-image: radial-gradient(#ff0000, #ffff00);
+  animation-delay: 0.6s;
+}
+
+.hanabi3 > div {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  background-image: radial-gradient(#ff970f, #ffffff);
+}
+
+.hanabi4 > div {
+  position: absolute;
+  right: 70%;
+  top: 50%;
+  background-image: radial-gradient(#ff0000, #ffff00);
+  animation-delay: 0.6s;
+}
+
+.hanabi5 > div {
+  position: absolute;
+  right: 90%;
+  top: 50%;
+  background-image: radial-gradient(#ffff00, #ffffff);
+  animation-delay: 0.4s;
+}
+
+.hanabi6 > div {
+  position: absolute;
+  right: 20%;
+  top: 30%;
+  background-image: radial-gradient(#ff0000, #fff);
+  animation-delay: 0.3s;
+}
+
+.hanabi7 > div {
+  position: absolute;
+  right: 40%;
+  top: 30%;
+  background-image: radial-gradient(#00ff00, #0000ff);
+  animation-delay: 0.5s;
+}
+
+.hanabi8 > div {
+  position: absolute;
+  right: 60%;
+  top: 30%;
+  background-image: radial-gradient(#00ff00, #0000ff);
+  animation-delay: 0.5s;
+}
+
+.hanabi9 > div {
+  position: absolute;
+  right: 80%;
+  top: 30%;
+  background-image: radial-gradient(#ff0000, #fff);
+  animation-delay: 0.3s;
+}
+
+.hanabi10 > div {
+  position: absolute;
+  right: 20%;
+  top: 70%;
+  background-image: radial-gradient(#00ff00, #fff);
+  animation-delay: 0.5s;
+}
+
+.hanabi11 > div {
+  position: absolute;
+  right: 40%;
+  top: 70%;
+  background-image: radial-gradient(#00ff00, #00ffff);
+  animation-delay: 0.3s;
+}
+
+.hanabi12 > div {
+  position: absolute;
+  right: 60%;
+  top: 70%;
+  background-image: radial-gradient(#00ff00, #00ffff);
+  animation-delay: 0.3s;
+}
+
+.hanabi13 > div {
+  position: absolute;
+  right: 80%;
+  top: 70%;
+  background-image: radial-gradient(#00ff00, #fff);
+  animation-delay: 0.5s;
+}
+
+.hii {
+  position: absolute;
+  height: 0.8vw;
+  width: 0.8vw;
+  border-radius: 0.5vw;
+  animation: hii 1s linear infinite;
+  opacity: 0;
+  color: white;
+}
+
+.hii :nth-child(1) {
+  animation-name: bakuhatsu1;
+}
+
+.hii:nth-child(2) {
+  animation-name: bakuhatsu2;
+}
+
+.hii:nth-child(3) {
+  animation-name: bakuhatsu3;
+}
+
+.hii:nth-child(4) {
+  animation-name: bakuhatsu4;
+}
+
+.hii:nth-child(5) {
+  animation-name: bakuhatsu5;
+}
+
+.hii:nth-child(6) {
+  animation-name: bakuhatsu6;
+}
+
+.hii:nth-child(7) {
+  animation-name: bakuhatsu7;
+}
+
+.hii:nth-child(8) {
+  animation-name: bakuhatsu8;
+}
+
+.hii:nth-child(9) {
+  animation-name: bakuhatsu9;
+}
+
+.hii:nth-child(10) {
+  animation-name: bakuhatsu10;
+}
+
+.hii:nth-child(11) {
+  animation-name: bakuhatsu11;
+}
+
+.hii:nth-child(12) {
+  animation-name: bakuhatsu12;
+}
+
+.hii:nth-child(13) {
+  animation-name: bakuhatsu13;
+}
+
+.hii:nth-child(14) {
+  animation-name: bakuhatsu14;
+}
+
+.hii:nth-child(15) {
+  animation-name: bakuhatsu15;
+}
+
+.hii:nth-child(16) {
+  animation-name: bakuhatsu16;
+}
+
+.hii:nth-child(17) {
+  animation-name: bakuhatsu17;
+}
+
+.hii:nth-child(18) {
+  animation-name: bakuhatsu18;
+}
+
+.hii:nth-child(19) {
+  animation-name: bakuhatsu19;
+}
+
+.hii:nth-child(20) {
+  animation-name: bakuhatsu20;
+}
+
+.hii:nth-child(1) {
+  animation-name: bakuhatsu1;
+}
+
+.hii:nth-child(2) {
+  animation-name: bakuhatsu2;
+}
+
+.hii:nth-child(3) {
+  animation-name: bakuhatsu3;
+}
+
+.hii:nth-child(4) {
+  animation-name: bakuhatsu4;
+}
+
+.hii:nth-child(5) {
+  animation-name: bakuhatsu5;
+}
+
+.hii:nth-child(6) {
+  animation-name: bakuhatsu6;
+}
+
+.hii:nth-child(7) {
+  animation-name: bakuhatsu7;
+}
+
+.hii:nth-child(8) {
+  animation-name: bakuhatsu8;
+}
+
+.hii:nth-child(9) {
+  animation-name: bakuhatsu9;
+}
+
+.hii:nth-child(10) {
+  animation-name: bakuhatsu10;
+}
+
+.hii:nth-child(11) {
+  animation-name: bakuhatsu11;
+}
+
+.hii:nth-child(12) {
+  animation-name: bakuhatsu12;
+}
+
+.hii:nth-child(13) {
+  animation-name: bakuhatsu13;
+}
+
+.hii:nth-child(14) {
+  animation-name: bakuhatsu14;
+}
+
+.hii:nth-child(15) {
+  animation-name: bakuhatsu15;
+}
+
+.hii:nth-child(16) {
+  animation-name: bakuhatsu16;
+}
+
+.hii:nth-child(17) {
+  animation-name: bakuhatsu17;
+}
+
+.hii:nth-child(18) {
+  animation-name: bakuhatsu18;
+}
+
+.hii:nth-child(19) {
+  animation-name: bakuhatsu19;
+}
+
+.hii:nth-child(20) {
+  animation-name: bakuhatsu20;
+}
+
+@keyframes bakuhatsu1 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(0px, -50px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes bakuhatsu2 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(50px, 0px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(50px, 50px);
+  }
+}
+
+@keyframes bakuhatsu3 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(0px, 50px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0px, 100px);
+  }
+}
+
+@keyframes bakuhatsu4 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50px, 0px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50px, 50px);
+  }
+}
+
+@keyframes bakuhatsu5 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-35px, -35px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-35px, 15px);
+  }
+}
+
+@keyframes bakuhatsu6 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(35px, -35px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(35px, 15px);
+  }
+}
+
+@keyframes bakuhatsu7 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(35px, 35px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(35px, 85px);
+  }
+}
+
+@keyframes bakuhatsu8 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-35px, 35px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-35px, 85px);
+  }
+}
+
+@keyframes bakuhatsu9 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-100px, 0px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-100px, 50px);
+  }
+}
+
+@keyframes bakuhatsu10 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(0px, -100px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0px, -50px);
+  }
+}
+
+@keyframes bakuhatsu11 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(100px, 0px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(100px, 50px);
+  }
+}
+
+@keyframes bakuhatsu12 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(0px, 100px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0px, 150px);
+  }
+}
+
+@keyframes bakuhatsu13 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-90px, -35px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-90px, 15px);
+  }
+}
+
+@keyframes bakuhatsu14 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-35px, -90px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-35px, -40px);
+  }
+}
+
+@keyframes bakuhatsu15 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(35px, -90px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(35px, -40px);
+  }
+}
+
+@keyframes bakuhatsu16 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(90px, -35px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(90px, 15px);
+  }
+}
+
+@keyframes bakuhatsu17 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(90px, 35px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(90px, 85px);
+  }
+}
+
+@keyframes bakuhatsu18 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(35px, 90px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(35px, 140px);
+  }
+}
+
+@keyframes bakuhatsu19 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-35px, 90px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-35px, 140px);
+  }
+}
+
+@keyframes bakuhatsu20 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-90px, 35px);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-90px, 85px);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .hii {
+    height: 1vw;
+    width: 1vw;
+  }
+
+  @keyframes bakuhatsu1 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(0px, -25px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0px, 0px);
+    }
+  }
+  @keyframes bakuhatsu2 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(25px, 0px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(25px, 25px);
+    }
+  }
+  @keyframes bakuhatsu3 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(0px, 25px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0px, 50px);
+    }
+  }
+  @keyframes bakuhatsu4 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-25px, 0px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-25px, 25px);
+    }
+  }
+  @keyframes bakuhatsu5 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-17.5px, -17.5px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-17.5px, 7.5px);
+    }
+  }
+  @keyframes bakuhatsu6 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(17.5px, -17.5px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(17.5px, 7.5px);
+    }
+  }
+  @keyframes bakuhatsu7 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(17.5px, 17.5px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(17.5px, 42.5px);
+    }
+  }
+  @keyframes bakuhatsu8 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-17.5px, 17.5px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-17.5px, 42.5px);
+    }
+  }
+  @keyframes bakuhatsu9 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-50px, 0px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50px, 25px);
+    }
+  }
+  @keyframes bakuhatsu10 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(0px, -50px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0px, -25px);
+    }
+  }
+  @keyframes bakuhatsu11 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(50px, 0px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(50px, 25px);
+    }
+  }
+  @keyframes bakuhatsu12 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(0px, 50px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0px, 75px);
+    }
+  }
+  @keyframes bakuhatsu13 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-45px, -17.5px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-45px, 7.5px);
+    }
+  }
+  @keyframes bakuhatsu14 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-17.5px, -45px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-17.5px, -20px);
+    }
+  }
+  @keyframes bakuhatsu15 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(17.5px, -45px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(17.5px, -20px);
+    }
+  }
+  @keyframes bakuhatsu16 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(45px, -17.5px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(45px, 7.5px);
+    }
+  }
+  @keyframes bakuhatsu17 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(45px, 17.5px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(45px, 42.5px);
+    }
+  }
+  @keyframes bakuhatsu18 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(17.5px, 45px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(17.5px, 70px);
+    }
+  }
+  @keyframes bakuhatsu19 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-17.5px, 45px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-17.5px, 70px);
+    }
+  }
+  @keyframes bakuhatsu20 {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-45px, 17.5px);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-45px, 42.5px);
+    }
+  }
+}

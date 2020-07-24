@@ -55,7 +55,7 @@
   </div>
   </div>
   <div class="tab-2">
-    <label for="tab2-2" style="color: black;font: normal 20px URW Chancery L, cursive ;">JOIN</label>
+    <label for="tab2-2" style="color: black;font: normal 20px URW Chancery L, cursive ;" >JOIN</label>
     <input id="tab2-2" name="tabs-two" type="radio">
     <div class="textbox">
 	  <label for="school" style="text-align: center;margin-left: 10px;" >Room Code:</label>
@@ -63,7 +63,7 @@
 	<input #code id="school" name="schoo" type="text" style="width: 40%;color:red;" > </div><br><br>
 	<div class="container" style="text-align: center;">
             
-		<button  (click)=setroomcode(code.value); onClick="this.disabled=true;" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn">JOIN ROOM</button>
+		<button  (click)=setroomcode(code.value); onClick="this.disabled=true;" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn" >JOIN ROOM</button>
 </div>
 <div *ngIf="ijoinedroom"  style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 	<br>{{other_players}} has joined!

@@ -114,30 +114,47 @@ findmyplayerindex(){
 }
 
 game_ended(rows){
-  for(var i=0;i<5;i++){
+  console.log("Checkinf if game ended");
+  for(let i=0;i<5;i++){
+    console.log(rows[i]);
+  }
+  for(let i=0;i<5;i++){
+    console.log("game ended(rows)");
+    console.log(rows[i]);
     if(rows[i]!=0){
       return false;
     }
   }
   return true;
 }
-
+check_no_of_striked(){
+  var id=Number(this.value.substring(1));
+  if(((Number(this.call_number)%this.random_numbers[id])==0)){
+    console.log("Valid");
+    return true;
+  }
+  console.log("Invalid");
+  return false;
+}
 updatescore(){
   var id=Number(this.value.substring(1));
+  console.log((this.value.substring(1)+" is striked"));
   let d1_elements:Array<number>=[5,9,13,17,21];
   let d2_elements:Array<number>=[1,7,13,19,25];
   var d1=5,d2=5;
-  let rows:Array<number>=[5,5,5,5,5];
-  let cols:Array<number>=[5,5,5,5,5];
+  let rows:Array<number>=[1,1,0,0,0];
+  let cols:Array<number>=[1,1,0,0,0];
   if(d1_elements.includes(id)){
     d1--;
     if(d1==0){
+      console.log("Diaginal one done");
       this.myscore+=25;
     }
   }
   if(d2_elements.includes(id)){
     d2--;
     if(d2==0){
+      console.log("Diaginal two done");
       this.myscore+=25;
     }
   }
@@ -145,6 +162,7 @@ updatescore(){
     if(id%5==i){
       cols[i]--;
       if(cols[i]==0){
+        console.log("col done "+String(i));
         this.myscore+=20;
       }
     }
@@ -152,12 +170,15 @@ updatescore(){
     if((id>(5*i))&&(id<=(5*(i+1)))){
       rows[i]--;
       if(rows[i]==0){
+        console.log("row done "+String(i));
+
         this.myscore+=20;
       }
     }
   }
   this.myscore+=5;
-  if(this.game_ended(rows)){
+  if(this.game_ended(cols)){
+    console.log("We are in the endgame now");
     this.gameover=true;
   }
 }
@@ -190,7 +211,9 @@ play(num){
     {   
     
     if(this.elem){
+      // if(this.check_no_of_striked()){
       this.updatescore();
+      // }
       (this.elem).style.textDecoration='line-through';
       (this.elem).style.color='red';
       this.elem=undefined;
@@ -211,8 +234,11 @@ getcallnumber(){
     //console.log("if part");
     const dialogRef =this.dialog.open(PopupComponent, {width: '250px', height: '180px'});
     dialogRef.afterClosed().subscribe(_ => {
-      this.roomservice.putrandnum("true",this.myscore).then(data=>
+      this.roomservice.putrandnum("true",this.myscore,"false").then(data=>
         {
+         if(this.gameover){
+           this.router.navigate[('/winner')];
+         } 
          this.play(data['random_number']).then(res=>
           {
             for(var i=0;i<this.table_details.length;i++)
@@ -234,8 +260,11 @@ getcallnumber(){
   else{
     // console.log(this.table_details);
     // console.log(this.turn);
-    this.roomservice.putrandnum("false",this.myscore).then(data=>
+    this.roomservice.putrandnum("false",this.myscore,"false").then(data=>
         {
+          if(this.gameover){
+            this.router.navigate[('/winner')];
+          } 
          this.play(data['random_number']).then(res=>
           {
 
@@ -264,7 +293,7 @@ rendertable(){
 logout() {
   this.logged_out= this.authservice.logOut();
    this.router.navigate(['/login']);
-  this.dialog.open(LogoutComponent, {width: '200px', height: '150px'});
+  this.dialog.open(LogoutComponent, {width: '200px', height: '210px'});
  }
  
  }

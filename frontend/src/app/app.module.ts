@@ -41,6 +41,7 @@ import { RoomcodeComponent } from './roomcode/roomcode.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PopupComponent } from './popup/popup.component';
+import { WinnerComponent } from './winner/winner.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { PopupComponent } from './popup/popup.component';
     LogoutComponent,
     ProfileComponent,
     PopupComponent,
+    WinnerComponent,
     
     
   ],

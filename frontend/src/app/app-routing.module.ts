@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BingocardComponent } from './bingocard/bingocard.component';
 import { LoginComponent } from './login/login.component';
 import {RoomcodeComponent } from './roomcode/roomcode.component';
+import {WinnerComponent } from './winner/winner.component';
 
 
 
@@ -12,6 +13,7 @@ const routes: Routes = [
     { path: 'roomcode', component:  RoomcodeComponent },
     { path: '', component: LoginComponent },
      { path: 'login', component: LoginComponent },
+     { path: 'winner', component: WinnerComponent },
     //{ path: '', redirectTo: '/login', pathMatch:'full'  },
 ];  
 

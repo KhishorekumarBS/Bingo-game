@@ -59,12 +59,13 @@ get_entered_number(typed_no){
   console.log(this.entered_number);
 }
 
-putrandnum(turn_send,score){
+putrandnum(turn_send,score,gameover){
   return new Promise((resolve,reject)=> {
   this.http.post('/api/getrandomcall', {'roomcode':this.roomcode, 'turnsend':turn_send, 
-  'random_number':this.entered_number, 'iterations':this.iterations,'score':String(score)}).subscribe(res=>
+  'random_number':this.entered_number, 'iterations':this.iterations,'score':String(score),'gameover':String(gameover)}).subscribe(res=>
     {
       this.iterations++;
+      console.log(res);
       resolve(res); 
   
     });
