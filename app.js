@@ -33,7 +33,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'frontend/dist/bingassign')));
+app.use(express.static(path.join(__dirname, 'frontend/bingassign')));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -52,19 +52,19 @@ app.use(function(err, req, res, next) {
 	next();
 });
 
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 
 app.get('/',function(req, res, next) {
-	res.sendFile(path.join(__dirname, 'frontend/dist/bingassign/index.html'));
+	res.sendFile(path.join(__dirname, 'frontend/bingassign/index.html'));
 });
 
-app.post('/createroom',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/createroom',authenticate.verifyUser,function(req, res, next) {
 	room_code=rooms.createRoom();
 	res.setHeader('Content-Type', 'application/json');
 	res.json({'roomcode':room_code});
 });
 
-app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/joinroom',authenticate.verifyUser,function(req, res, next) {
 	// let message = await rooms.enterRoom(room_code,req.user.username);
 	rooms.joinRoom(req.body.roomcode,req.user.name).then(function(players_status) {
 		res.setHeader('Content-Type', 'application/json');
@@ -75,13 +75,13 @@ app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {
 	});
 });
 
-app.post('/updatescore',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/updatescore',authenticate.verifyUser,function(req, res, next) {
 	rooms.updateScore(req.body.roomcode,req.user.username,req.body.score);
 	res.setHeader('Content-Type', 'application/json');
 	res.json({'status':true});
 });
 
-app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 	if(req.body.gameover=="true")
 	{
 		winner=rooms.getWinner(req.body.roomcode,req.body.index);
