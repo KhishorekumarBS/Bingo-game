@@ -14,6 +14,7 @@ export class RoomserviceService {
   all_players:string[];
   iterations:number=1;
   entered_number:string;
+  
 
   constructor(private authservice:AuthService,private http: HttpClient,private router: Router) { }
 
@@ -35,6 +36,7 @@ export class RoomserviceService {
   getallplayers(): string[] {
     return this.all_players;
   }
+  
 joinRoom() {
   
   return new Promise((resolve,reject)=> {

@@ -6,12 +6,13 @@ import { MatTableDataSource} from '@angular/material/table';
 import { MatDialog} from '@angular/material/dialog';
 import { LogoutComponent } from '../logout/logout.component';
 import { PopupComponent } from '../popup/popup.component';
+import { ViewEncapsulation } from '@angular/core'
 
 @Component({
   selector: 'app-bingocard',
   templateUrl: './bingocard.component.html',
   styleUrls: ['./bingocard.component.scss'],
-  animations: []
+  encapsulation:ViewEncapsulation.Emulated
 })
 export class BingocardComponent implements OnInit {
   random_numbers: number[]=[];
@@ -38,6 +39,7 @@ export class BingocardComponent implements OnInit {
    d1=5;d2=5;
    rows:number[]=[1,0,0,0,0];
    cols:number[]=[1,0,0,0,0];
+   waiting;
 
   constructor(private authservice: AuthService,private roomservice: RoomserviceService, private router:Router,public dialog: MatDialog) {
    }
@@ -191,14 +193,18 @@ updatescore(){
 
 runtime(){
   return new Promise((resolve,reject)=> {
-       this.timeLeft=10;  
+       this.timeLeft=15; 
+       this.ones=this.timeLeft; 
        //console.log(this.timeLeft)
-      this.ones=this.timeLeft;
+      
       this.timerid=setInterval(() => {
        this.timeLeft--;
       
      if(this.timeLeft>=0) {
-      this.ones=this.timeLeft; 
+      this.ones=this.timeLeft;
+      if(this.timeLeft<10){ 
+        this.ones="0"+this.timeLeft;
+        } 
       //console.log(this.ones);
      }
      else{
@@ -211,6 +217,7 @@ runtime(){
 }
 
 play(num){
+  this.waiting=undefined;
   return new Promise((resolve,reject)=> {
       this.call_number=num;
    this.runtime().then(data=>
@@ -238,7 +245,7 @@ getcallnumber(){
   //console.log(this.turn);
   if(this.myplayerindex==this.turn){
     //console.log("if part");
-    const dialogRef =this.dialog.open(PopupComponent, {width: '250px', height: '215px'});
+    const dialogRef =this.dialog.open(PopupComponent, {width: '250px', height: '250px', disableClose: true,panelClass: 'custom-dialog-container'});
     dialogRef.afterClosed().subscribe(_ => {
       this.roomservice.putrandnum("true",this.myscore,"false").then(data=>
         {
@@ -261,16 +268,19 @@ getcallnumber(){
             //console.log("Turn incermented");
             this.getcallnumber();
             //console.log("insidegetcall");
+            this.call_number=undefined;
         }) 
       });
     });      
 
   }
   else{
+    this.waiting=this.all_players[this.turn];
     // console.log(this.table_details);
     // console.log(this.turn);
     this.roomservice.putrandnum("false",this.myscore,"false").then(data=>
         {
+          
           if(data['gameended']=="true"){
             this.router.navigate(['/winner']);
             return;
@@ -289,6 +299,8 @@ getcallnumber(){
             //console.log("Turn incermented");//Run no
             this.getcallnumber();
             //console.log("insidegetcall");
+            this.call_number=undefined;
+            
         }) 
       });
   }
@@ -303,7 +315,7 @@ rendertable(){
 logout() {
   this.logged_out= this.authservice.logOut();
    this.router.navigate(['/login']);
-  this.dialog.open(LogoutComponent, {width: '200px', height: '210px'});
+  this.dialog.open(LogoutComponent, {width: '200px', height: '150px'});
  }
  
  }

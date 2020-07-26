@@ -5,11 +5,13 @@ import { SignupService } from '../service/signup.service';
 import { AuthService } from '../service/auth.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { Signup, Signin } from '../../shared/signup';
+import { ViewEncapsulation } from '@angular/core' 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  encapsulation:ViewEncapsulation.Emulated
 })
 export class LoginComponent implements OnInit {
  @ViewChild('fform') signupFormDirective;
@@ -30,9 +32,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user_state();
   }
 
-
+  user_state(){
+    var state=this.authservice.getuserstate();
+    if(state){
+      this.router.navigate(['/roomcode']);
+    }
+  }
   createsignupForm() {
     this.signupForm = this.fb.group({
       EMAILADDRESS:  ['', [Validators.required, Validators.email]],

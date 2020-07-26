@@ -25,7 +25,7 @@
         
     <div class="login-wrap">
 	<div class="login-html">
-        <div style="align-content: center;color:white;font: normal 15px URW Chancery L, cursive ;"   *ngIf="infoMessage.length > 0">{{ infoMessage }}</div><br><br>
+        <div style="align-content: center;color:white;font: normal 18px URW Chancery L, cursive ;"   *ngIf="infoMessage.length > 0">{{ infoMessage }}</div><br><br>
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign<span class="change">In</span> </label>
 		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign<span class="change">Up</span> </label>
 		<div class="login-form">
@@ -50,7 +50,7 @@
 			<div class="sign-up-htm">
                 <form [formGroup]="signupForm" #fform="ngForm" (ngSubmit)="onSubmitsignup()">
                 <div class="group">
-					<label for="pass" class="label">Email Address></label>
+					<label for="pass" class="label">Email Address</label>
 					<input  type="text" formControlName="EMAILADDRESS"  class="input" [ngClass]="{ 'is-invalid': submit_signup &amp;&amp; signupForm.controls.EMAILADDRESS.errors }"  />
                     <error-message [control]="signupForm.controls.EMAILADDRESS" *ngIf="submit_signup"></error-message>
 				</div>    

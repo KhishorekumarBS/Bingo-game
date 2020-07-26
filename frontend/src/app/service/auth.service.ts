@@ -11,6 +11,7 @@ export class AuthService {
   nameofuser: string = undefined;
   authToken: string = undefined;
   logged_out=true;
+  //user_state="unauthorized";
  
 
   constructor(private http: HttpClient,private router: Router) { }
@@ -20,14 +21,17 @@ export class AuthService {
      this.isAuthenticated=true;
      this.nameofuser=credentials.name;
      this.authToken=credentials.token;
+    // this.user_state="loggedin";
   }
   //return this.http.post('/api/users/signup', {'username':signup_data.EMAILADDRESS,'name':signup_data.USERNAME,'password':signup_data.PASSWORD});
-  createRoom() {
-     return this.http.post('/api/createroom', {})
-  }
+ 
+  getuserstate(){
+   return this.isAuthenticated;
+ }
   
  
    logOut() {
+    //this.user_state="loggedout";
      this.isAuthenticated = false;
      this.nameofuser = undefined;
      this.authToken = undefined;

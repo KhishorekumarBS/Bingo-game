@@ -23,9 +23,9 @@
 		<h1>FIN<span>GO</span></h1>
 		<div class="header-user-menu" >
 			
-			<span style="font:normal 28px URW Chancery L, cursive ;">{{username}}</span>
+			<span style="font:normal 20px URW Chancery L, cursive ;">{{username}}</span>
 			<ul>
-				<li><a (click)="logout()">Logout</a></li>
+				<li style="font:normal 15px URW Chancery L, cursive ;"><a (click)="logout()">Logout</a></li>
 			</ul>
 		</div>
 
@@ -42,13 +42,13 @@
     <div class="textbox" >
         <div class="container" style="text-align: center;">
             
-            <button (click)="getroomcode();" onClick="this.disabled=true;" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button>
+            <button (click)="getroomcode();" onClick="this.disabled=true;" style="font: normal 18px URW Chancery L, cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button>
 	</div>
 	<div *ngIf="roomcode" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 		<br><br>ROOMCODE:<span class="change"><b>{{roomcode}}</b></span>
-		<br><br><span>Share the code with your friends!<br>Have a happy play!</span>
-		<br><br><button *ngIf="other_players" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn">PLAY</button>
+		<br><br><span>Share the code with your friends!<br>Have a happy play!<br>Please don't reload or press back button in the game page.<br>Else, you'll lose all your progress.<br></span>
 	</div>
+	<div *ngIf="wait_to_join" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;"><mat-spinner style="margin:0 auto;" class="stroke" diameter="40"></mat-spinner> <span>Waiting for players to join</span></div>
 	<div *ngIf="icreatedroom" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 		<br>{{other_players}} has joined!
 	</div>
@@ -57,13 +57,13 @@
   <div class="tab-2">
     <label for="tab2-2" style="color: black;font: normal 20px URW Chancery L, cursive ;" >JOIN</label>
     <input id="tab2-2" name="tabs-two" type="radio">
-    <div class="textbox">
-	  <label for="school" style="text-align: center;margin-left: 10px;" >Room Code:</label>
+    <div class="textbox" >
+	  <label for="school" style="text-align: center;margin-left: 10px ;font: normal 20px URW Chancery L, cursive ;" >ROOMCODE:</label>
 	  <div style="text-align: center;">
-	<input #code id="school" name="schoo" type="text" style="width: 40%;color:red;" > </div><br><br>
+	<input #code id="school" name="schoo" type="text" style="width: 40%;color:red;font: normal 18px URW Chancery L, cursive ;" > </div><br><br>
 	<div class="container" style="text-align: center;">
             
-		<button  (click)=setroomcode(code.value); onClick="this.disabled=true;" style=" width: 200px;border: 1px solid #000000;font-size: 1em;font-weight: 600;background:white" mat-stroked-button color="warn" >JOIN ROOM</button>
+		<button  (click)=setroomcode(code.value); onClick="this.disabled=true;" style="font: normal 18px URW Chancery L, cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn" >JOIN ROOM</button>
 </div>
 <div *ngIf="ijoinedroom"  style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 	<br>{{other_players}} has joined!

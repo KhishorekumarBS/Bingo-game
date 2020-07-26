@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LogoutComponent } from '../logout/logout.component';
 import { visibility,  expand } from '../animations/animation';
+import { ViewEncapsulation } from '@angular/core'
 
 
 
@@ -15,13 +16,15 @@ import { visibility,  expand } from '../animations/animation';
   animations: [
     visibility(),
      expand()
-  ]
+  ],
+  
 })
 export class RoomcodeComponent implements OnInit {
   roomcode:string;
   logged_out:boolean;
   icreatedroom = false;
   ijoinedroom=false;
+  wait_to_join;
   all_players:string[];
   other_players: string[] = [];
  
@@ -32,12 +35,16 @@ export class RoomcodeComponent implements OnInit {
   
   username:string=this.authservice.getName();
   getroomcode() {
+    this.wait();
     this.roomservice.createRoom().then(data => 
     {
       this.roomcode=data;
       console.log(data);
       this.roomservice.joinRoom().then(data=>
         {
+         if(this.other_players!=[]){
+           this.wait_to_join=false;
+         } 
          this.all_players=data['players'];
          //console.log("Player in component");
         var myname=this.authservice.getName();
@@ -55,7 +62,9 @@ export class RoomcodeComponent implements OnInit {
     });
     
   }
-  
+  wait(){
+    this.wait_to_join=true;
+  }
   logout() {
     this.logged_out= this.authservice.logOut();
      this.router.navigate(['/login']);

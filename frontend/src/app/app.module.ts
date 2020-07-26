@@ -42,6 +42,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PopupComponent } from './popup/popup.component';
 import { WinnerComponent } from './winner/winner.component';
+import { InstructionsComponent } from './instructions/instructions.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { WinnerComponent } from './winner/winner.component';
     ProfileComponent,
     PopupComponent,
     WinnerComponent,
+    InstructionsComponent,
     
     
   ],

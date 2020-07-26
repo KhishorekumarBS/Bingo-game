@@ -1,22 +1,27 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { RoomserviceService } from '../service/roomservice.service';
+import { AuthService } from '../service/auth.service';
 import { MatTableDataSource} from '@angular/material/table';
+import { Router} from "@angular/router";
 
 
 @Component({
   selector: 'app-winner',
   templateUrl: './winner.component.html',
   styleUrls: ['./winner.component.scss'],
-  encapsulation:ViewEncapsulation.None
+ 
 })
 export class WinnerComponent implements OnInit {
   all_players:string[];
   table_details:any[]=[];
   dataSource = new MatTableDataSource(this.table_details);
   displayedColumns = ['name', 'position'];
-  constructor(private roomservice: RoomserviceService) { }
+  winner;myname;x;
+  constructor(private authservice: AuthService,private roomservice: RoomserviceService,private router:Router) { }
 
   ngOnInit(): void {
+    this.myFunction();
+    this.myname=this.authservice.getName();
     this.all_players=this.roomservice.getallplayers();
     this.rendertable();
     this.roomservice.putrandnum("false","-1","true").then(data=>
@@ -26,7 +31,20 @@ export class WinnerComponent implements OnInit {
             {
               this.table_details[i].position=data['score'][this.table_details[i].name];
             }
+            if(data['winner']!=this.myname){
+              this.winner= data['winner'];
+            }
       })
+      
+  }
+   myFunction() {
+    this. x = document.getElementsByTagName("BODY")[0] as HTMLElement;
+    this.x.style.backgroundColor = "black";
+  }
+  go_room(){
+    this.router.navigate(['/roomcode']);
+   // this. x = document.getElementsByTagName("BODY")[0] as HTMLElement;
+    this.x.style.backgroundColor = "#c8c8c8";
   }
   rendertable(){
   
