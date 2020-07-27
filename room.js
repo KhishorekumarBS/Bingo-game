@@ -2,7 +2,7 @@ var room_details={};
 
 
 // function createRoom()
-exports.createRoom = function()
+exports.createRoom = function(no_players)
 {
 	room_code=0;
 	while(true)
@@ -16,6 +16,7 @@ exports.createRoom = function()
 	room_details[room_code]["users"]={};
 	room_details[room_code]["randomcalls"]= [];
 	room_details[room_code]["gameended"]=false;
+	room_details[room_code]["no_players"]=no_players;
 	return room_code;
 }
 
@@ -29,7 +30,7 @@ async function joinroom(room_code,username)
 			users_count = Object.keys(room_details[room_code]["users"]).length;	
      		console.log("Users count:");
    			console.log(users_count);
-			if (users_count>=2) 
+			if (users_count>=room_details[room_code]["no_players"]) 
 			{
 				console.log('met');
 				players=[];

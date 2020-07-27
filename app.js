@@ -59,7 +59,7 @@ app.get('/',function(req, res, next) {
 });
 
 app.post('/createroom',authenticate.verifyUser,function(req, res, next) {
-	room_code=rooms.createRoom();
+	room_code=rooms.createRoom(parseInt(req.user.no_players));
 	res.setHeader('Content-Type', 'application/json');
 	res.json({'roomcode':room_code});
 });
@@ -106,6 +106,9 @@ app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 	}
 });
 
+app.get('*',function(req, res, next) {
+	res.sendFile(path.join(__dirname, 'frontend/bingassign/index.html'));
+});
 
 // app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {
 // 	room_code=rooms.createRoom();
