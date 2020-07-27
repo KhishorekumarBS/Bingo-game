@@ -5,7 +5,6 @@ import { Router } from "@angular/router";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LogoutComponent } from '../logout/logout.component';
 import { visibility,  expand } from '../animations/animation';
-import { ViewEncapsulation } from '@angular/core'
 
 
 

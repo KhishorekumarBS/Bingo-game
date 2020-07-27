@@ -42,7 +42,26 @@
     <div class="textbox" >
         <div class="container" style="text-align: center;">
             
-            <button (click)="getroomcode();" onClick="this.disabled=true;" style="font: normal 18px URW Chancery L, cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button>
+			<button (click)="getroomcode();" onClick="this.disabled=true;" style="font: normal 18px URW Chancery L, cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button>
+			<br><br><button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="font: normal 18px URW Chancery L, cursive ; width: 100px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn">
+				<span>Players</span>
+				<mat-icon>arrow_drop_down</mat-icon>
+				
+			  </button>
+			  <mat-menu #menu="matMenu" >
+				<button mat-menu-item style="width: 120px;height: fit-content;">
+				  <span>2</span>
+				</button>
+				<button mat-menu-item style="width: 120px;height: fit-content;">
+				  <span>3</span>
+				</button>
+				<button mat-menu-item style="width: 120px;height: fit-content;" >
+				  <span>4</span>
+				</button>
+				<button mat-menu-item style="width: 120px;height: fit-content;">
+					<span>5</span>
+				 </button>
+			  </mat-menu>
 	</div>
 	<div *ngIf="roomcode" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 		<br><br>ROOMCODE:<span class="change"><b>{{roomcode}}</b></span>

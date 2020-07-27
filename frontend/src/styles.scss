@@ -473,6 +473,14 @@ label, input {
 	max-width: 350px;
 	
   }
+  ::ng-deep .mat-menu-content {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+  .mat-menu-item{
+    line-height:20px;
+    height:10px;
+}
   .mat-grid-tile {
 	background: black;
 	border: none black;
