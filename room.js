@@ -107,6 +107,15 @@ exports.disqualifyMe = function(room_code,username)
 	console.log(room_details);
 }
 
+exports.hasgameended = function(room_code)
+{	
+	console.log(room_details);
+	if(room_details[room_code]["gameended"])
+		return true;
+	else
+		return false;
+}
+
 exports.getWinner = function(room_code,score)
 {	
 	room_details[room_code]["gameended"]=true;

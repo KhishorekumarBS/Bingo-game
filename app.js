@@ -113,6 +113,14 @@ app.post('/exitgame',authenticate.verifyUser,function(req, res, next) {
 	res.json({'status':true });
 });
 
+app.post('/hasgameended',authenticate.verifyUser,function(req, res, next) {
+	res.setHeader('Content-Type', 'application/json');
+	if(rooms.hasgameended(req.body.roomcode))
+		res.json({'status':"true" });
+	else
+		res.json({'status':"false" });
+});
+
 app.get('*',function(req, res, next) {
 	res.redirect('/');
 });
