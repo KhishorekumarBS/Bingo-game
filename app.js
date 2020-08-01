@@ -105,9 +105,9 @@ app.post('/getwinner',authenticate.verifyUser,function(req, res, next) {
 });
 
 app.post('/exitgame',authenticate.verifyUser,function(req, res, next) {
-	rooms.disqualifyMe(req.body.roomcode,req.user.username,req.body.score);
+	rooms.disqualifyMe(req.body.roomcode,req.user.username);
 	res.setHeader('Content-Type', 'application/json');
-	res.json({'status':true});
+	res.json({'status':true });
 });
 
 app.get('*',function(req, res, next) {

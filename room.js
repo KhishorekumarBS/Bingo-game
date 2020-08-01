@@ -98,7 +98,7 @@ exports.updateScore = function(room_code,username,score)
 }
 
 
-exports.disqualifyMe = function(room_code,username,score)
+exports.disqualifyMe = function(room_code,username)
 {	
 	room_details[room_code]["gameended"]=true;
 	room_details[room_code]["users"][username]="-1";
