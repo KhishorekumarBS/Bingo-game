@@ -59,7 +59,7 @@ app.get('/',function(req, res, next) {
 });
 
 app.post('/createroom',authenticate.verifyUser,function(req, res, next) {
-	room_code=rooms.createRoom(parseInt(req.user.no_players));
+	room_code=rooms.createRoom(parseInt(req.body.no_players));
 	res.setHeader('Content-Type', 'application/json');
 	res.json({'roomcode':room_code});
 });
@@ -86,7 +86,10 @@ app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 	,req.body.iterations).then(function(randnum) {
 		if(randnum=="game_ended")
 		{
-			res.redirect('/getwinner');			
+			updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
+			winner=rooms.getWinner(req.body.roomcode,req.body.index);
+			res.setHeader('Content-Type', 'application/json');
+			res.json({'winner':winner,'score':updated_score,'gameended':'true'});					
 		}
 		updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
 		res.setHeader('Content-Type', 'application/json');

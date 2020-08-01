@@ -59,6 +59,8 @@ async function getRandomCall(room_code,turn,randnum,indextobecalled)
 		console.log(turn);
 		current_length = Object.keys(room_details[room_code]["randomcalls"]).length;
 		console.log(current_length);
+		if(room_details[room_code]["gameended"])
+			resolve("game_ended");
 		if(turn=="true")
 		{
 			room_details[room_code]["randomcalls"].push(randnum);
