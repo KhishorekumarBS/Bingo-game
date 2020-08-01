@@ -104,6 +104,12 @@ app.post('/getwinner',authenticate.verifyUser,function(req, res, next) {
 	});		
 });
 
+app.post('/exitgame',authenticate.verifyUser,function(req, res, next) {
+	rooms.disqualifyMe(req.body.roomcode,req.user.username,req.body.score);
+	res.setHeader('Content-Type', 'application/json');
+	res.json({'status':true});
+});
+
 app.get('*',function(req, res, next) {
 	res.redirect('/');
 });

@@ -97,6 +97,14 @@ exports.updateScore = function(room_code,username,score)
 	return room_details[room_code]["users"];
 }
 
+
+exports.disqualifyMe = function(room_code,username,score)
+{	
+	room_details[room_code]["gameended"]=true;
+	room_details[room_code]["users"][username]="-1";
+	console.log(room_details);
+}
+
 exports.getWinner = function(room_code,score)
 {	
 	room_details[room_code]["gameended"]=true;
