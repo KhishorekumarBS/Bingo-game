@@ -473,19 +473,23 @@ label, input {
 	max-width: 350px;
 	
   }
-  ::ng-deep .mat-menu-content {
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
+   .mat-select-value-text {
+    font: bold 20px URW Chancery L, cursive ; 
+    color: white;
+    }
+  .mat-dropdown {
+    position: relative;
+    padding: 6px 8px;
   }
-  .mat-menu-item{
-    line-height:20px;
-    height:10px;
+  .mat-select:focus:not(.mat-select-disabled).mat-primary .mat-select-underline {
+    background-color: #63961C;
 }
+  
   .mat-grid-tile {
 	background: black;
 	border: none black;
 	color:white;
-	font: normal 20px URW Chancery L, cursive ;
+  font: normal 20px URW Chancery L, cursive ;
   }
 
   .flex-spacer {

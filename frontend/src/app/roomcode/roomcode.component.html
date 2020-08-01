@@ -42,26 +42,35 @@
     <div class="textbox" >
         <div class="container" style="text-align: center;">
             
-			<button (click)="getroomcode();" onClick="this.disabled=true;" style="font: normal 18px URW Chancery L, cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button>
-			<br><br><button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="font: normal 18px URW Chancery L, cursive ; width: 100px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn">
-				<span>Players</span>
-				<mat-icon>arrow_drop_down</mat-icon>
+			
+			<span class="change"style="font: normal 20px URW Chancery L, cursive ;">No. of players:       </span>
+			<mat-form-field >
 				
+				<mat-select class="mat-dropdown" trigger="alarmTrigger" #alarmSelect >
+				  <mat-option *ngFor="let player of no_of_players" [value]="player" (click)="getInnerText(player)" style="color:#bc40df;font: normal 18px URW Chancery L, cursive ;">
+					{{player}}
+				  </mat-option>
+				</mat-select>
+			  </mat-form-field>
+			  <br><br><div *ngIf="no_selected">  <button (click)="getroomcode();" onClick="this.disabled=true;" style="font: normal 18px URW Chancery L, cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button> </div>
+			<!--<button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="font: normal 18px URW Chancery L, cursive ; width: 100px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button>
+				<span>Select</span>
+				<mat-icon>arrow_drop_down</mat-icon>
 			  </button>
 			  <mat-menu #menu="matMenu" >
-				<button mat-menu-item style="width: 120px;height: fit-content;">
-				  <span>2</span>
+				<button mat-menu-item style="width: 120px;" *ngFor="let player of no_of_players">
+				  <span>{{player}}</span>
 				</button>
-				<button mat-menu-item style="width: 120px;height: fit-content;">
+				<button mat-menu-item style="width: 120px;">
 				  <span>3</span>
 				</button>
-				<button mat-menu-item style="width: 120px;height: fit-content;" >
+				<button mat-menu-item style="width: 120px;" >
 				  <span>4</span>
 				</button>
-				<button mat-menu-item style="width: 120px;height: fit-content;">
+				<button mat-menu-item style="width: 120px;">
 					<span>5</span>
 				 </button>
-			  </mat-menu>
+			  </mat-menu>-->
 	</div>
 	<div *ngIf="roomcode" style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 		<br><br>ROOMCODE:<span class="change"><b>{{roomcode}}</b></span>

@@ -39,7 +39,7 @@ export class BingocardComponent implements OnInit {
    d1=5;d2=5;
    rows:number[]=[1,0,0,0,0];
    cols:number[]=[1,0,0,0,0];
-   waiting;
+   waiting;exit;
 
   constructor(private authservice: AuthService,private roomservice: RoomserviceService, private router:Router,public dialog: MatDialog) {
    }
@@ -275,6 +275,7 @@ getcallnumber(){
 
   }
   else{
+    
     this.waiting=this.all_players[this.turn];
     // console.log(this.table_details);
     // console.log(this.turn);
@@ -316,6 +317,10 @@ logout() {
   this.logged_out= this.authservice.logOut();
    this.router.navigate(['/login']);
   this.dialog.open(LogoutComponent, {width: '200px', height: '150px'});
+ }
+
+ exitgame(){
+   this.roomservice.exit(this.myname)
  }
  
  }

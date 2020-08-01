@@ -18,9 +18,11 @@ export class RoomserviceService {
 
   constructor(private authservice:AuthService,private http: HttpClient,private router: Router) { }
 
-  createRoom() {
+  createRoom(no_selected) {
       return new Promise<string>((resolve,reject)=> {
-        this.http.post('/api/createroom', {}).subscribe(res=>{
+        console.log("No of players");
+        console.log(no_selected);
+        this.http.post('/api/createroom', {'no_players':no_selected}).subscribe(res=>{
           this.roomcode= res['roomcode'];
           console.log(this.roomcode);
           resolve(this.roomcode);    
@@ -74,4 +76,12 @@ putrandnum(turn_send,score,gameover){
   });
 }
 
+exit(name){
+  this.http.post('/api/exitgame', {'roomcode': this.roomcode,'username':name}).subscribe(res=>
+    {
+      if(res['status']==true){
+        this.router.navigate(['/roomcode']);
+      }
+    })
+}
 }

@@ -26,6 +26,8 @@ export class RoomcodeComponent implements OnInit {
   wait_to_join;
   all_players:string[];
   other_players: string[] = [];
+  no_of_players=[2,3,4,5];
+  no_selected;
  
   constructor(private roomservice: RoomserviceService,private authservice:AuthService, private router:Router,public dialog: MatDialog) { }
 
@@ -33,9 +35,13 @@ export class RoomcodeComponent implements OnInit {
   }
   
   username:string=this.authservice.getName();
+  getInnerText(innerText){
+    console.log(innerText)
+    this. no_selected=innerText;
+  }
   getroomcode() {
     this.wait();
-    this.roomservice.createRoom().then(data => 
+    this.roomservice.createRoom(this.no_selected).then(data => 
     {
       this.roomcode=data;
       console.log(data);
