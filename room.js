@@ -116,7 +116,7 @@ exports.hasgameended = function(room_code)
 		return false;
 }
 
-exports.getWinner = function(room_code,score)
+exports.getWinner = function(room_code)
 {	
 	room_details[room_code]["gameended"]=true;
 	console.log(room_details);

@@ -273,7 +273,8 @@ getcallnumber(){
             //console.log(this.timeLeft);
             this.increment_turn();
             //console.log("Turn incermented");
-            this.getcallnumber();
+            if(!this.gameover)
+              this.getcallnumber();
             //console.log("insidegetcall");
             this.call_number=undefined;
         }) 
