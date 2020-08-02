@@ -84,7 +84,7 @@ async function getRandomCall(room_code,turn,randnum,indextobecalled)
      			else 
      			{
 					console.log(room_details);
-					setTimeout(checkCallCount, 2000); 
+					setTimeout(checkCallCount, 7000); 
      			}
 			}
 			checkCallCount();
