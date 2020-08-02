@@ -245,6 +245,7 @@ getcallnumber(){
   //console.log(this.turn);
   if(this.myplayerindex==this.turn){
     //console.log("if part");
+    
     const dialogRef =this.dialog.open(PopupComponent, {width: '250px', height: '250px', disableClose: true,panelClass: 'custom-dialog-container'});
     dialogRef.afterClosed().subscribe(_ => {
       this.roomservice.putrandnum("true",this.myscore,"false").then(data=>

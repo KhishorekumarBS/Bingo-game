@@ -5,13 +5,15 @@ import { BingocardComponent } from './bingocard/bingocard.component';
 import { LoginComponent } from './login/login.component';
 import {RoomcodeComponent } from './roomcode/roomcode.component';
 import {WinnerComponent } from './winner/winner.component';
+import { InstructionsComponent } from './instructions/instructions.component';
 
 
 
 const routes: Routes = [  
     { path: 'bingocard', component: BingocardComponent },
+    { path: 'instructions', component: InstructionsComponent },
     { path: 'roomcode', component:  RoomcodeComponent },
-    { path: '', component: LoginComponent },
+    { path: '', component: InstructionsComponent },
      { path: 'login', component: LoginComponent },
      { path: 'winner', component: WinnerComponent },
     //{ path: '', redirectTo: '/login', pathMatch:'full'  },

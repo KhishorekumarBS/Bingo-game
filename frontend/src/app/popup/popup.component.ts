@@ -21,6 +21,9 @@ export class PopupComponent implements OnInit {
   type_number(){
     this.dialogRef.close();
     //console.log(this.send);
+    if(this.send==''){
+      this.send=String(Math.floor(Math.random() * 50)+1);
+    }
     this.roomservice.get_entered_number(String(this.send));
   }
   popup(){

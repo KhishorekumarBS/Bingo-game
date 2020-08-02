@@ -23,5 +23,5 @@ export class AppComponent implements OnInit {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'bingassign';
+  title = 'FINGO';
 }
