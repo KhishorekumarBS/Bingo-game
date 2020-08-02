@@ -97,6 +97,8 @@ export class BingocardComponent implements OnInit {
    this.random_numbers.splice(rand, 1) [0];
    if(this.random_numbers.indexOf(rand) === -1)this.random_numbers.push(rand);
   }
+  console.log("random numbers");
+  console.log(this.random_numbers);
 }
 
 increment_turn(){
@@ -222,7 +224,7 @@ play(num){
       this.call_number=num;
    this.runtime().then(data=>
     {   
-    
+    console.log("after timer");
     if(this.elem){
       // if(this.check_no_of_striked()){
       this.updatescore();
@@ -244,12 +246,15 @@ getcallnumber(){
   //console.log(this.table_details);
   //console.log(this.turn);
   if(this.myplayerindex==this.turn){
-    //console.log("if part");
+    console.log("if part");
     
     const dialogRef =this.dialog.open(PopupComponent, {width: '250px', height: '250px', disableClose: true,panelClass: 'custom-dialog-container'});
+    console.log("popup open");
     dialogRef.afterClosed().subscribe(_ => {
+      console.log("popup close");
       this.roomservice.putrandnum("true",this.myscore,"false").then(data=>
         {
+          console.log("data");
           console.log(data);
          if(data['gameended']=="true"){
            dialogRef.close();
@@ -258,9 +263,10 @@ getcallnumber(){
          } 
          this.play(data['random_number']).then(res=>
           {
+            console.log("score details");
             for(var i=0;i<this.table_details.length;i++)
             {
-              //console.log(data['score'][this.table_details[i].name]);
+              console.log(data['score'][this.table_details[i].name]);
               
               this.table_details[i].position=data['score'][this.table_details[i].name];
             }
@@ -276,20 +282,21 @@ getcallnumber(){
 
   }
   else{
-    
+    console.log("else part");
     this.waiting=this.all_players[this.turn];
     // console.log(this.table_details);
     // console.log(this.turn);
     this.roomservice.putrandnum("false",this.myscore,"false").then(data=>
         {
-          
+          console.log("data");
+          console.log(data);
           if(data['gameended']=="true"){
             this.router.navigate(['/winner']);
             return;
           } 
           this.play(data['random_number']).then(res=>
           {
-
+            console.log("score details");
             for(var i=0;i<this.table_details.length;i++)
             {
               //console.log(data['score'][this.table_details[i].name]);
@@ -309,9 +316,10 @@ getcallnumber(){
   
 }
 rendertable(){
-  
+  console.log("table details");
   for(var i=0;i<this.all_players.length;i++){
   this.table_details[i]={name:this.all_players[i],position:0};
+  console.log(this.table_details[i]);
   }
 }
 logout() {
