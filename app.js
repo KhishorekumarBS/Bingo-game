@@ -52,19 +52,19 @@ app.use(function(err, req, res, next) {
 	next();
 });
 
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 
-app.get('/',function(req, res, next) {
+app.get('/api/',function(req, res, next) {
 	res.sendFile(path.join(__dirname, 'frontend/bingassign/index.html'));
 });
 
-app.post('/createroom',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/createroom',authenticate.verifyUser,function(req, res, next) {
 	room_code=rooms.createRoom(parseInt(req.body.no_players));
 	res.setHeader('Content-Type', 'application/json');
 	res.json({'roomcode':room_code});
 });
 
-app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/joinroom',authenticate.verifyUser,function(req, res, next) {
 	// let message = await rooms.enterRoom(room_code,req.user.username);
 	rooms.joinRoom(req.body.roomcode,req.user.name).then(function(players_status) {
 		res.setHeader('Content-Type', 'application/json');
@@ -75,13 +75,13 @@ app.post('/joinroom',authenticate.verifyUser,function(req, res, next) {
 	});
 });
 
-app.post('/updatescore',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/updatescore',authenticate.verifyUser,function(req, res, next) {
 	rooms.updateScore(req.body.roomcode,req.user.username,req.body.score);
 	res.setHeader('Content-Type', 'application/json');
 	res.json({'status':true});
 });
 
-app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 	rooms.getRandomCall(req.body.roomcode,req.body.turnsend,req.body.random_number
 	,req.body.iterations).then(function(randnum) {
 		if(randnum=="game_ended")
@@ -97,7 +97,7 @@ app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 	});		
 });
 
-app.post('/getwinner',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/getwinner',authenticate.verifyUser,function(req, res, next) {
 	rooms.getRandomCall(req.body.roomcode,req.body.turnsend,req.body.random_number
 	,req.body.iterations).then(function(randnum) {
 		updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
@@ -107,13 +107,13 @@ app.post('/getwinner',authenticate.verifyUser,function(req, res, next) {
 	});		
 });
 
-app.post('/exitgame',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/exitgame',authenticate.verifyUser,function(req, res, next) {
 	rooms.disqualifyMe(req.body.roomcode,req.user.username);
 	res.setHeader('Content-Type', 'application/json');
 	res.json({'status':true });
 });
 
-app.post('/hasgameended',authenticate.verifyUser,function(req, res, next) {
+app.post('/api/hasgameended',authenticate.verifyUser,function(req, res, next) {
 	res.setHeader('Content-Type', 'application/json');
 	if(rooms.hasgameended(req.body.roomcode))
 		res.json({'status':"true" });
