@@ -186,6 +186,7 @@ updatescore(){
 
   }
   this.myscore+=5;
+  this.roomservice.setscore(this.myscore);
   if(this.game_ended){
     console.log("We are in the endgame now");
     this.gameover=true;
@@ -252,7 +253,7 @@ getcallnumber(){
     console.log("popup open");
     dialogRef.afterClosed().subscribe(_ => {
       console.log("popup close");
-      this.roomservice.putrandnum("true",this.myscore,"false").then(data=>
+      this.roomservice.putrandnum("true").then(data=>
         {
           console.log("data");
           console.log(data);
@@ -273,7 +274,9 @@ getcallnumber(){
             //console.log(this.timeLeft);
             this.increment_turn();
             //console.log("Turn incermented");
+            if(!this.gameover){
             this.getcallnumber();
+            }
             //console.log("insidegetcall");
             this.call_number=undefined;
         }) 
@@ -286,7 +289,7 @@ getcallnumber(){
     this.waiting=this.all_players[this.turn];
     // console.log(this.table_details);
     // console.log(this.turn);
-    this.roomservice.putrandnum("false",this.myscore,"false").then(data=>
+    this.roomservice.putrandnum("false").then(data=>
         {
           console.log("data");
           console.log(data);
@@ -306,7 +309,9 @@ getcallnumber(){
             // console.log(this.timeLeft);
             this.increment_turn();
             //console.log("Turn incermented");//Run no
-            this.getcallnumber();
+            if(!this.gameover){
+              this.getcallnumber();
+              }
             //console.log("insidegetcall");
             this.call_number=undefined;
             

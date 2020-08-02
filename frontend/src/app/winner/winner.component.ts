@@ -24,8 +24,10 @@ export class WinnerComponent implements OnInit {
     this.myname=this.authservice.getName();
     this.all_players=this.roomservice.getallplayers();
     this.rendertable();
-    this.roomservice.putrandnum("false","0","true").then(data=>
+    this.roomservice.getwinnerdetails().then(data=>
       {
+        console.log("winner details in component");
+        console.log(data);
         for(var i=0;i<this.table_details.length;i++)
              //this.table_details[i]={name:this.all_players[i],position:data['score'][this.table_details[i].name]};
             {

@@ -14,6 +14,7 @@ export class RoomserviceService {
   all_players:string[];
   iterations:number=1;
   entered_number:string;
+  myscore;
   
 
   constructor(private authservice:AuthService,private http: HttpClient,private router: Router) { }
@@ -52,7 +53,10 @@ joinRoom() {
   })
  });
 }
-
+setscore(score){
+  this.myscore=String(score);
+  console.log("setscore "+this.myscore);
+}
 setcode(joincode) {
   this.roomcode=joincode;
   console.log(this.roomcode);
@@ -63,10 +67,10 @@ get_entered_number(typed_no){
   console.log(this.entered_number);
 }
 
-putrandnum(turn_send,score,gameover){
+putrandnum(turn_send){
   return new Promise((resolve,reject)=> {
   this.http.post('/api/getrandomcall', {'roomcode':this.roomcode, 'turnsend':turn_send, 
-  'random_number':this.entered_number, 'iterations':this.iterations,'score':String(score),'gameover':String(gameover)}).subscribe(res=>
+  'random_number':this.entered_number, 'iterations':this.iterations,'score':this.myscore}).subscribe(res=>
     {
       this.iterations++;
       console.log(res);
@@ -76,6 +80,19 @@ putrandnum(turn_send,score,gameover){
   });
 }
 
+getwinnerdetails(){
+  return new Promise((resolve,reject)=> {
+    console.log("winnerservice");
+    console.log(this.myscore);
+
+    this.http.post('/api/getwinner', {'roomcode':this.roomcode,'score':this.myscore}).subscribe(res=>
+      {
+        console.log("winner details in service");
+        console.log(res);
+        resolve(res);
+      });
+    });
+}
 exit(name){
   this.http.post('/api/exitgame', {'roomcode': this.roomcode,'username':name}).subscribe(res=>
     {
