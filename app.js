@@ -96,10 +96,13 @@ app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 });
 
 app.post('/getwinner',authenticate.verifyUser,function(req, res, next) {
+	console.log("In getwinner");
 	updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
+	console.log("Final score updated");
 	winner=rooms.getWinner(req.body.roomcode);
+	console.log("Winner is "+winner);
 	res.setHeader('Content-Type', 'application/json');
-	res.json({'winner':winner,'score':updated_score,'gameended':'true'});				
+	res.json({'winner':winner,'score':updated_score});				
 });
 
 app.post('/exitgame',authenticate.verifyUser,function(req, res, next) {
