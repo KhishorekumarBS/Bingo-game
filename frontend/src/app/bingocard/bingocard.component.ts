@@ -30,7 +30,7 @@ export class BingocardComponent implements OnInit {
   id_arr:any[]=[];
   id_present:boolean;
   table_details:any[]=[];
-  myscore=0;
+  myscore;
   gameover:boolean=false;
   dataSource = new MatTableDataSource(this.table_details);
   displayedColumns = ['name', 'position'];
@@ -45,6 +45,7 @@ export class BingocardComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.myscore=0;
     this.myname=this.authservice.getName();
     this.all_players=this.roomservice.getallplayers();
     this.turn=0;
@@ -274,9 +275,11 @@ getcallnumber(){
             //console.log(this.timeLeft);
             this.increment_turn();
             //console.log("Turn incermented");
+
             if(!this.gameover){
             this.getcallnumber();
             }
+
             //console.log("insidegetcall");
             this.call_number=undefined;
         }) 

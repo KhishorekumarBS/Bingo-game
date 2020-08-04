@@ -84,27 +84,25 @@ app.post('/updatescore',authenticate.verifyUser,function(req, res, next) {
 app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 	rooms.getRandomCall(req.body.roomcode,req.body.turnsend,req.body.random_number
 	,req.body.iterations).then(function(randnum) {
+		res.setHeader('Content-Type', 'application/json');
 		if(randnum=="game_ended")
+			res.json({'gameended':'true'});					
+		else
 		{
 			updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
-			winner=rooms.getWinner(req.body.roomcode,req.body.index);
-			res.setHeader('Content-Type', 'application/json');
-			res.json({'winner':winner,'score':updated_score,'gameended':'true'});					
+			res.json({'random_number':randnum,'score':updated_score,'gameended':'false'});			
 		}
-		updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
-		res.setHeader('Content-Type', 'application/json');
-		res.json({'random_number':randnum,'score':updated_score,'gameended':'false'});
 	});		
 });
 
 app.post('/getwinner',authenticate.verifyUser,function(req, res, next) {
-	rooms.getRandomCall(req.body.roomcode,req.body.turnsend,req.body.random_number
-	,req.body.iterations).then(function(randnum) {
-		updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
-		winner=rooms.getWinner(req.body.roomcode,req.body.index);
-		res.setHeader('Content-Type', 'application/json');
-		res.json({'winner':winner,'score':updated_score,'gameended':'true'});				
-	});		
+	console.log("In getwinner");
+	updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
+	console.log("Final score updated");
+	winner=rooms.getWinner(req.body.roomcode);
+	console.log("Winner is "+winner);
+	res.setHeader('Content-Type', 'application/json');
+	res.json({'winner':winner,'score':updated_score});				
 });
 
 app.post('/exitgame',authenticate.verifyUser,function(req, res, next) {

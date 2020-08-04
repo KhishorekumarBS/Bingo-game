@@ -14,7 +14,7 @@ export class RoomserviceService {
   all_players:string[];
   iterations:number=1;
   entered_number:string;
-  myscore;
+  myscore="0";
   
 
   constructor(private authservice:AuthService,private http: HttpClient,private router: Router) { }

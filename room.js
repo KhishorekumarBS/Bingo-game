@@ -84,7 +84,7 @@ async function getRandomCall(room_code,turn,randnum,indextobecalled)
      			else 
      			{
 					console.log(room_details);
-					setTimeout(checkCallCount, 2000); 
+					setTimeout(checkCallCount, 7000); 
      			}
 			}
 			checkCallCount();
@@ -116,7 +116,7 @@ exports.hasgameended = function(room_code)
 		return false;
 }
 
-exports.getWinner = function(room_code,score)
+exports.getWinner = function(room_code)
 {	
 	room_details[room_code]["gameended"]=true;
 	console.log(room_details);
