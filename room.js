@@ -28,11 +28,11 @@ async function joinroom(room_code,username)
 		function checkUserCount() 
 	    {
 			users_count = Object.keys(room_details[room_code]["users"]).length;	
-     		console.log("Users count:");
-   			console.log(users_count);
+     	// 	console.log("Users count:");
+   			// console.log(users_count);
 			if (users_count>=room_details[room_code]["no_players"]) 
 			{
-				console.log('met');
+				// console.log('met');
 				players=[];
 				for(var player in room_details[room_code]["users"]) players.push(player);
 				resolve(players);
@@ -40,8 +40,8 @@ async function joinroom(room_code,username)
      		else 
      		{
      			room_details[room_code]["users"][username]="0";
-     			console.log(room_details);
-     			console.log("Added.. Next checking");
+     			// console.log(room_details);
+     			// console.log("Added.. Next checking");
 				setTimeout(checkUserCount, 2000); 
      		}
 		}
@@ -53,18 +53,18 @@ async function getRandomCall(room_code,turn,randnum,indextobecalled)
 {
 	return new Promise(function(resolve, reject) 
 	{
-		console.log(room_details);
-		console.log(randnum);
-		console.log("In room.js");
-		console.log(turn);
+		// console.log(room_details);
+		// console.log(randnum);
+		// console.log("In room.js");
+		// console.log(turn);
 		current_length = Object.keys(room_details[room_code]["randomcalls"]).length;
-		console.log(current_length);
+		// console.log(current_length);
 		if(room_details[room_code]["gameended"])
 			resolve("game_ended");
 		if(turn=="true")
 		{
 			room_details[room_code]["randomcalls"].push(randnum);
-			console.log("Number assigned");
+			// console.log("Number assigned");
 			resolve(randnum);
 		}
 		else
@@ -74,16 +74,16 @@ async function getRandomCall(room_code,turn,randnum,indextobecalled)
 				if(room_details[room_code]["gameended"])
 					resolve("game_ended");
 				current_length = Object.keys(room_details[room_code]["randomcalls"]).length;
-				console.log("checkCallCount");
-				console.log(current_length);	
+				// console.log("checkCallCount");
+				// console.log(current_length);	
 				if(current_length>=indextobecalled)
 				{
-					console.log("Resolved");
+					// console.log("Resolved");
 					resolve(room_details[room_code]["randomcalls"][indextobecalled-1]);
 				}
      			else 
      			{
-					console.log(room_details);
+					// console.log(room_details);
 					setTimeout(checkCallCount, 7000); 
      			}
 			}
@@ -123,32 +123,8 @@ exports.getWinner = function(room_code)
 	return Object.keys(room_details[room_code]["users"]).reduce((a, b) => parseInt(room_details[room_code]["users"][a]) > parseInt(room_details[room_code]["users"][b]) ? a : b);
 }
 
-// exports.getRandomCall= function(room_code,index)
-// {	
-// 	index= parseInt(index)+1;
-// 	if(index>=room_details[room_code]["randomcalls"].length-1)
-// 	{
-// 		temp=Array.from({length: 10}, () => Math.floor(Math.random() * 100)+1);
-// 		room_details[room_code]["randomcalls"].push.apply(room_details[room_code]["randomcalls"],temp);
-// 	}
-
-
-// 	console.log(room_details);
-// 	return room_details[room_code]["randomcalls"][index];
-// }
 
 exports.joinRoom = joinroom;
 exports.getRandomCall = getRandomCall;
 
-// exports.updatescore = function(room_code,username,score)
-// {
-// 	room_details[room_code][username]["score"]=score;
-// 	console.log(room_details);
-// }
-// rc1=createRoom();
-// getRandomCall(rc1,"24");
-// rc2=createRoom();
-// joinRoom(rc1,"bsk1");
-// joinRoom(rc1,"bsk2");
-// joinRoom(rc2,"bsk3");
 console.log(room_details);
