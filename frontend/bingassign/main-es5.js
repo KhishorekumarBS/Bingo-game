@@ -173,16 +173,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _winner_winner_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./winner/winner.component */
     "./src/app/winner/winner.component.ts");
+    /* harmony import */
+
+
+    var _instructions_instructions_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./instructions/instructions.component */
+    "./src/app/instructions/instructions.component.ts");
 
     var routes = [{
       path: 'bingocard',
       component: _bingocard_bingocard_component__WEBPACK_IMPORTED_MODULE_3__["BingocardComponent"]
     }, {
+      path: 'instructions',
+      component: _instructions_instructions_component__WEBPACK_IMPORTED_MODULE_7__["InstructionsComponent"]
+    }, {
       path: 'roomcode',
       component: _roomcode_roomcode_component__WEBPACK_IMPORTED_MODULE_5__["RoomcodeComponent"]
     }, {
       path: '',
-      component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"]
+      component: _instructions_instructions_component__WEBPACK_IMPORTED_MODULE_7__["InstructionsComponent"]
     }, {
       path: 'login',
       component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"]
@@ -278,7 +287,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var AppComponent = function AppComponent() {
       _classCallCheck(this, AppComponent);
 
-      this.title = 'bingassign';
+      this.title = 'FINGO';
     };
 
     AppComponent.ɵfac = function AppComponent_Factory(t) {
@@ -873,7 +882,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.turn = 0;
         this.id_arr = [];
         this.table_details = [];
-        this.myscore = 0;
         this.gameover = false;
         this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](this.table_details);
         this.displayedColumns = ['name', 'position'];
@@ -881,17 +889,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.d2_elements = [1, 7, 13, 19, 25];
         this.d1 = 5;
         this.d2 = 5;
-        this.rows = [1, 0, 0, 0, 0];
-        this.cols = [1, 0, 0, 0, 0];
+        this.rows = [5, 5, 5, 5, 5];
+        this.cols = [5, 5, 5, 5, 5];
         this.username = this.authservice.getName();
       }
 
       _createClass(BingocardComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          this.myscore = 0;
           this.myname = this.authservice.getName();
+          console.log(this.myname);
           this.all_players = this.roomservice.getallplayers();
+          console.log(this.all_players);
           this.turn = 0;
+          this.gameover = false;
           this.myplayerindex = this.findmyplayerindex();
           this.rand();
           this.rendertable();
@@ -946,6 +958,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.random_numbers.splice(rand, 1)[0];
             if (this.random_numbers.indexOf(rand) === -1) this.random_numbers.push(rand);
           }
+
+          console.log("random numbers");
+          console.log(this.random_numbers);
         }
       }, {
         key: "increment_turn",
@@ -1052,6 +1067,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           this.myscore += 5;
+          this.roomservice.setscore(this.myscore);
 
           if (this.game_ended) {
             console.log("We are in the endgame now");
@@ -1096,10 +1112,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this4.call_number = num;
 
             _this4.runtime().then(function (data) {
-              if (_this4.elem) {
-                // if(this.check_no_of_striked()){
-                _this4.updatescore(); // }
+              console.log("after timer");
 
+              if (_this4.elem) {
+                if (_this4.check_no_of_striked()) {
+                  _this4.updatescore();
+                }
 
                 _this4.elem.style.textDecoration = 'line-through';
                 _this4.elem.style.color = 'red';
@@ -1117,19 +1135,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function getcallnumber() {
           var _this5 = this;
 
-          //console.log("ingetcall");
-          //console.log(this.table_details);
-          //console.log(this.turn);
+          console.log("ingetcall"); //console.log(this.table_details);
+
+          console.log("Turn value");
+          console.log(this.turn);
+          console.log("myplayerindex");
+          console.log(this.myplayerindex);
+
           if (this.myplayerindex == this.turn) {
-            //console.log("if part");
+            console.log("if part");
             var dialogRef = this.dialog.open(_popup_popup_component__WEBPACK_IMPORTED_MODULE_3__["PopupComponent"], {
               width: '250px',
               height: '250px',
               disableClose: true,
               panelClass: 'custom-dialog-container'
             });
+            console.log("popup open");
             dialogRef.afterClosed().subscribe(function (_) {
-              _this5.roomservice.putrandnum("true", _this5.myscore, "false").then(function (data) {
+              console.log("popup close");
+
+              _this5.roomservice.putrandnum("true").then(function (data) {
+                console.log("data");
                 console.log(data);
 
                 if (data['gameended'] == "true") {
@@ -1141,8 +1167,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
 
                 _this5.play(data['random_number']).then(function (res) {
+                  console.log("score details");
+
                   for (var i = 0; i < _this5.table_details.length; i++) {
-                    //console.log(data['score'][this.table_details[i].name]);
+                    console.log(data['score'][_this5.table_details[i].name]);
                     _this5.table_details[i].position = data['score'][_this5.table_details[i].name];
                   } //console.log(this.timeLeft);
 
@@ -1150,7 +1178,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   _this5.increment_turn(); //console.log("Turn incermented");
 
 
-                  _this5.getcallnumber(); //console.log("insidegetcall");
+                  if (!_this5.gameover) {
+                    _this5.getcallnumber();
+                  } //console.log("insidegetcall");
 
 
                   _this5.call_number = undefined;
@@ -1158,10 +1188,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
             });
           } else {
+            console.log("else part");
             this.waiting = this.all_players[this.turn]; // console.log(this.table_details);
             // console.log(this.turn);
 
-            this.roomservice.putrandnum("false", this.myscore, "false").then(function (data) {
+            this.roomservice.putrandnum("false").then(function (data) {
+              console.log("data");
+              console.log(data);
+
               if (data['gameended'] == "true") {
                 _this5.router.navigate(['/winner']);
 
@@ -1169,6 +1203,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
 
               _this5.play(data['random_number']).then(function (res) {
+                console.log("score details");
+
                 for (var i = 0; i < _this5.table_details.length; i++) {
                   //console.log(data['score'][this.table_details[i].name]);
                   _this5.table_details[i].position = data['score'][_this5.table_details[i].name];
@@ -1178,7 +1214,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 _this5.increment_turn(); //console.log("Turn incermented");//Run no
 
 
-                _this5.getcallnumber(); //console.log("insidegetcall");
+                if (!_this5.gameover) {
+                  _this5.getcallnumber();
+                } //console.log("insidegetcall");
 
 
                 _this5.call_number = undefined;
@@ -1189,11 +1227,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "rendertable",
         value: function rendertable() {
+          console.log("table details");
+
           for (var i = 0; i < this.all_players.length; i++) {
             this.table_details[i] = {
               name: this.all_players[i],
               position: 0
             };
+            console.log(this.table_details[i]);
           }
         }
       }, {
@@ -1618,6 +1659,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_material_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/material/button */
+    "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+    var _c0 = function _c0() {
+      return ["/login"];
+    };
 
     var InstructionsComponent = /*#__PURE__*/function () {
       function InstructionsComponent() {
@@ -1639,9 +1696,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     InstructionsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: InstructionsComponent,
       selectors: [["app-instructions"]],
-      decls: 53,
-      vars: 0,
-      consts: [[1, "container"], [2, "text-align", "center", "font-size", "60px"], [1, "change"], [2, "text-align", "justify", "font-size", "20px"], [1, "change", 2, "font-size", "25px", "font-weight", "bold"]],
+      decls: 58,
+      vars: 2,
+      consts: [[1, "container"], [2, "text-align", "center", "font-size", "60px"], [1, "change"], [2, "text-align", "justify", "font-size", "20px"], [1, "change", 2, "font-size", "25px", "font-weight", "bold"], [2, "text-align", "center"], ["mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px URW Chancery L, cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "routerLink"]],
       template: function InstructionsComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html");
@@ -1782,13 +1839,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](53, "div", 5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](54, "button", 6);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](55, "PLAY");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](56, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](57, "br");
+
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         }
+
+        if (rf & 2) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](54);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](1, _c0));
+        }
       },
+      directives: [_angular_material_button__WEBPACK_IMPORTED_MODULE_1__["MatButton"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLink"]],
       styles: ["body[_ngcontent-%COMP%] {\n  background: rgba(27, 27, 27, 0.808);\n  color: white;\n  font: normal 18px URW Chancery L, cursive;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL0JTSy9Qcm9qZWN0cy9CaW5nby1nYW1lL2Zyb250ZW5kL3NyYy9hcHAvaW5zdHJ1Y3Rpb25zL2luc3RydWN0aW9ucy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaW5zdHJ1Y3Rpb25zL2luc3RydWN0aW9ucy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLG1DQUFBO0VBQ0EsWUFBQTtFQUNBLHlDQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9pbnN0cnVjdGlvbnMvaW5zdHJ1Y3Rpb25zLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keXtcbiAgICBiYWNrZ3JvdW5kOnJnYmEoMjcsIDI3LCAyNywgMC44MDgpO1xuICAgIGNvbG9yOndoaXRlO1xuICAgIGZvbnQ6bm9ybWFsIDE4cHggVVJXIENoYW5jZXJ5IEwsIGN1cnNpdmUgO1xufSIsImJvZHkge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDI3LCAyNywgMjcsIDAuODA4KTtcbiAgY29sb3I6IHdoaXRlO1xuICBmb250OiBub3JtYWwgMThweCBVUlcgQ2hhbmNlcnkgTCwgY3Vyc2l2ZTtcbn0iXX0= */"]
     });
     /*@__PURE__*/
@@ -2589,6 +2667,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "type_number",
         value: function type_number() {
           this.dialogRef.close(); //console.log(this.send);
+
+          if (this.send == '') {
+            this.send = String(Math.floor(Math.random() * 50) + 1);
+          }
 
           this.roomservice.get_entered_number(String(this.send));
         }
@@ -3857,6 +3939,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router = router;
         this.roomcode = undefined;
         this.iterations = 1;
+        this.entered_number = undefined;
+        this.myscore = "0";
       }
 
       _createClass(RoomserviceService, [{
@@ -3911,6 +3995,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
         }
       }, {
+        key: "setscore",
+        value: function setscore(score) {
+          this.myscore = String(score);
+          console.log("setscore " + this.myscore);
+        }
+      }, {
         key: "setcode",
         value: function setcode(joincode) {
           this.roomcode = joincode;
@@ -3924,19 +4014,41 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "putrandnum",
-        value: function putrandnum(turn_send, score, gameover) {
+        value: function putrandnum(turn_send) {
           var _this13 = this;
 
+          console.log("putrandnum");
+          console.log(this.roomcode);
+          console.log(this.entered_number);
           return new Promise(function (resolve, reject) {
             _this13.http.post('/api/getrandomcall', {
               'roomcode': _this13.roomcode,
               'turnsend': turn_send,
               'random_number': _this13.entered_number,
               'iterations': _this13.iterations,
-              'score': String(score),
-              'gameover': String(gameover)
+              'score': _this13.myscore
             }).subscribe(function (res) {
               _this13.iterations++;
+              console.log("response");
+              console.log(res);
+              resolve(res);
+            });
+          });
+        }
+      }, {
+        key: "getwinnerdetails",
+        value: function getwinnerdetails() {
+          var _this14 = this;
+
+          return new Promise(function (resolve, reject) {
+            console.log("winnerservice");
+            console.log(_this14.myscore);
+
+            _this14.http.post('/api/getwinner', {
+              'roomcode': _this14.roomcode,
+              'score': _this14.myscore
+            }).subscribe(function (res) {
+              console.log("winner details in service");
               console.log(res);
               resolve(res);
             });
@@ -3945,14 +4057,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "exit",
         value: function exit(name) {
-          var _this14 = this;
+          var _this15 = this;
 
           this.http.post('/api/exitgame', {
             'roomcode': this.roomcode,
             'username': name
           }).subscribe(function (res) {
             if (res['status'] == true) {
-              _this14.router.navigate(['/roomcode']);
+              _this15.router.navigate(['/roomcode']);
             }
           });
         }
@@ -4514,20 +4626,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(WinnerComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this15 = this;
+          var _this16 = this;
 
           this.myFunction();
           this.myname = this.authservice.getName();
           this.all_players = this.roomservice.getallplayers();
           this.rendertable();
-          this.roomservice.putrandnum("false", "0", "true").then(function (data) {
-            for (var i = 0; i < _this15.table_details.length; i++) //this.table_details[i]={name:this.all_players[i],position:data['score'][this.table_details[i].name]};
+          this.roomservice.getwinnerdetails().then(function (data) {
+            console.log("winner details in component");
+            console.log(data);
+
+            for (var i = 0; i < _this16.table_details.length; i++) //this.table_details[i]={name:this.all_players[i],position:data['score'][this.table_details[i].name]};
             {
-              _this15.table_details[i].position = data['score'][_this15.table_details[i].name];
+              _this16.table_details[i].position = data['score'][_this16.table_details[i].name];
             }
 
-            if (data['winner'] != _this15.myname) {
-              _this15.winner = data['winner'];
+            if (data['winner'] != _this16.myname) {
+              _this16.winner = data['winner'];
             }
           });
         }
