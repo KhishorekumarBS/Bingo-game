@@ -92,6 +92,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _roomcode_roomcode_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./roomcode/roomcode.component */ "./src/app/roomcode/roomcode.component.ts");
 /* harmony import */ var _winner_winner_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./winner/winner.component */ "./src/app/winner/winner.component.ts");
+/* harmony import */ var _instructions_instructions_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./instructions/instructions.component */ "./src/app/instructions/instructions.component.ts");
+
 
 
 
@@ -103,8 +105,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [
     { path: 'bingocard', component: _bingocard_bingocard_component__WEBPACK_IMPORTED_MODULE_3__["BingocardComponent"] },
+    { path: 'instructions', component: _instructions_instructions_component__WEBPACK_IMPORTED_MODULE_7__["InstructionsComponent"] },
     { path: 'roomcode', component: _roomcode_roomcode_component__WEBPACK_IMPORTED_MODULE_5__["RoomcodeComponent"] },
-    { path: '', component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"] },
+    { path: '', component: _instructions_instructions_component__WEBPACK_IMPORTED_MODULE_7__["InstructionsComponent"] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"] },
     { path: 'winner', component: _winner_winner_component__WEBPACK_IMPORTED_MODULE_6__["WinnerComponent"] },
 ];
@@ -159,7 +162,7 @@ export class AppComponent implements OnInit {
 }*/
 class AppComponent {
     constructor() {
-        this.title = 'bingassign';
+        this.title = 'FINGO';
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };
@@ -515,7 +518,6 @@ class BingocardComponent {
         this.turn = 0;
         this.id_arr = [];
         this.table_details = [];
-        this.myscore = 0;
         this.gameover = false;
         this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](this.table_details);
         this.displayedColumns = ['name', 'position'];
@@ -523,14 +525,18 @@ class BingocardComponent {
         this.d2_elements = [1, 7, 13, 19, 25];
         this.d1 = 5;
         this.d2 = 5;
-        this.rows = [1, 0, 0, 0, 0];
-        this.cols = [1, 0, 0, 0, 0];
+        this.rows = [5, 5, 5, 5, 5];
+        this.cols = [5, 5, 5, 5, 5];
         this.username = this.authservice.getName();
     }
     ngOnInit() {
+        this.myscore = 0;
         this.myname = this.authservice.getName();
+        console.log(this.myname);
         this.all_players = this.roomservice.getallplayers();
+        console.log(this.all_players);
         this.turn = 0;
+        this.gameover = false;
         this.myplayerindex = this.findmyplayerindex();
         this.rand();
         this.rendertable();
@@ -574,6 +580,8 @@ class BingocardComponent {
             if (this.random_numbers.indexOf(rand) === -1)
                 this.random_numbers.push(rand);
         }
+        console.log("random numbers");
+        console.log(this.random_numbers);
     }
     increment_turn() {
         this.turn++;
@@ -653,6 +661,7 @@ class BingocardComponent {
             }
         }
         this.myscore += 5;
+        this.roomservice.setscore(this.myscore);
         if (this.game_ended) {
             console.log("We are in the endgame now");
             this.gameover = true;
@@ -686,10 +695,11 @@ class BingocardComponent {
         return new Promise((resolve, reject) => {
             this.call_number = num;
             this.runtime().then(data => {
+                console.log("after timer");
                 if (this.elem) {
-                    // if(this.check_no_of_striked()){
-                    this.updatescore();
-                    // }
+                    if (this.check_no_of_striked()) {
+                        this.updatescore();
+                    }
                     (this.elem).style.textDecoration = 'line-through';
                     (this.elem).style.color = 'red';
                     this.elem = undefined;
@@ -700,14 +710,20 @@ class BingocardComponent {
         });
     }
     getcallnumber() {
-        //console.log("ingetcall");
+        console.log("ingetcall");
         //console.log(this.table_details);
-        //console.log(this.turn);
+        console.log("Turn value");
+        console.log(this.turn);
+        console.log("myplayerindex");
+        console.log(this.myplayerindex);
         if (this.myplayerindex == this.turn) {
-            //console.log("if part");
+            console.log("if part");
             const dialogRef = this.dialog.open(_popup_popup_component__WEBPACK_IMPORTED_MODULE_3__["PopupComponent"], { width: '250px', height: '250px', disableClose: true, panelClass: 'custom-dialog-container' });
+            console.log("popup open");
             dialogRef.afterClosed().subscribe(_ => {
-                this.roomservice.putrandnum("true", this.myscore, "false").then(data => {
+                console.log("popup close");
+                this.roomservice.putrandnum("true").then(data => {
+                    console.log("data");
                     console.log(data);
                     if (data['gameended'] == "true") {
                         dialogRef.close();
@@ -715,14 +731,17 @@ class BingocardComponent {
                         return;
                     }
                     this.play(data['random_number']).then(res => {
+                        console.log("score details");
                         for (var i = 0; i < this.table_details.length; i++) {
-                            //console.log(data['score'][this.table_details[i].name]);
+                            console.log(data['score'][this.table_details[i].name]);
                             this.table_details[i].position = data['score'][this.table_details[i].name];
                         }
                         //console.log(this.timeLeft);
                         this.increment_turn();
                         //console.log("Turn incermented");
-                        this.getcallnumber();
+                        if (!this.gameover) {
+                            this.getcallnumber();
+                        }
                         //console.log("insidegetcall");
                         this.call_number = undefined;
                     });
@@ -730,15 +749,19 @@ class BingocardComponent {
             });
         }
         else {
+            console.log("else part");
             this.waiting = this.all_players[this.turn];
             // console.log(this.table_details);
             // console.log(this.turn);
-            this.roomservice.putrandnum("false", this.myscore, "false").then(data => {
+            this.roomservice.putrandnum("false").then(data => {
+                console.log("data");
+                console.log(data);
                 if (data['gameended'] == "true") {
                     this.router.navigate(['/winner']);
                     return;
                 }
                 this.play(data['random_number']).then(res => {
+                    console.log("score details");
                     for (var i = 0; i < this.table_details.length; i++) {
                         //console.log(data['score'][this.table_details[i].name]);
                         this.table_details[i].position = data['score'][this.table_details[i].name];
@@ -746,7 +769,9 @@ class BingocardComponent {
                     // console.log(this.timeLeft);
                     this.increment_turn();
                     //console.log("Turn incermented");//Run no
-                    this.getcallnumber();
+                    if (!this.gameover) {
+                        this.getcallnumber();
+                    }
                     //console.log("insidegetcall");
                     this.call_number = undefined;
                 });
@@ -754,8 +779,10 @@ class BingocardComponent {
         }
     }
     rendertable() {
+        console.log("table details");
         for (var i = 0; i < this.all_players.length; i++) {
             this.table_details[i] = { name: this.all_players[i], position: 0 };
+            console.log(this.table_details[i]);
         }
     }
     logout() {
@@ -954,15 +981,20 @@ ErrorMessageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InstructionsComponent", function() { return InstructionsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
 
+
+
+const _c0 = function () { return ["/login"]; };
 class InstructionsComponent {
     constructor() { }
     ngOnInit() {
     }
 }
 InstructionsComponent.ɵfac = function InstructionsComponent_Factory(t) { return new (t || InstructionsComponent)(); };
-InstructionsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: InstructionsComponent, selectors: [["app-instructions"]], decls: 53, vars: 0, consts: [[1, "container"], [2, "text-align", "center", "font-size", "60px"], [1, "change"], [2, "text-align", "justify", "font-size", "20px"], [1, "change", 2, "font-size", "25px", "font-weight", "bold"]], template: function InstructionsComponent_Template(rf, ctx) { if (rf & 1) {
+InstructionsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: InstructionsComponent, selectors: [["app-instructions"]], decls: 58, vars: 2, consts: [[1, "container"], [2, "text-align", "center", "font-size", "60px"], [1, "change"], [2, "text-align", "justify", "font-size", "20px"], [1, "change", 2, "font-size", "25px", "font-weight", "bold"], [2, "text-align", "center"], ["mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px URW Chancery L, cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "routerLink"]], template: function InstructionsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "body");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 0);
@@ -1032,10 +1064,20 @@ InstructionsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](52, "br");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](53, "div", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](54, "button", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](55, "PLAY");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](56, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](57, "br");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, styles: ["body[_ngcontent-%COMP%] {\n  background: rgba(27, 27, 27, 0.808);\n  color: white;\n  font: normal 18px URW Chancery L, cursive;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL0JTSy9Qcm9qZWN0cy9CaW5nby1nYW1lL2Zyb250ZW5kL3NyYy9hcHAvaW5zdHJ1Y3Rpb25zL2luc3RydWN0aW9ucy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaW5zdHJ1Y3Rpb25zL2luc3RydWN0aW9ucy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLG1DQUFBO0VBQ0EsWUFBQTtFQUNBLHlDQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9pbnN0cnVjdGlvbnMvaW5zdHJ1Y3Rpb25zLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keXtcbiAgICBiYWNrZ3JvdW5kOnJnYmEoMjcsIDI3LCAyNywgMC44MDgpO1xuICAgIGNvbG9yOndoaXRlO1xuICAgIGZvbnQ6bm9ybWFsIDE4cHggVVJXIENoYW5jZXJ5IEwsIGN1cnNpdmUgO1xufSIsImJvZHkge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDI3LCAyNywgMjcsIDAuODA4KTtcbiAgY29sb3I6IHdoaXRlO1xuICBmb250OiBub3JtYWwgMThweCBVUlcgQ2hhbmNlcnkgTCwgY3Vyc2l2ZTtcbn0iXX0= */"] });
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](54);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](1, _c0));
+    } }, directives: [_angular_material_button__WEBPACK_IMPORTED_MODULE_1__["MatButton"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLink"]], styles: ["body[_ngcontent-%COMP%] {\n  background: rgba(27, 27, 27, 0.808);\n  color: white;\n  font: normal 18px URW Chancery L, cursive;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL0JTSy9Qcm9qZWN0cy9CaW5nby1nYW1lL2Zyb250ZW5kL3NyYy9hcHAvaW5zdHJ1Y3Rpb25zL2luc3RydWN0aW9ucy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaW5zdHJ1Y3Rpb25zL2luc3RydWN0aW9ucy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLG1DQUFBO0VBQ0EsWUFBQTtFQUNBLHlDQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9pbnN0cnVjdGlvbnMvaW5zdHJ1Y3Rpb25zLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keXtcbiAgICBiYWNrZ3JvdW5kOnJnYmEoMjcsIDI3LCAyNywgMC44MDgpO1xuICAgIGNvbG9yOndoaXRlO1xuICAgIGZvbnQ6bm9ybWFsIDE4cHggVVJXIENoYW5jZXJ5IEwsIGN1cnNpdmUgO1xufSIsImJvZHkge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDI3LCAyNywgMjcsIDAuODA4KTtcbiAgY29sb3I6IHdoaXRlO1xuICBmb250OiBub3JtYWwgMThweCBVUlcgQ2hhbmNlcnkgTCwgY3Vyc2l2ZTtcbn0iXX0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](InstructionsComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -1450,6 +1492,9 @@ class PopupComponent {
     type_number() {
         this.dialogRef.close();
         //console.log(this.send);
+        if (this.send == '') {
+            this.send = String(Math.floor(Math.random() * 50) + 1);
+        }
         this.roomservice.get_entered_number(String(this.send));
     }
     popup() {
@@ -2077,6 +2122,8 @@ class RoomserviceService {
         this.router = router;
         this.roomcode = undefined;
         this.iterations = 1;
+        this.entered_number = undefined;
+        this.myscore = "0";
     }
     createRoom(no_selected) {
         return new Promise((resolve, reject) => {
@@ -2109,6 +2156,10 @@ class RoomserviceService {
             });
         });
     }
+    setscore(score) {
+        this.myscore = String(score);
+        console.log("setscore " + this.myscore);
+    }
     setcode(joincode) {
         this.roomcode = joincode;
         console.log(this.roomcode);
@@ -2117,11 +2168,26 @@ class RoomserviceService {
         this.entered_number = typed_no;
         console.log(this.entered_number);
     }
-    putrandnum(turn_send, score, gameover) {
+    putrandnum(turn_send) {
+        console.log("putrandnum");
+        console.log(this.roomcode);
+        console.log(this.entered_number);
         return new Promise((resolve, reject) => {
             this.http.post('/api/getrandomcall', { 'roomcode': this.roomcode, 'turnsend': turn_send,
-                'random_number': this.entered_number, 'iterations': this.iterations, 'score': String(score), 'gameover': String(gameover) }).subscribe(res => {
+                'random_number': this.entered_number, 'iterations': this.iterations, 'score': this.myscore }).subscribe(res => {
                 this.iterations++;
+                console.log("response");
+                console.log(res);
+                resolve(res);
+            });
+        });
+    }
+    getwinnerdetails() {
+        return new Promise((resolve, reject) => {
+            console.log("winnerservice");
+            console.log(this.myscore);
+            this.http.post('/api/getwinner', { 'roomcode': this.roomcode, 'score': this.myscore }).subscribe(res => {
+                console.log("winner details in service");
                 console.log(res);
                 resolve(res);
             });
@@ -2425,7 +2491,9 @@ class WinnerComponent {
         this.myname = this.authservice.getName();
         this.all_players = this.roomservice.getallplayers();
         this.rendertable();
-        this.roomservice.putrandnum("false", "0", "true").then(data => {
+        this.roomservice.getwinnerdetails().then(data => {
+            console.log("winner details in component");
+            console.log(data);
             for (var i = 0; i < this.table_details.length; i++) 
             //this.table_details[i]={name:this.all_players[i],position:data['score'][this.table_details[i].name]};
             {
