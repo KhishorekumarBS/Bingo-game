@@ -126,7 +126,7 @@ findmyplayerindex(){
   return -1;
 }
 
-game_ended(){
+game_ended()(){
   console.log("Checkinf if game ended");
   for(let i=0;i<5;i++){
     console.log(this.rows[i]);
@@ -191,7 +191,7 @@ updatescore(){
   }
   this.myscore+=5;
   this.roomservice.setscore(this.myscore);
-  if(this.game_ended){
+  if(this.game_ended()){
     console.log("We are in the endgame now");
     this.gameover=true;
     this.router.navigate(['/winner']);
