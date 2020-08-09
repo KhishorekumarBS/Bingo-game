@@ -13,7 +13,7 @@ export class RoomserviceService {
   myindex:number;
   all_players:string[];
   iterations:number=1;
-  entered_number:string;
+  entered_number:string=undefined;
   myscore="0";
   
 
@@ -68,11 +68,15 @@ get_entered_number(typed_no){
 }
 
 putrandnum(turn_send){
+  console.log("putrandnum");
+  console.log(this.roomcode);
+  console.log(this.entered_number);
   return new Promise((resolve,reject)=> {
   this.http.post('/api/getrandomcall', {'roomcode':this.roomcode, 'turnsend':turn_send, 
   'random_number':this.entered_number, 'iterations':this.iterations,'score':this.myscore}).subscribe(res=>
     {
       this.iterations++;
+      console.log("response");
       console.log(res);
       resolve(res); 
   

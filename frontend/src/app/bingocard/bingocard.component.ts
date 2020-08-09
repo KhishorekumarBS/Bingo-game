@@ -37,8 +37,8 @@ export class BingocardComponent implements OnInit {
   d1_elements:number[]=[5,9,13,17,21];
   d2_elements:number[]=[1,7,13,19,25];
    d1=5;d2=5;
-   rows:number[]=[1,0,0,0,0];
-   cols:number[]=[1,0,0,0,0];
+   rows:number[]=[5,5,5,5,5];
+   cols:number[]=[5,5,5,5,5];
    waiting;exit;
 
   constructor(private authservice: AuthService,private roomservice: RoomserviceService, private router:Router,public dialog: MatDialog) {
@@ -47,8 +47,11 @@ export class BingocardComponent implements OnInit {
   ngOnInit(): void {
     this.myscore=0;
     this.myname=this.authservice.getName();
+    console.log(this.myname);
     this.all_players=this.roomservice.getallplayers();
+    console.log(this.all_players);
     this.turn=0;
+    this.gameover=false;
     this.myplayerindex=this.findmyplayerindex();
     this.rand();
     this.rendertable();
@@ -228,9 +231,9 @@ play(num){
     {   
     console.log("after timer");
     if(this.elem){
-      // if(this.check_no_of_striked()){
+       if(this.check_no_of_striked()){
       this.updatescore();
-      // }
+       }
       (this.elem).style.textDecoration='line-through';
       (this.elem).style.color='red';
       this.elem=undefined;
@@ -244,9 +247,12 @@ play(num){
 
 
 getcallnumber(){
-  //console.log("ingetcall");
+  console.log("ingetcall");
   //console.log(this.table_details);
-  //console.log(this.turn);
+  console.log("Turn value");
+  console.log(this.turn);
+  console.log("myplayerindex");
+  console.log(this.myplayerindex);
   if(this.myplayerindex==this.turn){
     console.log("if part");
     

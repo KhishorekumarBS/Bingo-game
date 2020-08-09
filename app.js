@@ -84,6 +84,9 @@ app.post('/updatescore',authenticate.verifyUser,function(req, res, next) {
 app.post('/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 	rooms.getRandomCall(req.body.roomcode,req.body.turnsend,req.body.random_number
 	,req.body.iterations).then(function(randnum) {
+		console.log(req.user.username);
+		console.log(req.body.iterations);
+		
 		res.setHeader('Content-Type', 'application/json');
 		if(randnum=="game_ended")
 			res.json({'gameended':'true'});					
