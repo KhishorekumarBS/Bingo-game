@@ -898,10 +898,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {
           this.myscore = 0;
-          this.myname = this.authservice.getName();
-          console.log(this.myname);
-          this.all_players = this.roomservice.getallplayers();
-          console.log(this.all_players);
+          this.myname = this.authservice.getName(); //console.log(this.myname);
+
+          this.all_players = this.roomservice.getallplayers(); //console.log(this.all_players);
+
           this.turn = 0;
           this.gameover = false;
           this.myplayerindex = this.findmyplayerindex();
@@ -943,9 +943,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   _this2.elem.style.textDecoration = 'none';
                 }
 
-                _this2.elem = document.querySelector('#' + _this2.value);
-                _this2.elem.style.textDecoration = 'line-through';
-                _this2.elem.style.color = 'orange';
+                var id_ = Number(_this2.value.substring(1));
+
+                if (Number(_this2.call_number) % _this2.random_numbers[id_ - 1] == 0) {
+                  _this2.elem = document.querySelector('#' + _this2.value);
+                  _this2.elem.style.textDecoration = 'line-through';
+                  _this2.elem.style.color = 'orange';
+                }
               }
             });
           }
@@ -957,10 +961,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var rand = Math.floor(Math.random() * 50) + 1;
             this.random_numbers.splice(rand, 1)[0];
             if (this.random_numbers.indexOf(rand) === -1) this.random_numbers.push(rand);
-          }
+          } //console.log("random numbers");
+          //console.log(this.random_numbers);
 
-          console.log("random numbers");
-          console.log(this.random_numbers);
         }
       }, {
         key: "increment_turn",
@@ -1004,19 +1007,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return true;
         }
       }, {
-        key: "check_no_of_striked",
-        value: function check_no_of_striked() {
-          var id = Number(this.value.substring(1));
-
-          if (Number(this.call_number) % this.random_numbers[id] == 0) {
-            console.log("Valid");
-            return true;
-          }
-
-          console.log("Invalid");
-          return false;
-        }
-      }, {
         key: "updatescore",
         value: function updatescore() {
           var id = Number(this.value.substring(1));
@@ -1024,6 +1014,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           if (this.d1_elements.includes(id)) {
             this.d1--;
+            console.log("d1 is " + this.d1);
 
             if (this.d1 == 0) {
               console.log("Diaginal one done");
@@ -1033,6 +1024,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           if (this.d2_elements.includes(id)) {
             this.d2--;
+            console.log("d2 is " + this.d2);
 
             if (this.d2 == 0) {
               console.log("Diaginal two done");
@@ -1041,35 +1033,35 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           for (var i = 0; i < 5; i++) {
+            console.log(i); //  console.log("first i loop"+i); 
+            //  //console.log("cols loop "+(id-1)%5);
+
             if ((id - 1) % 5 == i) {
               this.cols[i]--;
+              console.log("cols are " + this.cols);
 
               if (this.cols[i] == 0) {
-                console.log("col done " + String(i));
+                //console.log("col done "+String(i));
                 this.myscore += 20;
               }
-            }
+            } //   //console.log("row cdn "+id+" "+(5*i)+" "+5*(i+1));
+
 
             if (id > 5 * i && id <= 5 * (i + 1)) {
               this.rows[i] = this.rows[i] - 1;
+              console.log("rows are " + this.rows);
 
               if (this.rows[i] == 0) {
-                console.log("row done " + String(i));
+                //console.log("row done "+String(i));
                 this.myscore += 20;
               }
-            }
-
-            console.log("row decremented");
-
-            for (var i = 0; i < 5; i++) {
-              console.log(this.rows[i]);
             }
           }
 
           this.myscore += 5;
           this.roomservice.setscore(this.myscore);
 
-          if (this.game_ended) {
+          if (this.game_ended()) {
             console.log("We are in the endgame now");
             this.gameover = true;
             this.router.navigate(['/winner']);
@@ -1112,12 +1104,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this4.call_number = num;
 
             _this4.runtime().then(function (data) {
-              console.log("after timer");
-
+              //console.log("after timer");
               if (_this4.elem) {
-                if (_this4.check_no_of_striked()) {
-                  _this4.updatescore();
-                }
+                //if(this.check_no_of_striked()){
+                _this4.updatescore(); //}
+
 
                 _this4.elem.style.textDecoration = 'line-through';
                 _this4.elem.style.color = 'red';
@@ -1136,28 +1127,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this5 = this;
 
           console.log("ingetcall"); //console.log(this.table_details);
-
-          console.log("Turn value");
-          console.log(this.turn);
-          console.log("myplayerindex");
-          console.log(this.myplayerindex);
+          // console.log("Turn value");
+          // console.log(this.turn);
+          // console.log("myplayerindex");
+          // console.log(this.myplayerindex);
 
           if (this.myplayerindex == this.turn) {
-            console.log("if part");
+            //console.log("if part");
             var dialogRef = this.dialog.open(_popup_popup_component__WEBPACK_IMPORTED_MODULE_3__["PopupComponent"], {
               width: '250px',
               height: '250px',
               disableClose: true,
               panelClass: 'custom-dialog-container'
-            });
-            console.log("popup open");
+            }); //console.log("popup open");
+
             dialogRef.afterClosed().subscribe(function (_) {
-              console.log("popup close");
-
+              //console.log("popup close");
               _this5.roomservice.putrandnum("true").then(function (data) {
-                console.log("data");
-                console.log(data);
-
+                // console.log("data");
+                // console.log(data);
                 if (data['gameended'] == "true") {
                   dialogRef.close();
 
@@ -1167,10 +1155,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
 
                 _this5.play(data['random_number']).then(function (res) {
-                  console.log("score details");
-
+                  //console.log("score details");
                   for (var i = 0; i < _this5.table_details.length; i++) {
-                    console.log(data['score'][_this5.table_details[i].name]);
+                    //console.log(data['score'][this.table_details[i].name]);
                     _this5.table_details[i].position = data['score'][_this5.table_details[i].name];
                   } //console.log(this.timeLeft);
 
@@ -1188,14 +1175,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
             });
           } else {
-            console.log("else part");
+            //console.log("else part");
             this.waiting = this.all_players[this.turn]; // console.log(this.table_details);
             // console.log(this.turn);
 
             this.roomservice.putrandnum("false").then(function (data) {
-              console.log("data");
-              console.log(data);
-
+              // console.log("data");
+              // console.log(data);
               if (data['gameended'] == "true") {
                 _this5.router.navigate(['/winner']);
 
@@ -1203,8 +1189,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
 
               _this5.play(data['random_number']).then(function (res) {
-                console.log("score details");
-
+                // console.log("score details");
                 for (var i = 0; i < _this5.table_details.length; i++) {
                   //console.log(data['score'][this.table_details[i].name]);
                   _this5.table_details[i].position = data['score'][_this5.table_details[i].name];
@@ -1227,14 +1212,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "rendertable",
         value: function rendertable() {
-          console.log("table details");
-
+          //console.log("table details");
           for (var i = 0; i < this.all_players.length; i++) {
             this.table_details[i] = {
               name: this.all_players[i],
               position: 0
-            };
-            console.log(this.table_details[i]);
+            }; //console.log(this.table_details[i]);
           }
         }
       }, {
@@ -1867,7 +1850,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       },
       directives: [_angular_material_button__WEBPACK_IMPORTED_MODULE_1__["MatButton"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLink"]],
-      styles: ["body[_ngcontent-%COMP%] {\n  background: rgba(27, 27, 27, 0.808);\n  color: white;\n  font: normal 18px URW Chancery L, cursive;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL0JTSy9Qcm9qZWN0cy9CaW5nby1nYW1lL2Zyb250ZW5kL3NyYy9hcHAvaW5zdHJ1Y3Rpb25zL2luc3RydWN0aW9ucy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvaW5zdHJ1Y3Rpb25zL2luc3RydWN0aW9ucy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLG1DQUFBO0VBQ0EsWUFBQTtFQUNBLHlDQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9pbnN0cnVjdGlvbnMvaW5zdHJ1Y3Rpb25zLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keXtcbiAgICBiYWNrZ3JvdW5kOnJnYmEoMjcsIDI3LCAyNywgMC44MDgpO1xuICAgIGNvbG9yOndoaXRlO1xuICAgIGZvbnQ6bm9ybWFsIDE4cHggVVJXIENoYW5jZXJ5IEwsIGN1cnNpdmUgO1xufSIsImJvZHkge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDI3LCAyNywgMjcsIDAuODA4KTtcbiAgY29sb3I6IHdoaXRlO1xuICBmb250OiBub3JtYWwgMThweCBVUlcgQ2hhbmNlcnkgTCwgY3Vyc2l2ZTtcbn0iXX0= */"]
+      styles: ["body[_ngcontent-%COMP%] {\n  background: rgba(27, 27, 27, 0.808);\n  color: white;\n  font: normal 18px URW Chancery L, cursive;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaW5zdHJ1Y3Rpb25zL0M6XFxVc2Vyc1xccHJpbmtcXERlc2t0b3BcXGJpbmdvXFxCaW5nby1nYW1lXFxmcm9udGVuZC9zcmNcXGFwcFxcaW5zdHJ1Y3Rpb25zXFxpbnN0cnVjdGlvbnMuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2luc3RydWN0aW9ucy9pbnN0cnVjdGlvbnMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxtQ0FBQTtFQUNBLFlBQUE7RUFDQSx5Q0FBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvaW5zdHJ1Y3Rpb25zL2luc3RydWN0aW9ucy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHl7XHJcbiAgICBiYWNrZ3JvdW5kOnJnYmEoMjcsIDI3LCAyNywgMC44MDgpO1xyXG4gICAgY29sb3I6d2hpdGU7XHJcbiAgICBmb250Om5vcm1hbCAxOHB4IFVSVyBDaGFuY2VyeSBMLCBjdXJzaXZlIDtcclxufSIsImJvZHkge1xuICBiYWNrZ3JvdW5kOiByZ2JhKDI3LCAyNywgMjcsIDAuODA4KTtcbiAgY29sb3I6IHdoaXRlO1xuICBmb250OiBub3JtYWwgMThweCBVUlcgQ2hhbmNlcnkgTCwgY3Vyc2l2ZTtcbn0iXX0= */"]
     });
     /*@__PURE__*/
 
@@ -2770,7 +2753,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       },
       directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgModel"]],
-      styles: [".custom-dialog-container[_ngcontent-%COMP%]   .mat-dialog-content[_ngcontent-%COMP%] {\n  overflow-y: hidden !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL0JTSy9Qcm9qZWN0cy9CaW5nby1nYW1lL2Zyb250ZW5kL3NyYy9hcHAvcG9wdXAvcG9wdXAuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3BvcHVwL3BvcHVwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNkJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BvcHVwL3BvcHVwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmN1c3RvbS1kaWFsb2ctY29udGFpbmVyIC5tYXQtZGlhbG9nLWNvbnRlbnQge1xuICAgIG92ZXJmbG93LXk6IGhpZGRlbiAhaW1wb3J0YW50O1xufVxuIiwiLmN1c3RvbS1kaWFsb2ctY29udGFpbmVyIC5tYXQtZGlhbG9nLWNvbnRlbnQge1xuICBvdmVyZmxvdy15OiBoaWRkZW4gIWltcG9ydGFudDtcbn0iXX0= */"]
+      styles: [".custom-dialog-container[_ngcontent-%COMP%]   .mat-dialog-content[_ngcontent-%COMP%] {\n  overflow-y: hidden !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcG9wdXAvQzpcXFVzZXJzXFxwcmlua1xcRGVza3RvcFxcYmluZ29cXEJpbmdvLWdhbWVcXGZyb250ZW5kL3NyY1xcYXBwXFxwb3B1cFxccG9wdXAuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3BvcHVwL3BvcHVwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksNkJBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL3BvcHVwL3BvcHVwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmN1c3RvbS1kaWFsb2ctY29udGFpbmVyIC5tYXQtZGlhbG9nLWNvbnRlbnQge1xyXG4gICAgb3ZlcmZsb3cteTogaGlkZGVuICFpbXBvcnRhbnQ7XHJcbn1cclxuIiwiLmN1c3RvbS1kaWFsb2ctY29udGFpbmVyIC5tYXQtZGlhbG9nLWNvbnRlbnQge1xuICBvdmVyZmxvdy15OiBoaWRkZW4gIWltcG9ydGFudDtcbn0iXX0= */"]
     });
     /*@__PURE__*/
 
@@ -5360,7 +5343,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       },
       directives: [_angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_5__["DefaultFlexDirective"], _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_5__["DefaultLayoutDirective"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTable"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatColumnDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatCellDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatRowDef"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatCell"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatHeaderRow"], _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatRow"]],
-      styles: ["@import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);\nbody[_ngcontent-%COMP%] {\n  justify-content: center;\n  align-items: center;\n  text-align: center;\n  background: black;\n  background-size: cover;\n}\n.w-75[_ngcontent-%COMP%] {\n  max-width: 200px;\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 5em;\n  font: bold 7.5vw/1.5 \"Signika\", sans-serif;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: inline-block;\n  -webkit-animation: float 0.2s ease-in-out infinite;\n          animation: float 0.2s ease-in-out infinite;\n}\n@-webkit-keyframes float {\n  0%, 100% {\n    transform: none;\n  }\n  33% {\n    transform: translateY(-1px) rotate(-2deg);\n  }\n  66% {\n    transform: translateY(1px) rotate(2deg);\n  }\n}\n@keyframes float {\n  0%, 100% {\n    transform: none;\n  }\n  33% {\n    transform: translateY(-1px) rotate(-2deg);\n  }\n  66% {\n    transform: translateY(1px) rotate(2deg);\n  }\n}\nspan[_ngcontent-%COMP%]:nth-child(4n) {\n  color: #e2c636;\n}\nspan[_ngcontent-%COMP%]:nth-child(4n-1) {\n  color: #64b478;\n}\nspan[_ngcontent-%COMP%]:nth-child(4n-2) {\n  color: #75bd9f;\n}\nspan[_ngcontent-%COMP%]:nth-child(4n-3) {\n  color: #db9957;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(2) {\n  -webkit-animation-delay: 0.05s;\n          animation-delay: 0.05s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(3) {\n  -webkit-animation-delay: 0.1s;\n          animation-delay: 0.1s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(4) {\n  -webkit-animation-delay: 0.15s;\n          animation-delay: 0.15s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(5) {\n  -webkit-animation-delay: 0.2s;\n          animation-delay: 0.2s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(6) {\n  -webkit-animation-delay: 0.25s;\n          animation-delay: 0.25s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(7) {\n  -webkit-animation-delay: 0.3s;\n          animation-delay: 0.3s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(8) {\n  -webkit-animation-delay: 0.35s;\n          animation-delay: 0.35s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(9) {\n  -webkit-animation-delay: 0.4s;\n          animation-delay: 0.4s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(10) {\n  -webkit-animation-delay: 0.45s;\n          animation-delay: 0.45s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(11) {\n  -webkit-animation-delay: 0.5s;\n          animation-delay: 0.5s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(12) {\n  -webkit-animation-delay: 0.55s;\n          animation-delay: 0.55s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(13) {\n  -webkit-animation-delay: 0.6s;\n          animation-delay: 0.6s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(14) {\n  -webkit-animation-delay: 0.65s;\n          animation-delay: 0.65s;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL0JTSy9Qcm9qZWN0cy9CaW5nby1nYW1lL2Zyb250ZW5kL3NyYy9hcHAvd2lubmVyL3dpbm5lci5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvd2lubmVyL3dpbm5lci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHUSx3RUFBQTtBQUVSO0VBQVEsdUJBQUE7RUFBeUIsbUJBQUE7RUFBcUIsa0JBQUE7RUFBbUIsaUJBQUE7RUFBaUIsc0JBQUE7QUNFMUY7QUREQTtFQUNFLGdCQUFBO0FDSUY7QUREQTtFQUNDLGNBQUE7RUFDQSwwQ0FBQTtFQUNBLHlCQUFBO0tBQUEsc0JBQUE7TUFBQSxxQkFBQTtVQUFBLGlCQUFBO0FDSUQ7QUREQTtFQUFVLHFCQUFBO0VBQXNCLGtEQUFBO1VBQUEsMENBQUE7QUNNaEM7QURMQztFQUNDO0lBQVMsZUFBQTtFQ1NUO0VEUkE7SUFBSyx5Q0FBQTtFQ1dMO0VEVkE7SUFBSyx1Q0FBQTtFQ2FMO0FBQ0Y7QURqQkM7RUFDQztJQUFTLGVBQUE7RUNTVDtFRFJBO0lBQUsseUNBQUE7RUNXTDtFRFZBO0lBQUssdUNBQUE7RUNhTDtBQUNGO0FEVEE7RUFBcUIsY0FBQTtBQ1lyQjtBRFhBO0VBQXVCLGNBQUE7QUNldkI7QURkQTtFQUF1QixjQUFBO0FDa0J2QjtBRGpCQTtFQUF1QixjQUFBO0FDcUJ2QjtBRG5CQTtFQUFzQiw4QkFBQTtVQUFBLHNCQUFBO0FDdUJ0QjtBRHRCQTtFQUFzQiw2QkFBQTtVQUFBLHFCQUFBO0FDMEJ0QjtBRHpCQTtFQUFzQiw4QkFBQTtVQUFBLHNCQUFBO0FDNkJ0QjtBRDVCQTtFQUFzQiw2QkFBQTtVQUFBLHFCQUFBO0FDZ0N0QjtBRC9CQTtFQUFzQiw4QkFBQTtVQUFBLHNCQUFBO0FDbUN0QjtBRGxDQTtFQUFzQiw2QkFBQTtVQUFBLHFCQUFBO0FDc0N0QjtBRHJDQTtFQUFzQiw4QkFBQTtVQUFBLHNCQUFBO0FDeUN0QjtBRHhDQTtFQUFzQiw2QkFBQTtVQUFBLHFCQUFBO0FDNEN0QjtBRDNDQTtFQUF1Qiw4QkFBQTtVQUFBLHNCQUFBO0FDK0N2QjtBRDlDQTtFQUF1Qiw2QkFBQTtVQUFBLHFCQUFBO0FDa0R2QjtBRGpEQTtFQUF1Qiw4QkFBQTtVQUFBLHNCQUFBO0FDcUR2QjtBRHBEQTtFQUF1Qiw2QkFBQTtVQUFBLHFCQUFBO0FDd0R2QjtBRHZEQTtFQUF1Qiw4QkFBQTtVQUFBLHNCQUFBO0FDMkR2QiIsImZpbGUiOiJzcmMvYXBwL3dpbm5lci93aW5uZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcblxuXG5AaW1wb3J0IHVybChodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2Nzcz9mYW1pbHk9U2lnbmlrYTo3MDAsMzAwLDYwMCk7XG5cbmJvZHkgeyAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IHRleHQtYWxpZ246Y2VudGVyOyBiYWNrZ3JvdW5kOmJsYWNrO2JhY2tncm91bmQtc2l6ZTogY292ZXI7IH1cbi53LTc1e1xuICBtYXgtd2lkdGg6IDIwMHB4O1xufVxuXG5oMSB7XG4gZm9udC1zaXplOjVlbTtcbiBmb250OmJvbGQgNy41dncvMS41ICdTaWduaWthJywgc2Fucy1zZXJpZjtcbiB1c2VyLXNlbGVjdDpub25lO1xufVxuXG5oMSBzcGFuIHsgZGlzcGxheTppbmxpbmUtYmxvY2s7IGFuaW1hdGlvbjpmbG9hdCAuMnMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IH1cbiBAa2V5ZnJhbWVzIGZsb2F0IHtcbiAgMCUsMTAwJXsgdHJhbnNmb3JtOm5vbmU7IH1cbiAgMzMleyB0cmFuc2Zvcm06dHJhbnNsYXRlWSgtMXB4KSByb3RhdGUoLTJkZWcpOyB9XG4gIDY2JXsgdHJhbnNmb3JtOnRyYW5zbGF0ZVkoMXB4KSByb3RhdGUoMmRlZyk7IH1cbn1cblxuXG5cbnNwYW46bnRoLWNoaWxkKDRuKSB7IGNvbG9yOmhzbCg1MCwgNzUlLCA1NSUpOyAgfVxuc3BhbjpudGgtY2hpbGQoNG4tMSkgeyBjb2xvcjpoc2woMTM1LCAzNSUsIDU1JSk7ICB9XG5zcGFuOm50aC1jaGlsZCg0bi0yKSB7IGNvbG9yOmhzbCgxNTUsIDM1JSwgNjAlKTsgIH1cbnNwYW46bnRoLWNoaWxkKDRuLTMpIHsgY29sb3I6aHNsKDMwLCA2NSUsIDYwJSk7ICB9XG5cbmgxIHNwYW46bnRoLWNoaWxkKDIpeyBhbmltYXRpb24tZGVsYXk6LjA1czsgfVxuaDEgc3BhbjpudGgtY2hpbGQoMyl7IGFuaW1hdGlvbi1kZWxheTouMXM7IH1cbmgxIHNwYW46bnRoLWNoaWxkKDQpeyBhbmltYXRpb24tZGVsYXk6LjE1czsgfVxuaDEgc3BhbjpudGgtY2hpbGQoNSl7IGFuaW1hdGlvbi1kZWxheTouMnM7IH1cbmgxIHNwYW46bnRoLWNoaWxkKDYpeyBhbmltYXRpb24tZGVsYXk6LjI1czsgfVxuaDEgc3BhbjpudGgtY2hpbGQoNyl7IGFuaW1hdGlvbi1kZWxheTouM3M7IH1cbmgxIHNwYW46bnRoLWNoaWxkKDgpeyBhbmltYXRpb24tZGVsYXk6LjM1czsgfVxuaDEgc3BhbjpudGgtY2hpbGQoOSl7IGFuaW1hdGlvbi1kZWxheTouNHM7IH1cbmgxIHNwYW46bnRoLWNoaWxkKDEwKXsgYW5pbWF0aW9uLWRlbGF5Oi40NXM7IH1cbmgxIHNwYW46bnRoLWNoaWxkKDExKXsgYW5pbWF0aW9uLWRlbGF5Oi41czsgfVxuaDEgc3BhbjpudGgtY2hpbGQoMTIpeyBhbmltYXRpb24tZGVsYXk6LjU1czsgfVxuaDEgc3BhbjpudGgtY2hpbGQoMTMpeyBhbmltYXRpb24tZGVsYXk6LjZzOyB9XG5oMSBzcGFuOm50aC1jaGlsZCgxNCl7IGFuaW1hdGlvbi1kZWxheTouNjVzOyB9XG4iLCJAaW1wb3J0IHVybChodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2Nzcz9mYW1pbHk9U2lnbmlrYTo3MDAsMzAwLDYwMCk7XG5ib2R5IHtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgYmFja2dyb3VuZDogYmxhY2s7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG59XG5cbi53LTc1IHtcbiAgbWF4LXdpZHRoOiAyMDBweDtcbn1cblxuaDEge1xuICBmb250LXNpemU6IDVlbTtcbiAgZm9udDogYm9sZCA3LjV2dy8xLjUgXCJTaWduaWthXCIsIHNhbnMtc2VyaWY7XG4gIHVzZXItc2VsZWN0OiBub25lO1xufVxuXG5oMSBzcGFuIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBhbmltYXRpb246IGZsb2F0IDAuMnMgZWFzZS1pbi1vdXQgaW5maW5pdGU7XG59XG5cbkBrZXlmcmFtZXMgZmxvYXQge1xuICAwJSwgMTAwJSB7XG4gICAgdHJhbnNmb3JtOiBub25lO1xuICB9XG4gIDMzJSB7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC0xcHgpIHJvdGF0ZSgtMmRlZyk7XG4gIH1cbiAgNjYlIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KSByb3RhdGUoMmRlZyk7XG4gIH1cbn1cbnNwYW46bnRoLWNoaWxkKDRuKSB7XG4gIGNvbG9yOiAjZTJjNjM2O1xufVxuXG5zcGFuOm50aC1jaGlsZCg0bi0xKSB7XG4gIGNvbG9yOiAjNjRiNDc4O1xufVxuXG5zcGFuOm50aC1jaGlsZCg0bi0yKSB7XG4gIGNvbG9yOiAjNzViZDlmO1xufVxuXG5zcGFuOm50aC1jaGlsZCg0bi0zKSB7XG4gIGNvbG9yOiAjZGI5OTU3O1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCgyKSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC4wNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDMpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjFzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCg0KSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC4xNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDUpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjJzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCg2KSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC4yNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDcpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjNzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCg4KSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC4zNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDkpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjRzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCgxMCkge1xuICBhbmltYXRpb24tZGVsYXk6IDAuNDVzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCgxMSkge1xuICBhbmltYXRpb24tZGVsYXk6IDAuNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDEyKSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC41NXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDEzKSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC42cztcbn1cblxuaDEgc3BhbjpudGgtY2hpbGQoMTQpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjY1cztcbn0iXX0= */"]
+      styles: ["@import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);\nbody[_ngcontent-%COMP%] {\n  justify-content: center;\n  align-items: center;\n  text-align: center;\n  background: black;\n  background-size: cover;\n}\n.w-75[_ngcontent-%COMP%] {\n  max-width: 200px;\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 5em;\n  font: bold 7.5vw/1.5 \"Signika\", sans-serif;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: inline-block;\n  -webkit-animation: float 0.2s ease-in-out infinite;\n          animation: float 0.2s ease-in-out infinite;\n}\n@-webkit-keyframes float {\n  0%, 100% {\n    transform: none;\n  }\n  33% {\n    transform: translateY(-1px) rotate(-2deg);\n  }\n  66% {\n    transform: translateY(1px) rotate(2deg);\n  }\n}\n@keyframes float {\n  0%, 100% {\n    transform: none;\n  }\n  33% {\n    transform: translateY(-1px) rotate(-2deg);\n  }\n  66% {\n    transform: translateY(1px) rotate(2deg);\n  }\n}\nspan[_ngcontent-%COMP%]:nth-child(4n) {\n  color: #e2c636;\n}\nspan[_ngcontent-%COMP%]:nth-child(4n-1) {\n  color: #64b478;\n}\nspan[_ngcontent-%COMP%]:nth-child(4n-2) {\n  color: #75bd9f;\n}\nspan[_ngcontent-%COMP%]:nth-child(4n-3) {\n  color: #db9957;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(2) {\n  -webkit-animation-delay: 0.05s;\n          animation-delay: 0.05s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(3) {\n  -webkit-animation-delay: 0.1s;\n          animation-delay: 0.1s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(4) {\n  -webkit-animation-delay: 0.15s;\n          animation-delay: 0.15s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(5) {\n  -webkit-animation-delay: 0.2s;\n          animation-delay: 0.2s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(6) {\n  -webkit-animation-delay: 0.25s;\n          animation-delay: 0.25s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(7) {\n  -webkit-animation-delay: 0.3s;\n          animation-delay: 0.3s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(8) {\n  -webkit-animation-delay: 0.35s;\n          animation-delay: 0.35s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(9) {\n  -webkit-animation-delay: 0.4s;\n          animation-delay: 0.4s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(10) {\n  -webkit-animation-delay: 0.45s;\n          animation-delay: 0.45s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(11) {\n  -webkit-animation-delay: 0.5s;\n          animation-delay: 0.5s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(12) {\n  -webkit-animation-delay: 0.55s;\n          animation-delay: 0.55s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(13) {\n  -webkit-animation-delay: 0.6s;\n          animation-delay: 0.6s;\n}\nh1[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(14) {\n  -webkit-animation-delay: 0.65s;\n          animation-delay: 0.65s;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd2lubmVyL0M6XFxVc2Vyc1xccHJpbmtcXERlc2t0b3BcXGJpbmdvXFxCaW5nby1nYW1lXFxmcm9udGVuZC9zcmNcXGFwcFxcd2lubmVyXFx3aW5uZXIuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3dpbm5lci93aW5uZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR1Esd0VBQUE7QUFFUjtFQUFRLHVCQUFBO0VBQXlCLG1CQUFBO0VBQXFCLGtCQUFBO0VBQW1CLGlCQUFBO0VBQWlCLHNCQUFBO0FDRTFGO0FEREE7RUFDRSxnQkFBQTtBQ0lGO0FEREE7RUFDQyxjQUFBO0VBQ0EsMENBQUE7RUFDQSx5QkFBQTtLQUFBLHNCQUFBO01BQUEscUJBQUE7VUFBQSxpQkFBQTtBQ0lEO0FEREE7RUFBVSxxQkFBQTtFQUFzQixrREFBQTtVQUFBLDBDQUFBO0FDTWhDO0FETEM7RUFDQztJQUFTLGVBQUE7RUNTVDtFRFJBO0lBQUsseUNBQUE7RUNXTDtFRFZBO0lBQUssdUNBQUE7RUNhTDtBQUNGO0FEakJDO0VBQ0M7SUFBUyxlQUFBO0VDU1Q7RURSQTtJQUFLLHlDQUFBO0VDV0w7RURWQTtJQUFLLHVDQUFBO0VDYUw7QUFDRjtBRFRBO0VBQXFCLGNBQUE7QUNZckI7QURYQTtFQUF1QixjQUFBO0FDZXZCO0FEZEE7RUFBdUIsY0FBQTtBQ2tCdkI7QURqQkE7RUFBdUIsY0FBQTtBQ3FCdkI7QURuQkE7RUFBc0IsOEJBQUE7VUFBQSxzQkFBQTtBQ3VCdEI7QUR0QkE7RUFBc0IsNkJBQUE7VUFBQSxxQkFBQTtBQzBCdEI7QUR6QkE7RUFBc0IsOEJBQUE7VUFBQSxzQkFBQTtBQzZCdEI7QUQ1QkE7RUFBc0IsNkJBQUE7VUFBQSxxQkFBQTtBQ2dDdEI7QUQvQkE7RUFBc0IsOEJBQUE7VUFBQSxzQkFBQTtBQ21DdEI7QURsQ0E7RUFBc0IsNkJBQUE7VUFBQSxxQkFBQTtBQ3NDdEI7QURyQ0E7RUFBc0IsOEJBQUE7VUFBQSxzQkFBQTtBQ3lDdEI7QUR4Q0E7RUFBc0IsNkJBQUE7VUFBQSxxQkFBQTtBQzRDdEI7QUQzQ0E7RUFBdUIsOEJBQUE7VUFBQSxzQkFBQTtBQytDdkI7QUQ5Q0E7RUFBdUIsNkJBQUE7VUFBQSxxQkFBQTtBQ2tEdkI7QURqREE7RUFBdUIsOEJBQUE7VUFBQSxzQkFBQTtBQ3FEdkI7QURwREE7RUFBdUIsNkJBQUE7VUFBQSxxQkFBQTtBQ3dEdkI7QUR2REE7RUFBdUIsOEJBQUE7VUFBQSxzQkFBQTtBQzJEdkIiLCJmaWxlIjoic3JjL2FwcC93aW5uZXIvd2lubmVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcblxyXG5cclxuQGltcG9ydCB1cmwoaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PVNpZ25pa2E6NzAwLDMwMCw2MDApO1xyXG5cclxuYm9keSB7ICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsgYWxpZ24taXRlbXM6IGNlbnRlcjsgdGV4dC1hbGlnbjpjZW50ZXI7IGJhY2tncm91bmQ6YmxhY2s7YmFja2dyb3VuZC1zaXplOiBjb3ZlcjsgfVxyXG4udy03NXtcclxuICBtYXgtd2lkdGg6IDIwMHB4O1xyXG59XHJcblxyXG5oMSB7XHJcbiBmb250LXNpemU6NWVtO1xyXG4gZm9udDpib2xkIDcuNXZ3LzEuNSAnU2lnbmlrYScsIHNhbnMtc2VyaWY7XHJcbiB1c2VyLXNlbGVjdDpub25lO1xyXG59XHJcblxyXG5oMSBzcGFuIHsgZGlzcGxheTppbmxpbmUtYmxvY2s7IGFuaW1hdGlvbjpmbG9hdCAuMnMgZWFzZS1pbi1vdXQgaW5maW5pdGU7IH1cclxuIEBrZXlmcmFtZXMgZmxvYXQge1xyXG4gIDAlLDEwMCV7IHRyYW5zZm9ybTpub25lOyB9XHJcbiAgMzMleyB0cmFuc2Zvcm06dHJhbnNsYXRlWSgtMXB4KSByb3RhdGUoLTJkZWcpOyB9XHJcbiAgNjYleyB0cmFuc2Zvcm06dHJhbnNsYXRlWSgxcHgpIHJvdGF0ZSgyZGVnKTsgfVxyXG59XHJcblxyXG5cclxuXHJcbnNwYW46bnRoLWNoaWxkKDRuKSB7IGNvbG9yOmhzbCg1MCwgNzUlLCA1NSUpOyAgfVxyXG5zcGFuOm50aC1jaGlsZCg0bi0xKSB7IGNvbG9yOmhzbCgxMzUsIDM1JSwgNTUlKTsgIH1cclxuc3BhbjpudGgtY2hpbGQoNG4tMikgeyBjb2xvcjpoc2woMTU1LCAzNSUsIDYwJSk7ICB9XHJcbnNwYW46bnRoLWNoaWxkKDRuLTMpIHsgY29sb3I6aHNsKDMwLCA2NSUsIDYwJSk7ICB9XHJcblxyXG5oMSBzcGFuOm50aC1jaGlsZCgyKXsgYW5pbWF0aW9uLWRlbGF5Oi4wNXM7IH1cclxuaDEgc3BhbjpudGgtY2hpbGQoMyl7IGFuaW1hdGlvbi1kZWxheTouMXM7IH1cclxuaDEgc3BhbjpudGgtY2hpbGQoNCl7IGFuaW1hdGlvbi1kZWxheTouMTVzOyB9XHJcbmgxIHNwYW46bnRoLWNoaWxkKDUpeyBhbmltYXRpb24tZGVsYXk6LjJzOyB9XHJcbmgxIHNwYW46bnRoLWNoaWxkKDYpeyBhbmltYXRpb24tZGVsYXk6LjI1czsgfVxyXG5oMSBzcGFuOm50aC1jaGlsZCg3KXsgYW5pbWF0aW9uLWRlbGF5Oi4zczsgfVxyXG5oMSBzcGFuOm50aC1jaGlsZCg4KXsgYW5pbWF0aW9uLWRlbGF5Oi4zNXM7IH1cclxuaDEgc3BhbjpudGgtY2hpbGQoOSl7IGFuaW1hdGlvbi1kZWxheTouNHM7IH1cclxuaDEgc3BhbjpudGgtY2hpbGQoMTApeyBhbmltYXRpb24tZGVsYXk6LjQ1czsgfVxyXG5oMSBzcGFuOm50aC1jaGlsZCgxMSl7IGFuaW1hdGlvbi1kZWxheTouNXM7IH1cclxuaDEgc3BhbjpudGgtY2hpbGQoMTIpeyBhbmltYXRpb24tZGVsYXk6LjU1czsgfVxyXG5oMSBzcGFuOm50aC1jaGlsZCgxMyl7IGFuaW1hdGlvbi1kZWxheTouNnM7IH1cclxuaDEgc3BhbjpudGgtY2hpbGQoMTQpeyBhbmltYXRpb24tZGVsYXk6LjY1czsgfVxyXG4iLCJAaW1wb3J0IHVybChodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2Nzcz9mYW1pbHk9U2lnbmlrYTo3MDAsMzAwLDYwMCk7XG5ib2R5IHtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgYmFja2dyb3VuZDogYmxhY2s7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG59XG5cbi53LTc1IHtcbiAgbWF4LXdpZHRoOiAyMDBweDtcbn1cblxuaDEge1xuICBmb250LXNpemU6IDVlbTtcbiAgZm9udDogYm9sZCA3LjV2dy8xLjUgXCJTaWduaWthXCIsIHNhbnMtc2VyaWY7XG4gIHVzZXItc2VsZWN0OiBub25lO1xufVxuXG5oMSBzcGFuIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBhbmltYXRpb246IGZsb2F0IDAuMnMgZWFzZS1pbi1vdXQgaW5maW5pdGU7XG59XG5cbkBrZXlmcmFtZXMgZmxvYXQge1xuICAwJSwgMTAwJSB7XG4gICAgdHJhbnNmb3JtOiBub25lO1xuICB9XG4gIDMzJSB7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC0xcHgpIHJvdGF0ZSgtMmRlZyk7XG4gIH1cbiAgNjYlIHtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KSByb3RhdGUoMmRlZyk7XG4gIH1cbn1cbnNwYW46bnRoLWNoaWxkKDRuKSB7XG4gIGNvbG9yOiAjZTJjNjM2O1xufVxuXG5zcGFuOm50aC1jaGlsZCg0bi0xKSB7XG4gIGNvbG9yOiAjNjRiNDc4O1xufVxuXG5zcGFuOm50aC1jaGlsZCg0bi0yKSB7XG4gIGNvbG9yOiAjNzViZDlmO1xufVxuXG5zcGFuOm50aC1jaGlsZCg0bi0zKSB7XG4gIGNvbG9yOiAjZGI5OTU3O1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCgyKSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC4wNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDMpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjFzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCg0KSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC4xNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDUpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjJzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCg2KSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC4yNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDcpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjNzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCg4KSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC4zNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDkpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjRzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCgxMCkge1xuICBhbmltYXRpb24tZGVsYXk6IDAuNDVzO1xufVxuXG5oMSBzcGFuOm50aC1jaGlsZCgxMSkge1xuICBhbmltYXRpb24tZGVsYXk6IDAuNXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDEyKSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC41NXM7XG59XG5cbmgxIHNwYW46bnRoLWNoaWxkKDEzKSB7XG4gIGFuaW1hdGlvbi1kZWxheTogMC42cztcbn1cblxuaDEgc3BhbjpudGgtY2hpbGQoMTQpIHtcbiAgYW5pbWF0aW9uLWRlbGF5OiAwLjY1cztcbn0iXX0= */"]
     });
     /*@__PURE__*/
 
@@ -5484,7 +5467,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! /home/BSK/Projects/Bingo-game/frontend/src/main.ts */
+    /*! C:\Users\prink\Desktop\bingo\Bingo-game\frontend\src\main.ts */
     "./src/main.ts");
     /***/
   }
