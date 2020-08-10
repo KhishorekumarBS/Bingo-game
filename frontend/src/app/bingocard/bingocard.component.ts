@@ -15,7 +15,7 @@ import { ViewEncapsulation } from '@angular/core'
   encapsulation:ViewEncapsulation.Emulated
 })
 export class BingocardComponent implements OnInit {
-  random_numbers: number[]=[];
+  random_numbers: number[];
   call_number:string;
   elem : HTMLElement;
   timeLeft: number 
@@ -29,22 +29,37 @@ export class BingocardComponent implements OnInit {
   value:any;
   id_arr:any[]=[];
   id_present:boolean;
-  table_details:any[]=[];
-  myscore;
-  gameover:boolean=false;
+  table_details:any[];
+  gameover:boolean;
   dataSource = new MatTableDataSource(this.table_details);
-  displayedColumns = ['name', 'position'];
-  d1_elements:number[]=[5,9,13,17,21];
-  d2_elements:number[]=[1,7,13,19,25];
-   d1=5;d2=5;
-   rows:number[]=[5,5,5,5,5];
-   cols:number[]=[5,5,5,5,5];
+  displayedColumns ;
+  d1_elements:number[];
+  d2_elements:number[];
+   d1;d2;
+   rows:number[];
+   cols:number[];
    waiting;exit;
+   myscore;
+  
 
   constructor(private authservice: AuthService,private roomservice: RoomserviceService, private router:Router,public dialog: MatDialog) {
    }
 
   ngOnInit(): void {
+    this.random_numbers=[];
+    this.call_number=undefined;
+    this.timeLeft=0;
+    this.table_details=[];
+
+  this.gameover=false;
+  this.dataSource = new MatTableDataSource(this.table_details);
+  this.displayedColumns = ['name', 'position'];
+  this.d1_elements=[5,9,13,17,21];
+  this.d2_elements=[1,7,13,19,25];
+  this.d1=5;this.d2=5;
+   this.rows=[5,5,5,5,5];
+   this.cols=[5,5,5,5,5];
+  
     this.myscore=0;
     this.myname=this.authservice.getName();
     //console.log(this.myname);
@@ -58,7 +73,7 @@ export class BingocardComponent implements OnInit {
     this.getcallnumber();
     
   }
-  username:string=this.authservice.getName();
+  
   
   id_check(){
     return new Promise((resolve,reject)=> {
@@ -104,8 +119,8 @@ export class BingocardComponent implements OnInit {
    this.random_numbers.splice(rand, 1) [0];
    if(this.random_numbers.indexOf(rand) === -1)this.random_numbers.push(rand);
   }
-  //console.log("random numbers");
-  //console.log(this.random_numbers);
+  // console.log("random numbers");
+  // console.log(this.random_numbers);
 }
 
 increment_turn(){
@@ -115,7 +130,7 @@ increment_turn(){
   
   if(this.turn==this.all_players.length){
     this.turn=0;
-    //console.log("Turn is 0");
+   // console.log("Turn is 0");
   }
 }
 
@@ -130,13 +145,13 @@ findmyplayerindex(){
 }
 
 game_ended(){
-  console.log("Checkinf if game ended");
+  //console.log("Checkinf if game ended");
   for(let i=0;i<5;i++){
-    console.log(this.rows[i]);
+    //console.log(this.rows[i]);
   }
   for(let i=0;i<5;i++){
-    console.log("game ended(rows)");
-    console.log(this.rows[i]);
+    // console.log("game ended(rows)");
+    // console.log(this.rows[i]);
     if(this.rows[i]!=0){
       return false;
     }
@@ -146,40 +161,40 @@ game_ended(){
 
 updatescore(){
   var id=Number(this.value.substring(1));
-  console.log((this.value.substring(1)+" is striked"));
+  //console.log((this.value.substring(1)+" is striked"));
    
   if(this.d1_elements.includes(id)){
     this.d1--;
-    console.log("d1 is "+this.d1);
+    //console.log("d1 is "+this.d1);
     if(this.d1==0){
-      console.log("Diaginal one done");
+     // console.log("Diaginal one done");
       this.myscore+=25;
     }
   }
   if(this.d2_elements.includes(id)){
     this.d2--;
-    console.log("d2 is "+this.d2);
+    //console.log("d2 is "+this.d2);
     if(this.d2==0){
-      console.log("Diaginal two done");
+     // console.log("Diaginal two done");
       this.myscore+=25;
     }
   }
   for(var i=0;i<5;i++){
-    console.log(i);
+    //console.log(i);
   //  console.log("first i loop"+i); 
   //  //console.log("cols loop "+(id-1)%5);
     if((id-1)%5==i){
       this.cols[i]--;
-      console.log("cols are "+this.cols);
+     // console.log("cols are "+this.cols);
       if(this.cols[i]==0){
         //console.log("col done "+String(i));
         this.myscore+=20;
       }
     }
-  //   //console.log("row cdn "+id+" "+(5*i)+" "+5*(i+1));
+    //console.log("row cdn "+id+" "+(5*i)+" "+5*(i+1));
     if((id>(5*i))&&(id<=(5*(i+1)))){
       this.rows[i]=this.rows[i]-1;
-     console.log("rows are "+this.rows);
+     //console.log("rows are "+this.rows);
       if(this.rows[i]==0){
         //console.log("row done "+String(i));
         this.myscore+=20;
@@ -189,7 +204,7 @@ updatescore(){
   this.myscore+=5;
   this.roomservice.setscore(this.myscore);
   if(this.game_ended()){
-    console.log("We are in the endgame now");
+    //console.log("We are in the endgame now");
     this.gameover=true;
     this.router.navigate(['/winner']);
   }
@@ -244,8 +259,8 @@ play(num){
 
 
 getcallnumber(){
-  console.log("ingetcall");
-  //console.log(this.table_details);
+  // console.log("ingetcall");
+  // console.log(this.table_details);
   // console.log("Turn value");
   // console.log(this.turn);
   // console.log("myplayerindex");
@@ -256,11 +271,11 @@ getcallnumber(){
     const dialogRef =this.dialog.open(PopupComponent, {width: '250px', height: '250px', disableClose: true,panelClass: 'custom-dialog-container'});
     //console.log("popup open");
     dialogRef.afterClosed().subscribe(_ => {
-      //console.log("popup close");
+     // console.log("popup close");
       this.roomservice.putrandnum("true").then(data=>
         {
           // console.log("data");
-          // console.log(data);
+          //  console.log(data);
          if(data['gameended']=="true"){
            dialogRef.close();
            this.router.navigate(['/winner']);
@@ -268,16 +283,16 @@ getcallnumber(){
          } 
          this.play(data['random_number']).then(res=>
           {
-            //console.log("score details");
+           // console.log("score details");
             for(var i=0;i<this.table_details.length;i++)
             {
-              //console.log(data['score'][this.table_details[i].name]);
+            //  console.log(data['score'][this.table_details[i].name]);
               
               this.table_details[i].position=data['score'][this.table_details[i].name];
             }
             //console.log(this.timeLeft);
             this.increment_turn();
-            //console.log("Turn incermented");
+          //  console.log("Turn incermented");
 
             if(!this.gameover){
             this.getcallnumber();
@@ -293,8 +308,8 @@ getcallnumber(){
   else{
     //console.log("else part");
     this.waiting=this.all_players[this.turn];
-    // console.log(this.table_details);
-    // console.log(this.turn);
+    //  console.log(this.table_details);
+    //  console.log(this.turn);
     this.roomservice.putrandnum("false").then(data=>
         {
           // console.log("data");
@@ -305,16 +320,16 @@ getcallnumber(){
           } 
           this.play(data['random_number']).then(res=>
           {
-           // console.log("score details");
+           //console.log("score details");
             for(var i=0;i<this.table_details.length;i++)
             {
-              //console.log(data['score'][this.table_details[i].name]);
+             // console.log(data['score'][this.table_details[i].name]);
               
               this.table_details[i].position=data['score'][this.table_details[i].name];
             }
             // console.log(this.timeLeft);
             this.increment_turn();
-            //console.log("Turn incermented");//Run no
+           // console.log("Turn incermented");//Run no
             if(!this.gameover){
               this.getcallnumber();
               }
@@ -330,7 +345,7 @@ rendertable(){
   //console.log("table details");
   for(var i=0;i<this.all_players.length;i++){
   this.table_details[i]={name:this.all_players[i],position:0};
-  //console.log(this.table_details[i]);
+ // console.log(this.table_details[i]);
   }
 }
 logout() {

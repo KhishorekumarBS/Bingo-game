@@ -53,18 +53,18 @@ async function getRandomCall(room_code,turn,randnum,indextobecalled)
 {
 	return new Promise(function(resolve, reject) 
 	{
-		console.log(room_details);
-		console.log(randnum);
-		console.log("In room.js");
-		console.log(turn);
+		// console.log(room_details);
+		// console.log(randnum);
+		// console.log("In room.js");
+		// console.log(turn);
 		current_length = Object.keys(room_details[room_code]["randomcalls"]).length;
-		console.log(current_length);
+		//console.log(current_length);
 		if(room_details[room_code]["gameended"])
 			resolve("game_ended");
 		if(turn=="true")
 		{
 			room_details[room_code]["randomcalls"].push(randnum);
-			console.log("Number assigned");
+			//console.log("Number assigned");
 			resolve(randnum);
 		}
 		else
@@ -74,17 +74,17 @@ async function getRandomCall(room_code,turn,randnum,indextobecalled)
 				if(room_details[room_code]["gameended"])
 					resolve("game_ended");
 				current_length = Object.keys(room_details[room_code]["randomcalls"]).length;
-				console.log("checkCallCount");
-				console.log(current_length);	
+				// console.log("checkCallCount");
+				// console.log(current_length);	
 				if(current_length>=indextobecalled)
 				{
-					console.log("Resolved");
+					//console.log("Resolved");
 					resolve(room_details[room_code]["randomcalls"][indextobecalled-1]);
 				}
      			else 
      			{
-					console.log(room_details);
-					setTimeout(checkCallCount, 7000); 
+					//console.log(room_details);
+					setTimeout(checkCallCount, 3000); 
      			}
 			}
 			checkCallCount();
@@ -104,12 +104,12 @@ exports.disqualifyMe = function(room_code,username)
 {	
 	room_details[room_code]["gameended"]=true;
 	room_details[room_code]["users"][username]="-1";
-	console.log(room_details);
+	//console.log(room_details);
 }
 
 exports.hasgameended = function(room_code)
 {	
-	console.log(room_details);
+	//console.log(room_details);
 	if(room_details[room_code]["gameended"])
 		return true;
 	else
@@ -119,7 +119,7 @@ exports.hasgameended = function(room_code)
 exports.getWinner = function(room_code)
 {	
 	room_details[room_code]["gameended"]=true;
-	console.log(room_details);
+	//console.log(room_details);
 	return Object.keys(room_details[room_code]["users"]).reduce((a, b) => parseInt(room_details[room_code]["users"][a]) > parseInt(room_details[room_code]["users"][b]) ? a : b);
 }
 
@@ -127,4 +127,4 @@ exports.getWinner = function(room_code)
 exports.joinRoom = joinroom;
 exports.getRandomCall = getRandomCall;
 
-console.log(room_details);
+//console.log(room_details);

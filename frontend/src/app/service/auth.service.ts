@@ -17,7 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient,private router: Router) { }
 
   storeUserCredentials(credentials: any) {
-     console.log('storeUserCredentials ', credentials);
+     //console.log('storeUserCredentials ', credentials);
      this.isAuthenticated=true;
      this.nameofuser=credentials.name;
      this.authToken=credentials.token;

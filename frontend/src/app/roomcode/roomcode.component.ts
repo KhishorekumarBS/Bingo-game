@@ -36,7 +36,7 @@ export class RoomcodeComponent implements OnInit {
   
   username:string=this.authservice.getName();
   getInnerText(innerText){
-    console.log(innerText)
+    //console.log(innerText)
     this. no_selected=innerText;
   }
   getroomcode() {
@@ -44,7 +44,7 @@ export class RoomcodeComponent implements OnInit {
     this.roomservice.createRoom(this.no_selected).then(data => 
     {
       this.roomcode=data;
-      console.log(data);
+     // console.log(data);
       this.roomservice.joinRoom().then(data=>
         {
          if(this.other_players!=[]){

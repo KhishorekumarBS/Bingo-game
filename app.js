@@ -19,9 +19,9 @@ const User = require('./models/user');
 const mongourl = config.mongoUrl;
 const connect = mongoose.connect(mongourl);
 connect.then((db) => {
-	console.log("Connected to mongodb");
+	//console.log("Connected to mongodb");
 },(err) => {
-	console.log(err);
+	//console.log(err);
 });
 
 
@@ -43,11 +43,11 @@ app.use(function(err, req, res, next) {
 
 	if(!req.user)
 	{
-		console.log("User not authenticated");
+	//	console.log("User not authenticated");
 	}
 	else
 	{
-		console.log(req.user);
+		//console.log(req.user);
 	}
 	next();
 });
@@ -84,8 +84,8 @@ app.post('/api/updatescore',authenticate.verifyUser,function(req, res, next) {
 app.post('/api/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 	rooms.getRandomCall(req.body.roomcode,req.body.turnsend,req.body.random_number
 	,req.body.iterations).then(function(randnum) {
-		console.log(req.user.username);
-		console.log(req.body.iterations);
+		// console.log(req.user.username);
+		// console.log(req.body.iterations);
 		
 		res.setHeader('Content-Type', 'application/json');
 		if(randnum=="game_ended")
@@ -99,11 +99,11 @@ app.post('/api/getrandomcall',authenticate.verifyUser,function(req, res, next) {
 });
 
 app.post('/api/getwinner',authenticate.verifyUser,function(req, res, next) {
-	console.log("In getwinner");
+	//console.log("In getwinner");
 	updated_score=rooms.updateScore(req.body.roomcode,req.user.name,req.body.score);
-	console.log("Final score updated");
+	//console.log("Final score updated");
 	winner=rooms.getWinner(req.body.roomcode);
-	console.log("Winner is "+winner);
+	//console.log("Winner is "+winner);
 	res.setHeader('Content-Type', 'application/json');
 	res.json({'winner':winner,'score':updated_score});				
 });

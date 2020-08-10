@@ -26,8 +26,8 @@ export class WinnerComponent implements OnInit {
     this.rendertable();
     this.roomservice.getwinnerdetails().then(data=>
       {
-        console.log("winner details in component");
-        console.log(data);
+       // console.log("winner details in component");
+        //console.log(data);
         for(var i=0;i<this.table_details.length;i++)
              //this.table_details[i]={name:this.all_players[i],position:data['score'][this.table_details[i].name]};
             {
@@ -36,6 +36,7 @@ export class WinnerComponent implements OnInit {
             if(data['winner']!=this.myname){
               this.winner= data['winner'];
             }
+            this.roomservice.reset_values();
       })
       
   }

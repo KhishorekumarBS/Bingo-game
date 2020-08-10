@@ -36,7 +36,7 @@ export class SignupService {
     }*/
 
     signupstore(signup_data) {
-      console.log(signup_data); 
+      //console.log(signup_data); 
       return this.http.post('/api/users/signup', {'username':signup_data.EMAILADDRESS,'name':signup_data.USERNAME,'password':signup_data.PASSWORD});
     }
 
