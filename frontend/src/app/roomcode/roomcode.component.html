@@ -91,7 +91,7 @@
 	<input #code id="school" name="schoo" type="text" style="width: 40%;color:red;font: normal 18px URW Chancery L, cursive ;" > </div><br><br>
 	<div class="container" style="text-align: center;">
             
-		<button  (click)=setroomcode(code.value); onClick="this.disabled=true;" style="font: normal 18px URW Chancery L, cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn" >JOIN ROOM</button>
+		<button  (click)=setroomcode(code.value);  style="font: normal 18px URW Chancery L, cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn" >JOIN ROOM</button>
 </div>
 <div *ngIf="ijoinedroom"  style="text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;">
 	<br>{{other_players}} has joined!

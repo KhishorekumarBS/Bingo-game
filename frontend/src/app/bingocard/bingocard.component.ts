@@ -103,7 +103,7 @@ export class BingocardComponent implements OnInit {
             (this.elem).style.textDecoration='none';
            }
             var id_=Number(this.value.substring(1));
-            if(((Number(this.call_number)%this.random_numbers[id_-1])==0)){
+            if(((Number(this.call_number)%this.random_numbers[id_-1])==0)||(this.random_numbers[id_-1]%(Number(this.call_number))==0)){
             this.elem = document.querySelector('#'+this.value) as HTMLElement;
             (this.elem).style.textDecoration='line-through';
             (this.elem).style.color='orange';
@@ -302,6 +302,7 @@ getcallnumber(){
             }
             }
             //console.log(this.timeLeft);
+            this.table_details[this.turn].position=String(this.myscore);
             this.increment_turn();
           //  console.log("Turn incermented");
 
