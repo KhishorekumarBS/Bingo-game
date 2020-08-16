@@ -365,6 +365,7 @@ rendertable(){
   }
 }
 logout() {
+  this.close=true;
   this.logged_out= this.authservice.logOut();
    this.router.navigate(['/login']);
   this.dialog.open(LogoutComponent, {width: '200px', height: '150px'});
