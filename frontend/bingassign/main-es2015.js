@@ -517,6 +517,7 @@ class BingocardComponent {
         this.turn = 0;
         this.id_arr = [];
         this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](this.table_details);
+        this.close = false;
     }
     ngOnInit() {
         this.random_numbers = [];
@@ -661,6 +662,9 @@ class BingocardComponent {
             }
         }
         this.myscore += 5;
+        if (this.close) {
+            this.myscore = -1;
+        }
         this.roomservice.setscore(this.myscore);
         if (this.game_ended()) {
             //console.log("We are in the endgame now");
@@ -720,6 +724,9 @@ class BingocardComponent {
             //console.log("if part");
             const dialogRef = this.dialog.open(_popup_popup_component__WEBPACK_IMPORTED_MODULE_3__["PopupComponent"], { width: '250px', height: '250px', disableClose: true, panelClass: 'custom-dialog-container' });
             //console.log("popup open");
+            if (this.close) {
+                dialogRef.close();
+            }
             dialogRef.afterClosed().subscribe(_ => {
                 // console.log("popup close");
                 this.roomservice.putrandnum("true").then(data => {
@@ -734,7 +741,12 @@ class BingocardComponent {
                         // console.log("score details");
                         for (var i = 0; i < this.table_details.length; i++) {
                             //  console.log(data['score'][this.table_details[i].name]);
-                            this.table_details[i].position = data['score'][this.table_details[i].name];
+                            if (data['score'][this.table_details[i].name] == "-1") {
+                                this.table_details[i].position = "disqualified";
+                            }
+                            else {
+                                this.table_details[i].position = data['score'][this.table_details[i].name];
+                            }
                         }
                         //console.log(this.timeLeft);
                         this.increment_turn();
@@ -764,7 +776,12 @@ class BingocardComponent {
                     //console.log("score details");
                     for (var i = 0; i < this.table_details.length; i++) {
                         // console.log(data['score'][this.table_details[i].name]);
-                        this.table_details[i].position = data['score'][this.table_details[i].name];
+                        if (data['score'][this.table_details[i].name] == "-1") {
+                            this.table_details[i].position = "disqualified";
+                        }
+                        else {
+                            this.table_details[i].position = data['score'][this.table_details[i].name];
+                        }
                     }
                     // console.log(this.timeLeft);
                     this.increment_turn();
@@ -791,6 +808,8 @@ class BingocardComponent {
         this.dialog.open(_logout_logout_component__WEBPACK_IMPORTED_MODULE_2__["LogoutComponent"], { width: '200px', height: '150px' });
     }
     exitgame() {
+        this.close = true;
+        this.roomservice.setscore(-1);
         this.roomservice.exit(this.myname);
     }
 }
@@ -2502,7 +2521,12 @@ class WinnerComponent {
             for (var i = 0; i < this.table_details.length; i++) 
             //this.table_details[i]={name:this.all_players[i],position:data['score'][this.table_details[i].name]};
             {
-                this.table_details[i].position = data['score'][this.table_details[i].name];
+                if (data['score'][this.table_details[i].name] == "-1") {
+                    this.table_details[i].position = "disqualified";
+                }
+                else {
+                    this.table_details[i].position = data['score'][this.table_details[i].name];
+                }
             }
             if (data['winner'] != this.myname) {
                 this.winner = data['winner'];
@@ -2521,7 +2545,7 @@ class WinnerComponent {
     }
     rendertable() {
         for (var i = 0; i < this.all_players.length; i++) {
-            this.table_details[i] = { name: this.all_players[i], position: 0 };
+            this.table_details[i] = { name: this.all_players[i], position: "0" };
         }
     }
 }

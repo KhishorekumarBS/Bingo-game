@@ -31,7 +31,12 @@ export class WinnerComponent implements OnInit {
         for(var i=0;i<this.table_details.length;i++)
              //this.table_details[i]={name:this.all_players[i],position:data['score'][this.table_details[i].name]};
             {
+              if(data['score'][this.table_details[i].name]=="-1"){
+                this.table_details[i].position="disqualified";
+              }
+              else{
               this.table_details[i].position=data['score'][this.table_details[i].name];
+              }
             }
             if(data['winner']!=this.myname){
               this.winner= data['winner'];
@@ -52,7 +57,7 @@ export class WinnerComponent implements OnInit {
   rendertable(){
   
     for(var i=0;i<this.all_players.length;i++){
-    this.table_details[i]={name:this.all_players[i],position:0};
+    this.table_details[i]={name:this.all_players[i],position:"0"};
     }
   }
 }

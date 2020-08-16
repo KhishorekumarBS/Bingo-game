@@ -40,7 +40,7 @@ export class BingocardComponent implements OnInit {
    cols:number[];
    waiting;exit;
    myscore;
-  
+  close=false;
 
   constructor(private authservice: AuthService,private roomservice: RoomserviceService, private router:Router,public dialog: MatDialog) {
    }
@@ -202,6 +202,9 @@ updatescore(){
       }
     }
   this.myscore+=5;
+  if(this.close){
+    this.myscore=-1;
+  }
   this.roomservice.setscore(this.myscore);
   if(this.game_ended()){
     //console.log("We are in the endgame now");
@@ -270,6 +273,9 @@ getcallnumber(){
     
     const dialogRef =this.dialog.open(PopupComponent, {width: '250px', height: '250px', disableClose: true,panelClass: 'custom-dialog-container'});
     //console.log("popup open");
+    if(this.close){
+      dialogRef.close();
+    }
     dialogRef.afterClosed().subscribe(_ => {
      // console.log("popup close");
       this.roomservice.putrandnum("true").then(data=>
@@ -288,7 +294,12 @@ getcallnumber(){
             {
             //  console.log(data['score'][this.table_details[i].name]);
               
-              this.table_details[i].position=data['score'][this.table_details[i].name];
+            if(data['score'][this.table_details[i].name]=="-1"){
+              this.table_details[i].position="disqualified";
+            }
+            else{
+            this.table_details[i].position=data['score'][this.table_details[i].name];
+            }
             }
             //console.log(this.timeLeft);
             this.increment_turn();
@@ -325,7 +336,12 @@ getcallnumber(){
             {
              // console.log(data['score'][this.table_details[i].name]);
               
-              this.table_details[i].position=data['score'][this.table_details[i].name];
+             if(data['score'][this.table_details[i].name]=="-1"){
+              this.table_details[i].position="disqualified";
+            }
+            else{
+            this.table_details[i].position=data['score'][this.table_details[i].name];
+            }
             }
             // console.log(this.timeLeft);
             this.increment_turn();
@@ -355,6 +371,8 @@ logout() {
  }
 
  exitgame(){
+   this.close=true;
+   this.roomservice.setscore(-1);
    this.roomservice.exit(this.myname)
  }
  

@@ -881,6 +881,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.turn = 0;
         this.id_arr = [];
         this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](this.table_details);
+        this.close = false;
       }
 
       _createClass(BingocardComponent, [{
@@ -1053,6 +1054,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           this.myscore += 5;
+
+          if (this.close) {
+            this.myscore = -1;
+          }
+
           this.roomservice.setscore(this.myscore);
 
           if (this.game_ended()) {
@@ -1135,6 +1141,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               panelClass: 'custom-dialog-container'
             }); //console.log("popup open");
 
+            if (this.close) {
+              dialogRef.close();
+            }
+
             dialogRef.afterClosed().subscribe(function (_) {
               // console.log("popup close");
               _this5.roomservice.putrandnum("true").then(function (data) {
@@ -1152,7 +1162,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   // console.log("score details");
                   for (var i = 0; i < _this5.table_details.length; i++) {
                     //  console.log(data['score'][this.table_details[i].name]);
-                    _this5.table_details[i].position = data['score'][_this5.table_details[i].name];
+                    if (data['score'][_this5.table_details[i].name] == "-1") {
+                      _this5.table_details[i].position = "disqualified";
+                    } else {
+                      _this5.table_details[i].position = data['score'][_this5.table_details[i].name];
+                    }
                   } //console.log(this.timeLeft);
 
 
@@ -1186,7 +1200,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 //console.log("score details");
                 for (var i = 0; i < _this5.table_details.length; i++) {
                   // console.log(data['score'][this.table_details[i].name]);
-                  _this5.table_details[i].position = data['score'][_this5.table_details[i].name];
+                  if (data['score'][_this5.table_details[i].name] == "-1") {
+                    _this5.table_details[i].position = "disqualified";
+                  } else {
+                    _this5.table_details[i].position = data['score'][_this5.table_details[i].name];
+                  }
                 } // console.log(this.timeLeft);
 
 
@@ -1227,6 +1245,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "exitgame",
         value: function exitgame() {
+          this.close = true;
+          this.roomservice.setscore(-1);
           this.roomservice.exit(this.myname);
         }
       }]);
@@ -4614,7 +4634,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             //console.log(data);
             for (var i = 0; i < _this16.table_details.length; i++) //this.table_details[i]={name:this.all_players[i],position:data['score'][this.table_details[i].name]};
             {
-              _this16.table_details[i].position = data['score'][_this16.table_details[i].name];
+              if (data['score'][_this16.table_details[i].name] == "-1") {
+                _this16.table_details[i].position = "disqualified";
+              } else {
+                _this16.table_details[i].position = data['score'][_this16.table_details[i].name];
+              }
             }
 
             if (data['winner'] != _this16.myname) {
@@ -4643,7 +4667,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           for (var i = 0; i < this.all_players.length; i++) {
             this.table_details[i] = {
               name: this.all_players[i],
-              position: 0
+              position: "0"
             };
           }
         }
