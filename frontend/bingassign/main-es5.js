@@ -1266,7 +1266,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-bingocard"]],
       decls: 60,
       vars: 7,
-      consts: [["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width, initial-scale=1"], ["rel", "stylesheet"], ["href", "http://fonts.googleapis.com/css?family=Cookie", "rel", "stylesheet", "type", "text/css"], [1, "header-user-dropdown"], [1, "header-limiter"], [1, "header-user-menu"], [2, "font", "normal 28px URW Chancery L, cursive"], [2, "font", "normal 15px URW Chancery L, cursive"], [3, "click"], ["fxLayout", "column", "fxLayoutGap", "25px", 1, "container"], ["fxFlex", "", 1, "example-button-row"], ["style", "font:normal 22px URW Chancery L, cursive ;color:white ;", 4, "ngIf"], ["style", "font:normal 20px URW Chancery L, cursive ;color:white", 4, "ngIf"], ["fxLayout", "row", "fxLayout.gt-lg", "row", "fxLayout.lt-sm", "column", "fxLayout.gt-md", "row", "fxLayout.xs", "column", "fxLayout.sm", "columnn", "fxLayoutAlign.gt-md", "space-around start", "fxLayoutGap", "20px", 1, "container", "flex-container"], ["fxFlex", "", "cols", "5", "rowHeight", "2:1"], [2, "color", "#bc40df"], [4, "ngFor", "ngForOf"], ["fxFlex", "", 3, "dataSource"], ["table", ""], ["matColumnDef", "name"], [4, "matHeaderCellDef"], [4, "matCellDef"], ["matColumnDef", "position"], [4, "matHeaderRowDef"], [4, "matRowDef", "matRowDefColumns"], [2, "font", "normal 22px URW Chancery L, cursive", "color", "white"], [2, "color", "red", "font-weight", "bold"], [2, "color", "red", "font", "normal 22px URW Chancery L, cursive", "float", "right", "min-width", "80px", "max-width", "90px"], [2, "font", "normal 20px URW Chancery L, cursive", "color", "white"], ["diameter", "30", 1, "stroke"], [3, "id", "click"]],
+      consts: [["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width, initial-scale=1"], ["rel", "stylesheet"], ["href", "http://fonts.googleapis.com/css?family=Cookie", "rel", "stylesheet", "type", "text/css"], [1, "header-user-dropdown"], [1, "header-limiter"], [1, "header-user-menu"], [2, "font", "normal 28px Comic Sans MS, Comic Sans, cursive"], [2, "font", "normal 15px Comic Sans MS, Comic Sans, cursive"], [3, "click"], ["fxLayout", "column", "fxLayoutGap", "25px", 1, "container"], ["fxFlex", "", 1, "example-button-row"], ["style", "font:normal 22px Comic Sans MS, Comic Sans, cursive ;color:white ;", 4, "ngIf"], ["style", "font:normal 20px Comic Sans MS, Comic Sans, cursive;color:white", 4, "ngIf"], ["fxLayout", "row", "fxLayout.gt-lg", "row", "fxLayout.lt-sm", "column", "fxLayout.gt-md", "row", "fxLayout.xs", "column", "fxLayout.sm", "columnn", "fxLayoutAlign.gt-md", "space-around start", "fxLayoutGap", "20px", 1, "container", "flex-container"], ["fxFlex", "", "cols", "5", "rowHeight", "2:1"], [2, "color", "#bc40df"], [4, "ngFor", "ngForOf"], ["fxFlex", "", 3, "dataSource"], ["table", ""], ["matColumnDef", "name"], [4, "matHeaderCellDef"], [4, "matCellDef"], ["matColumnDef", "position"], [4, "matHeaderRowDef"], [4, "matRowDef", "matRowDefColumns"], [2, "font", "normal 22px Comic Sans MS, Comic Sans, cursive", "color", "white"], [2, "color", "red", "font-weight", "bold"], [2, "color", "red", "font", "normal 22px URW Chancery L, cursive", "float", "right", "min-width", "80px", "max-width", "90px"], [2, "font", "normal 20px Comic Sans MS, Comic Sans, cursive", "color", "white"], ["diameter", "30", 1, "stroke"], [3, "id", "click"]],
       template: function BingocardComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html");
@@ -1698,7 +1698,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-instructions"]],
       decls: 64,
       vars: 2,
-      consts: [[1, "container"], [2, "text-align", "center", "font-size", "60px"], [1, "change"], [2, "text-align", "justify", "font-size", "20px"], [1, "change", 2, "font-size", "25px", "font-weight", "bold"], [2, "text-align", "center"], ["mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px URW Chancery L, cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "routerLink"]],
+      consts: [[1, "container"], [2, "text-align", "center", "font-size", "60px"], [1, "change"], [2, "text-align", "justify", "font-size", "20px"], [1, "change", 2, "font-size", "25px", "font-weight", "bold"], [2, "text-align", "center"], ["mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px Comic Sans MS, Comic Sans, cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "routerLink"]],
       template: function InstructionsComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html");
@@ -2188,7 +2188,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       },
       decls: 72,
       vars: 23,
-      consts: [["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width, initial-scale=1"], ["rel", "stylesheet"], ["href", "http://fonts.googleapis.com/css?family=Cookie", "rel", "stylesheet", "type", "text/css"], [1, "header-user-dropdown"], [1, "header-limiter"], [1, "login-wrap"], [1, "login-html"], ["style", "align-content: center;color:white;font: normal 18px URW Chancery L, cursive ;", 4, "ngIf"], ["id", "tab-1", "type", "radio", "name", "tab", "checked", "", 1, "sign-in"], ["for", "tab-1", 1, "tab"], [1, "change"], ["id", "tab-2", "type", "radio", "name", "tab", 1, "sign-up"], ["for", "tab-2", 1, "tab"], [1, "login-form"], [1, "sign-in-htm"], [3, "formGroup", "ngSubmit"], ["sform", "ngForm"], [1, "group"], ["for", "user", 1, "label"], ["type", "text", "formControlName", "EMAILADDRESS", 1, "input"], [3, "control", 4, "ngIf"], ["for", "pass", 1, "label"], ["type", "password", "formControlName", "PASSWORD", 1, "input", 3, "ngClass"], ["type", "submit", "value", "SIGN IN", 1, "button", 2, "font-size", "20px"], [1, "sign-up-htm"], ["fform", "ngForm"], ["type", "text", "formControlName", "EMAILADDRESS", 1, "input", 3, "ngClass"], ["type", "text", "formControlName", "USERNAME", 1, "input", 3, "ngClass"], ["type", "password", "formControlName", "REPEATPASSWORD", 1, "input", 3, "ngClass"], ["type", "submit", "value", "Sign Up", 1, "button", 2, "font-size", "20px"], [2, "align-content", "center", "color", "white", "font", "normal 18px URW Chancery L, cursive"], [3, "control"]],
+      consts: [["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width, initial-scale=1"], ["rel", "stylesheet"], ["href", "http://fonts.googleapis.com/css?family=Cookie", "rel", "stylesheet", "type", "text/css"], [1, "header-user-dropdown"], [1, "header-limiter"], [1, "login-wrap"], [1, "login-html"], ["style", "align-content: center;color:white;font: normal 18px Comic Sans MS, Comic Sans, cursive;", 4, "ngIf"], ["id", "tab-1", "type", "radio", "name", "tab", "checked", "", 1, "sign-in"], ["for", "tab-1", 1, "tab"], [1, "change"], ["id", "tab-2", "type", "radio", "name", "tab", 1, "sign-up"], ["for", "tab-2", 1, "tab"], [1, "login-form"], [1, "sign-in-htm"], [3, "formGroup", "ngSubmit"], ["sform", "ngForm"], [1, "group"], ["for", "user", 1, "label"], ["type", "text", "formControlName", "EMAILADDRESS", 1, "input"], [3, "control", 4, "ngIf"], ["for", "pass", 1, "label"], ["type", "password", "formControlName", "PASSWORD", 1, "input", 3, "ngClass"], ["type", "submit", "value", "SIGN IN", 1, "button", 2, "font-size", "20px"], [1, "sign-up-htm"], ["fform", "ngForm"], ["type", "text", "formControlName", "EMAILADDRESS", 1, "input", 3, "ngClass"], ["type", "text", "formControlName", "USERNAME", 1, "input", 3, "ngClass"], ["type", "password", "formControlName", "REPEATPASSWORD", 1, "input", 3, "ngClass"], ["type", "submit", "value", "Sign Up", 1, "button", 2, "font-size", "20px"], [2, "align-content", "center", "color", "white", "font", "normal 18px Comic Sans MS, Comic Sans, cursive"], [3, "control"]],
       template: function LoginComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html");
@@ -2564,7 +2564,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-logout"]],
       decls: 7,
       vars: 0,
-      consts: [[2, "text-align", "center", "color", "black", "font", "normal 20px URW Chancery L, cursive", "background-color", "white"], [3, "click"]],
+      consts: [[2, "text-align", "center", "color", "black", "font", "normal 20px Comic Sans MS, Comic Sans, cursive", "background-color", "white"], [3, "click"]],
       template: function LogoutComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html");
@@ -2723,7 +2723,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-popup"]],
       decls: 12,
       vars: 2,
-      consts: [[2, "text-align", "center", "color", "black", "font", "normal 20px URW Chancery L, cursive", "background-color", "white"], [2, "font-size", "80%", "color", "black"], ["id", "school", "name", "schoo", "type", "text", 2, "width", "60%", "color", "red", "border", "1px solid black", 3, "ngModel", "ngModelChange"], [3, "click"]],
+      consts: [[2, "text-align", "center", "color", "black", "font", "normal 20px Comic Sans MS, Comic Sans, cursive", "background-color", "white"], [2, "font-size", "80%", "color", "black"], ["id", "school", "name", "schoo", "type", "text", 2, "width", "60%", "color", "red", "border", "1px solid black", 3, "ngModel", "ngModelChange"], [3, "click"]],
       template: function PopupComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html");
@@ -3165,7 +3165,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         var _r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-option", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-option", 32);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function RoomcodeComponent_mat_option_37_Template_mat_option_click_0_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r10);
@@ -3199,7 +3199,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 32);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function RoomcodeComponent_div_40_Template_button_click_1_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r12);
@@ -3219,7 +3219,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function RoomcodeComponent_div_41_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 33);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 34);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "br");
 
@@ -3227,7 +3227,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "ROOMCODE:");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 34);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 35);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "b");
 
@@ -3275,9 +3275,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function RoomcodeComponent_div_42_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 33);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 34);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "mat-spinner", 35);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "mat-spinner", 36);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "span");
 
@@ -3291,7 +3291,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function RoomcodeComponent_div_43_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 33);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 34);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "br");
 
@@ -3311,7 +3311,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function RoomcodeComponent_div_59_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 33);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 34);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "br");
 
@@ -3436,7 +3436,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-roomcode"]],
       decls: 60,
       vars: 7,
-      consts: [["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width, initial-scale=1"], ["rel", "stylesheet"], ["href", "http://fonts.googleapis.com/css?family=Cookie", "rel", "stylesheet", "type", "text/css"], [1, "header-user-dropdown"], [1, "header-limiter"], [1, "header-user-menu"], [2, "font", "normal 20px URW Chancery L, cursive"], [2, "font", "normal 15px URW Chancery L, cursive"], [3, "click"], [1, "container"], [1, "tabs"], [1, "tab-2"], ["for", "tab2-1", 2, "color", "black", "font", "normal 20px URW Chancery L, cursive"], ["id", "tab2-1", "name", "tabs-two", "type", "radio", "checked", "checked"], [1, "textbox"], [1, "container", 2, "text-align", "center"], [1, "change", 2, "font", "normal 20px URW Chancery L, cursive"], ["trigger", "alarmTrigger", 1, "mat-dropdown"], ["alarmSelect", ""], ["style", "color:#bc40df;font: normal 18px URW Chancery L, cursive ;", 3, "value", "click", 4, "ngFor", "ngForOf"], [4, "ngIf"], ["style", "text-align: center;color:white;font: normal 20px URW Chancery L, cursive ;", 4, "ngIf"], ["for", "tab2-2", 2, "color", "black", "font", "normal 20px URW Chancery L, cursive"], ["id", "tab2-2", "name", "tabs-two", "type", "radio"], ["for", "school", 2, "text-align", "center", "margin-left", "10px", "font", "normal 20px URW Chancery L, cursive"], [2, "text-align", "center"], ["id", "school", "name", "schoo", "type", "text", 2, "width", "40%", "color", "red", "font", "normal 18px URW Chancery L, cursive"], ["code", ""], ["mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px URW Chancery L, cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "click"], [2, "color", "#bc40df", "font", "normal 18px URW Chancery L, cursive", 3, "value", "click"], ["onClick", "this.disabled=true;", "mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px URW Chancery L, cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "click"], [2, "text-align", "center", "color", "white", "font", "normal 20px URW Chancery L, cursive"], [1, "change"], ["diameter", "40", 1, "stroke", 2, "margin", "0 auto"]],
+      consts: [["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width, initial-scale=1"], ["rel", "stylesheet"], ["href", "http://fonts.googleapis.com/css?family=Cookie", "rel", "stylesheet", "type", "text/css"], [1, "header-user-dropdown"], [1, "header-limiter"], [1, "header-user-menu"], [2, "font", "normal 20px Comic Sans MS, Comic Sans, cursive"], [2, "font", "normal 15px Comic Sans MS, Comic Sans, cursive"], [3, "click"], [1, "container"], [1, "tabs"], [1, "tab-2"], ["for", "tab2-1", 2, "color", "black", "font", "normal 20px Comic Sans MS, Comic Sans, cursive"], ["id", "tab2-1", "name", "tabs-two", "type", "radio", "checked", "checked"], [1, "textbox"], [1, "container", 2, "text-align", "center"], [1, "change", 2, "font", "normal 20px Comic Sans MS, Comic Sans, cursive"], ["trigger", "alarmTrigger", 1, "mat-dropdown"], ["alarmSelect", ""], ["style", "color:#bc40df;font: normal 18px Comic Sans MS, Comic Sans, cursive ;", 3, "value", "click", 4, "ngFor", "ngForOf"], [4, "ngIf"], ["style", "text-align: center;color:white;font: normal 20px Comic Sans MS, Comic Sans, cursive ;", 4, "ngIf"], ["style", "text-align: center;color:white;font: normal 20px Comic Sans MS, Comic Sans, cursive;", 4, "ngIf"], ["for", "tab2-2", 2, "color", "black", "font", "normal 20pxComic Sans MS, Comic Sans, cursive"], ["id", "tab2-2", "name", "tabs-two", "type", "radio"], ["for", "school", 2, "text-align", "center", "margin-left", "10px", "font", "normal 20px Comic Sans MS, Comic Sans, cursive"], [2, "text-align", "center"], ["id", "school", "name", "schoo", "type", "text", 2, "width", "40%", "color", "red", "font", "normal 18px Comic Sans MS, Comic Sans, cursive"], ["code", ""], ["mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px Comic Sans MS, Comic Sans, cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "click"], [2, "color", "#bc40df", "font", "normal 18px Comic Sans MS, Comic Sans, cursive", 3, "value", "click"], ["onClick", "this.disabled=true;", "mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px Comic Sans MS, Comic Sans, cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "click"], [2, "text-align", "center", "color", "white", "font", "normal 20px Comic Sans MS, Comic Sans, cursive"], [1, "change"], ["diameter", "40", 1, "stroke", 2, "margin", "0 auto"]],
       template: function RoomcodeComponent_Template(rf, ctx) {
         if (rf & 1) {
           var _r13 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
@@ -3559,7 +3559,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](41, RoomcodeComponent_div_41_Template, 18, 1, "div", 23);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](42, RoomcodeComponent_div_42_Template, 4, 0, "div", 23);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](42, RoomcodeComponent_div_42_Template, 4, 0, "div", 24);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](43, RoomcodeComponent_div_43_Template, 3, 1, "div", 23);
 
@@ -3569,25 +3569,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](44, "div", 13);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](45, "label", 24);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](45, "label", 25);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](46, "JOIN");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](47, "input", 25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](47, "input", 26);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](48, "div", 16);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](49, "label", 26);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](49, "label", 27);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](50, "ROOMCODE:");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](51, "div", 27);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](51, "div", 28);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](52, "input", 28, 29);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](52, "input", 29, 30);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -3597,7 +3597,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](56, "div", 17);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](57, "button", 30);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](57, "button", 31);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function RoomcodeComponent_Template_button_click_57_listener() {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r13);
@@ -4700,7 +4700,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-winner"]],
       decls: 302,
       vars: 5,
-      consts: [["fxFlex", "", "fxLayout", "column"], ["style", "z-index: 3;", 4, "ngIf"], ["style", "z-index: 3;text-align:center;color:white;font:normal 22px URW Chancery L, cursive ;font-weight: bold;text-transform: uppercase;", 4, "ngIf"], ["fxFlex", "", 1, "container", 2, "z-index", "3", 3, "dataSource"], ["table", ""], ["matColumnDef", "name"], ["class", "w-75", 4, "matHeaderCellDef"], ["class", "w-75", 4, "matCellDef"], ["matColumnDef", "position"], [4, "matHeaderRowDef"], [4, "matRowDef", "matRowDefColumns"], [2, "text-align", "center", "color", "blue", "font", "normal 15px URW Chancery L, cursive", "text-decoration", "underline"], [3, "click"], [1, "hanabi1"], [1, "hii"], [1, "hanabi2"], [1, "hanabi3"], [1, "hanabi4"], [1, "hanabi5"], [1, "hanabi6"], [1, "hanabi7"], [1, "hanabi8"], [1, "hanabi9"], [1, "hanabi10"], [1, "hanabi11"], [1, "hanabi12"], [1, "hanabi13"], [2, "z-index", "3"], [2, "text-align", "center", "color", "white", "font", "normal 22px URW Chancery L, cursive"], [2, "z-index", "3", "text-align", "center", "color", "white", "font", "normal 22px URW Chancery L, cursive", "font-weight", "bold", "text-transform", "uppercase"], [1, "w-75"]],
+      consts: [["fxFlex", "", "fxLayout", "column"], ["style", "z-index: 3;", 4, "ngIf"], ["style", "z-index: 3;text-align:center;color:white;font:normal 22px Comic Sans MS, Comic Sans, cursive ;font-weight: bold;text-transform: uppercase;", 4, "ngIf"], ["fxFlex", "", 1, "container", 2, "z-index", "3", 3, "dataSource"], ["table", ""], ["matColumnDef", "name"], ["class", "w-75", 4, "matHeaderCellDef"], ["class", "w-75", 4, "matCellDef"], ["matColumnDef", "position"], [4, "matHeaderRowDef"], [4, "matRowDef", "matRowDefColumns"], [2, "text-align", "center", "color", "blue", "font", "normal 15pxComic Sans MS, Comic Sans, cursive", "text-decoration", "underline"], [3, "click"], [1, "hanabi1"], [1, "hii"], [1, "hanabi2"], [1, "hanabi3"], [1, "hanabi4"], [1, "hanabi5"], [1, "hanabi6"], [1, "hanabi7"], [1, "hanabi8"], [1, "hanabi9"], [1, "hanabi10"], [1, "hanabi11"], [1, "hanabi12"], [1, "hanabi13"], [2, "z-index", "3"], [2, "text-align", "center", "color", "white", "font", "normal 22px Comic Sans MS, Comic Sans, cursive"], [2, "z-index", "3", "text-align", "center", "color", "white", "font", "normal 22px Comic Sans MS, Comic Sans, cursive", "font-weight", "bold", "text-transform", "uppercase"], [1, "w-75"]],
       template: function WinnerComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html");
