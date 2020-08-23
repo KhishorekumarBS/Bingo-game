@@ -22,7 +22,7 @@ export class ValidationService {
     return config[validatorName];
   }
    
-  static password(control: FormControl) {
+  /*static password(control: FormControl) {
      
     // {6,100}           - Assert password is between 6 and 100 characters
     // (?=.*[0-9])       - Assert a string has at least one number
@@ -31,7 +31,7 @@ export class ValidationService {
     } else {
         return { 'invalidPassword': true };
     }
-  }
+  }*/
  
   static match(controlName: string, matchingControlName: string) {
  

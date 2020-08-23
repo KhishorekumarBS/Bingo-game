@@ -1696,7 +1696,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     InstructionsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: InstructionsComponent,
       selectors: [["app-instructions"]],
-      decls: 64,
+      decls: 69,
       vars: 2,
       consts: [[1, "container"], [2, "text-align", "center", "font-size", "60px"], [1, "change"], [2, "text-align", "justify", "font-size", "20px"], [1, "change", 2, "font-size", "25px", "font-weight", "bold"], [2, "text-align", "center"], ["mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px  cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "routerLink"]],
       template: function InstructionsComponent_Template(rf, ctx) {
@@ -1849,21 +1849,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](59, "span", 2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](59, "div", 5);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](60, "button", 6);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](61, "PLAY");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](60, "For any Feedback,Suggestions or Queries contact ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](61, "khishkrish@gmail.com , priyanka99.arav@gmail.com. ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](62, "br");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](63, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](64, "div", 5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](65, "button", 6);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](66, "PLAY");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](67, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](68, "br");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -1873,7 +1885,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
 
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](60);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](65);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](1, _c0));
         }
@@ -2097,7 +2109,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.signupForm = this.fb.group({
             EMAILADDRESS: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email]],
             USERNAME: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            PASSWORD: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _service_validation_service__WEBPACK_IMPORTED_MODULE_2__["ValidationService"].password]],
+            PASSWORD: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
             REPEATPASSWORD: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]]
           }, {
             validator: [_service_validation_service__WEBPACK_IMPORTED_MODULE_2__["ValidationService"].match('PASSWORD', 'REPEATPASSWORD')]
@@ -2115,7 +2127,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } else {
             this.signup = this.signupForm.value;
             this.signupservice.signupstore(this.signup).subscribe(function (data) {
-              if (data['success']) _this6.infoMessage = "Registration successfull. Please login to continue";else _this6.infoMessage = "Email-id already exists";
+              if (data['success']) {
+                _this6.infoMessage = "Registration successful. Please SignIn to continue";
+
+                _this6.router.navigate(['/login']);
+              } else _this6.infoMessage = "Email-id already exists";
             });
             this.submit_signup = false;
             this.signupForm.reset(); //console.log(this.infoMessage);
@@ -3436,7 +3452,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-roomcode"]],
       decls: 60,
       vars: 7,
-      consts: [["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width, initial-scale=1"], ["rel", "stylesheet"], ["href", "http://fonts.googleapis.com/css?family=Cookie", "rel", "stylesheet", "type", "text/css"], [1, "header-user-dropdown"], [1, "header-limiter"], [1, "header-user-menu"], [2, "font", "normal 20px cursive"], [2, "font", "normal 15px cursive"], [3, "click"], [1, "container"], [1, "tabs"], [1, "tab-2"], ["for", "tab2-1", 2, "color", "black", "font", "normal 20px cursive"], ["id", "tab2-1", "name", "tabs-two", "type", "radio", "checked", "checked"], [1, "textbox"], [1, "container", 2, "text-align", "center"], [1, "change", 2, "font", "normal 20px  cursive"], ["trigger", "alarmTrigger", 1, "mat-dropdown"], ["alarmSelect", ""], ["style", "color:#bc40df;font: normal 18px Comic Sans MS, Comic Sans, cursive ;", 3, "value", "click", 4, "ngFor", "ngForOf"], [4, "ngIf"], ["style", "text-align: center;color:white;font: normal 20px  cursive ;", 4, "ngIf"], ["style", "text-align: center;color:white;font: normal 20px  cursive;", 4, "ngIf"], ["for", "tab2-2", 2, "color", "black", "font", "normal 20px cursive"], ["id", "tab2-2", "name", "tabs-two", "type", "radio"], ["for", "school", 2, "text-align", "center", "margin-left", "10px", "font", "normal 20px  cursive"], [2, "text-align", "center"], ["id", "school", "name", "schoo", "type", "text", 2, "width", "40%", "color", "red", "font", "normal 18px  cursive"], ["code", ""], ["mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px , cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "click"], [2, "color", "#bc40df", "font", "normal 18px Comic Sans MS, Comic Sans, cursive", 3, "value", "click"], ["onClick", "this.disabled=true;", "mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "click"], [2, "text-align", "center", "color", "white", "font", "normal 20px  cursive"], [1, "change"], ["diameter", "40", 1, "stroke", 2, "margin", "0 auto"]],
+      consts: [["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width, initial-scale=1"], ["rel", "stylesheet"], ["href", "http://fonts.googleapis.com/css?family=Cookie", "rel", "stylesheet", "type", "text/css"], [1, "header-user-dropdown"], [1, "header-limiter"], [1, "header-user-menu"], [2, "font", "normal 20px cursive"], [2, "font", "normal 15px cursive"], [3, "click"], [1, "container"], [1, "tabs"], [1, "tab-2"], ["for", "tab2-1", 2, "color", "black", "font", "normal 20px cursive"], ["id", "tab2-1", "name", "tabs-two", "type", "radio", "checked", "checked"], [1, "textbox"], [1, "container", 2, "text-align", "center"], [1, "change", 2, "font", "normal 20px  cursive"], ["trigger", "alarmTrigger", 1, "mat-dropdown"], ["alarmSelect", ""], ["style", "color:#bc40df;font: normal 18px Comic Sans MS, Comic Sans, cursive ;", 3, "value", "click", 4, "ngFor", "ngForOf"], [4, "ngIf"], ["style", "text-align: center;color:white;font: normal 20px  cursive ;", 4, "ngIf"], ["style", "text-align: center;color:white;font: normal 20px  cursive;", 4, "ngIf"], ["for", "tab2-2", 2, "color", "black", "font", "normal 20px cursive"], ["id", "tab2-2", "name", "tabs-two", "type", "radio"], ["for", "school", 2, "text-align", "center", "margin-left", "10px", "font", "normal 20px  cursive"], [2, "text-align", "center"], ["id", "school", "name", "schoo", "type", "text", 2, "width", "40%", "color", "red", "font", "normal 18px  cursive"], ["code", ""], ["mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "click"], [2, "color", "#bc40df", "font", "normal 18px Comic Sans MS, Comic Sans, cursive", 3, "value", "click"], ["onClick", "this.disabled=true;", "mat-stroked-button", "", "color", "warn", 2, "font", "normal 18px cursive", "width", "200px", "border", "1px solid #000000", "font-weight", "600", "background", "white", 3, "click"], [2, "text-align", "center", "color", "white", "font", "normal 20px  cursive"], [1, "change"], ["diameter", "40", 1, "stroke", 2, "margin", "0 auto"]],
       template: function RoomcodeComponent_Template(rf, ctx) {
         if (rf & 1) {
           var _r13 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
@@ -4295,21 +4311,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           };
           return config[validatorName];
         }
-      }, {
-        key: "password",
-        value: function password(control) {
-          var _a; // {6,100}           - Assert password is between 6 and 100 characters
+        /*static password(control: FormControl) {
+           
+          // {6,100}           - Assert password is between 6 and 100 characters
           // (?=.*[0-9])       - Assert a string has at least one number
-
-
-          if ((_a = control.value) === null || _a === void 0 ? void 0 : _a.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&amp;*]{6,100}$/)) {
-            return null;
+          if (control.value?.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&amp;*]{6,100}$/)) {
+              return null;
           } else {
-            return {
-              'invalidPassword': true
-            };
+              return { 'invalidPassword': true };
           }
-        }
+        }*/
+
       }, {
         key: "match",
         value: function match(controlName, matchingControlName) {

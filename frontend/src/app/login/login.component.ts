@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.signupForm = this.fb.group({
       EMAILADDRESS:  ['', [Validators.required, Validators.email]],
       USERNAME:  ['', Validators.required ],
-      PASSWORD:  ['', [Validators.required,ValidationService.password]],
+      PASSWORD:  ['', [Validators.required]],
       REPEATPASSWORD:  ['', [Validators.required]],
       
     },{
@@ -65,7 +65,10 @@ export class LoginComponent implements OnInit {
     this.signupservice.signupstore(this.signup).subscribe(data => 
       {
         if(data['success']) 
-          this.infoMessage = "Registration successfull. Please login to continue";
+        {
+          this.infoMessage = "Registration successful. Please SignIn to continue";
+          this.router.navigate(['/login']);
+        }
         else
           this.infoMessage = "Email-id already exists";
       });
