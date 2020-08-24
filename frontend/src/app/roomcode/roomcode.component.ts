@@ -28,10 +28,12 @@ export class RoomcodeComponent implements OnInit {
   other_players: string[] = [];
   no_of_players=[2,3,4,5];
   no_selected;
+  infomessage:string;
  
   constructor(private roomservice: RoomserviceService,private authservice:AuthService, private router:Router,public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.infomessage=undefined;
   }
   
   username:string=this.authservice.getName();
@@ -76,7 +78,9 @@ export class RoomcodeComponent implements OnInit {
      this.dialog.open(LogoutComponent, {width: '200px', height: '150px'});
    }
 
-   setroomcode(code:string) {
+   setroomcode(code:string) { 
+     var no_players=this.roomservice.getnoofplayers();
+    this.infomessage= "Waiting for players to join..."
     this.roomservice.setcode(code);
     this.roomservice.joinRoom().then(data=>
       {

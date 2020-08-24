@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../service/validation.service';
 import { SignupService } from '../service/signup.service';
 import { AuthService } from '../service/auth.service';
+import { RoomserviceService } from '../service/roomservice.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { Signup, Signin } from '../../shared/signup';
 import { ViewEncapsulation } from '@angular/core' 
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
   data: boolean;
   infoMessage = '';
  
-   constructor(private fb: FormBuilder,private sb: FormBuilder,private router:Router, private authservice: AuthService,private signupservice: SignupService,private route:ActivatedRoute ) {
+   constructor(private fb: FormBuilder,private sb: FormBuilder,private router:Router, private authservice: AuthService,private roomservice: RoomserviceService, private signupservice: SignupService,private route:ActivatedRoute ) {
     this.createsignupForm();
     this.createsigninForm();
   }
@@ -37,6 +38,8 @@ export class LoginComponent implements OnInit {
 
   user_state(){
     var state=this.authservice.getuserstate();
+    console.log(state);
+    //var room_state=this.roomservice.getuserstate(); 
     if(state){
       this.router.navigate(['/roomcode']);
     }
@@ -66,8 +69,8 @@ export class LoginComponent implements OnInit {
       {
         if(data['success']) 
         {
-          this.infoMessage = "Registration successful. Please SignIn to continue";
-          this.router.navigate(['/login']);
+          //this.infoMessage = "Registration successful. Please SignIn to continue";
+          this.router.navigate(['/roomcode']);
         }
         else
           this.infoMessage = "Email-id already exists";
@@ -97,7 +100,7 @@ export class LoginComponent implements OnInit {
     this.signupservice.signinstore(this.signin).subscribe(data=>
       {
         if(data['status']=="IncorrectUsernameError"){
-          this.infoMessage="Incorrect Usernmame!"
+          this.infoMessage="Incorrect Email address!"
         }
         if(data['status']=="IncorrectPasswordError"){
           this.infoMessage="Incorrect Password!"

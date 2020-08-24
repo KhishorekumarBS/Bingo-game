@@ -15,6 +15,7 @@ export class RoomserviceService {
   iterations:number=1;
   entered_number:string=undefined;
   myscore="0";
+  no_of_players:string=undefined;
   
 
   constructor(private authservice:AuthService,private http: HttpClient,private router: Router) { 
@@ -27,6 +28,7 @@ export class RoomserviceService {
         this.http.post('/api/createroom', {'no_players':no_selected}).subscribe(res=>{
           this.roomcode= res['roomcode'];
           //console.log(this.roomcode);
+          this.no_of_players=res['no_players'];
           resolve(this.roomcode);    
       })
      });
@@ -39,6 +41,9 @@ export class RoomserviceService {
   } 
   getallplayers(): string[] {
     return this.all_players;
+  }
+  getnoofplayers():string{
+    return this.no_of_players;
   }
   
 joinRoom() {
@@ -112,5 +117,6 @@ reset_values()
   this.iterations=1;
   this.myscore="0";
   this.entered_number=undefined;
+  this.no_of_players=undefined;
 }
 }

@@ -23,9 +23,9 @@
 		<h1>FIN<span>GO</span></h1>
 		<div class="header-user-menu" >
 			
-			<span style="font:normal 20px cursive ;">{{username}}</span>
+			<span class="font" style="font:normal 20px ;">{{username}}</span>
 			<ul>
-				<li style="font:normal 15px cursive ;"><a (click)="logout()">Logout</a></li>
+				<li class="font" style="font:normal 15px ;"><a (click)="logout()">Logout</a></li>
 			</ul>
 		</div>
 
@@ -37,64 +37,48 @@
 <div class="container">
 <div class="tabs"  >
   <div class="tab-2"  >
-    <label style="color: black; font: normal 20px cursive ;" for="tab2-1">CREATE</label>
+    <label class="font" style="color: black; font: normal 20px ;" for="tab2-1">CREATE</label>
     <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
     <div class="textbox" >
         <div class="container" style="text-align: center;">
             
 			
-			<span class="change"style="font: normal 20px  cursive;">No. of players:       </span>
+			<span class="change font"style="font: normal 20px ;">No. of players:       </span>
 			<mat-form-field >
 				
-				<mat-select class="mat-dropdown" trigger="alarmTrigger" #alarmSelect >
-				  <mat-option *ngFor="let player of no_of_players" [value]="player" (click)="getInnerText(player)" style="color:#bc40df;font: normal 18px Comic Sans MS, Comic Sans, cursive ;">
+				<mat-select class="mat-dropdown font" trigger="alarmTrigger" #alarmSelect >
+				  <mat-option *ngFor="let player of no_of_players" [value]="player" (click)="getInnerText(player)" style="color:#bc40df;font: normal 18px ;">
 					{{player}}
 				  </mat-option>
 				</mat-select>
 			  </mat-form-field>
-			  <br><br><div *ngIf="no_selected">  <button (click)="getroomcode();" onClick="this.disabled=true;" style="font: normal 18px cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button> </div>
-			<!--<button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="font: normal 18px URW Chancery L, cursive ; width: 100px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button>
-				<span>Select</span>
-				<mat-icon>arrow_drop_down</mat-icon>
-			  </button>
-			  <mat-menu #menu="matMenu" >
-				<button mat-menu-item style="width: 120px;" *ngFor="let player of no_of_players">
-				  <span>{{player}}</span>
-				</button>
-				<button mat-menu-item style="width: 120px;">
-				  <span>3</span>
-				</button>
-				<button mat-menu-item style="width: 120px;" >
-				  <span>4</span>
-				</button>
-				<button mat-menu-item style="width: 120px;">
-					<span>5</span>
-				 </button>
-			  </mat-menu>-->
+			  <br><br><div *ngIf="no_selected">  <button class="font" (click)="getroomcode();" onClick="this.disabled=true;" style="font: normal 18px ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn">CREATE ROOM</button> </div>
+
 	</div>
-	<div *ngIf="roomcode" style="text-align: center;color:white;font: normal 20px  cursive ;">
+	<div *ngIf="roomcode" class="font" style="text-align: center;color:white;font: normal 20px   ;">
 		<br><br>ROOMCODE:<span class="change"><b>{{roomcode}}</b></span>
-		<br><br><span>Share the code with your friends!<br>Have a happy play!<br>Please don't reload or press back button in the game page.<br>Else, you'll lose all your progress.<br></span>
+		<br><br><span>Share the code with your friends!<br>Ask them to join in 5 minutes<br>Have a happy play!<br>Please don't reload or press back button in the game page.<br>Else, you'll lose all your progress.<br></span>
 	</div>
-	<div *ngIf="wait_to_join" style="text-align: center;color:white;font: normal 20px  cursive;"><mat-spinner style="margin:0 auto;" class="stroke" diameter="40"></mat-spinner> <span>Waiting for players to join</span></div>
-	<div *ngIf="icreatedroom" style="text-align: center;color:white;font: normal 20px  cursive ;">
+	<div class="font" *ngIf="wait_to_join" style="text-align: center;color:white;font: normal 20px  ;"><mat-spinner style="margin:0 auto;" class="stroke" diameter="40"></mat-spinner> <span>Waiting for players to join</span></div>
+	<div class="font" *ngIf="icreatedroom" style="text-align: center;color:white;font: normal 20px  ;">
 		<br>{{other_players}} has joined!
 	</div>
   </div>
   </div>
   <div class="tab-2">
-    <label for="tab2-2" style="color: black;font: normal 20px cursive;" >JOIN</label>
+    <label for="tab2-2"class="font" style="color: black;font: normal 20px ;" >JOIN</label>
     <input id="tab2-2" name="tabs-two" type="radio">
     <div class="textbox" >
-	  <label for="school" style="text-align: center;margin-left: 10px ;font: normal 20px  cursive ;" >ROOMCODE:</label>
-	  <div style="text-align: center;">
-	<input #code id="school" name="schoo" type="text" style="width: 40%;color:red;font: normal 18px  cursive ;" > </div><br><br>
+	  <label class="font" for="school" style="text-align: center;margin-left: 10px ;font: normal 20px ;" >ROOMCODE:</label>
+	  <div class="font" style="text-align: center;">
+	<input #code id="school" name="schoo" type="text" style="width: 40%;color:red;font: normal 18px ;" > </div><br><br>
 	<div class="container" style="text-align: center;">
             
-		<button  (click)=setroomcode(code.value);  style="font: normal 18px cursive ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn" >JOIN ROOM</button>
-</div>
-<div *ngIf="ijoinedroom"  style="text-align: center;color:white;font: normal 20px  cursive ;">
-	<br>{{other_players}} has joined!
+		<button class="font" (click)=setroomcode(code.value);  style="font: normal 18px ; width: 200px;border: 1px solid #000000;font-weight: 600;background:white" mat-stroked-button color="warn" >JOIN ROOM</button>
+</div><br>
+<div *ngIf="infomessage" class="font" style="font:normal 20px;text-align: center;color:white">
+	<mat-spinner style="margin:0 auto;" class="stroke" diameter="40"></mat-spinner>
+	<span>{{infomessage}}</span>
 </div>
     </div>
   </div>

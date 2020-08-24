@@ -23,12 +23,12 @@
 		
     
       
-      <div class="header-user-menu">
-        <span style="font:normal 28px  cursive ;">{{myname}}</span>
+      <div class="header-user-menu font">
+        <span style="font:normal 28px ;">{{myname}}</span>
   
         <ul>
-          <li style="font:normal 15px cursive ;"><a (click)="logout()">Logout</a></li>
-          <li style="font:normal 15px cursive ;"><a  (click)="exitgame()">Exit game</a></li>
+          <li class="font" style="font:normal 15px;"><a (click)="logout()">Logout</a></li>
+          <li class="font" style="font:normal 15px ;"><a  (click)="exitgame()">Exit game</a></li>
         </ul>
       </div>
   
@@ -43,8 +43,8 @@
         
         <div fxFlex class="example-button-row">
     
-      <div *ngIf="call_number" style="font:normal 22px cursive ;color:white ;">Call number: <span style="color:red;font-weight: bold;">{{call_number}}</span><span style="color:red;font:normal 22px cursive ;float:right;min-width: 80px; max-width: 90px;">00:{{ones}}</span><br></div>  
-      <div *ngIf="waiting" style="font:normal 20px  cursive;color:white"><mat-spinner class="stroke" diameter="30"></mat-spinner> Waiting for {{waiting}} to call...</div>
+      <div class="font" style="font:normal 22px ;color:white ;">Call number: <span style="color:red;font-weight: bold;">{{call_number}}</span><span class="font" style="color:red;font:normal 22px ;float:right;min-width: 80px; max-width: 90px;">00:{{ones}}</span><br></div>  
+      <div class="font" *ngIf="waiting" style="font:normal 20px ;color:white"><mat-spinner class="stroke" diameter="30"></mat-spinner> Waiting for {{waiting}} to call...</div>
           <br>
          &nbsp;&nbsp; 
         </div>
