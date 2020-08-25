@@ -2084,8 +2084,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.signup = this.signupForm.value;
             this.signupservice.signupstore(this.signup).subscribe(function (data) {
               if (data['success']) {
-                //this.infoMessage = "Registration successful. Please SignIn to continue";
-                _this6.router.navigate(['/roomcode']);
+                _this6.infoMessage = "Registration successful. Please SignIn to continue"; //this.router.navigate(['/roomcode']);
               } else _this6.infoMessage = "Email-id already exists";
             });
             this.submit_signup = false;

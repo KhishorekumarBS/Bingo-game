@@ -69,8 +69,8 @@ export class LoginComponent implements OnInit {
       {
         if(data['success']) 
         {
-          //this.infoMessage = "Registration successful. Please SignIn to continue";
-          this.router.navigate(['/roomcode']);
+          this.infoMessage = "Registration successful. Please SignIn to continue";
+          //this.router.navigate(['/roomcode']);
         }
         else
           this.infoMessage = "Email-id already exists";
