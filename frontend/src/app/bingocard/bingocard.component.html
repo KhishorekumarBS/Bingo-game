@@ -43,8 +43,8 @@
         
         <div fxFlex class="example-button-row">
     
-      <div class="font" style="font:normal 22px ;color:white ;">Call number: <span style="color:red;font-weight: bold;">{{call_number}}</span><span class="font" style="color:red;font:normal 22px ;float:right;min-width: 80px; max-width: 90px;">00:{{ones}}</span><br></div>  
-      <div class="font" *ngIf="waiting" style="font:normal 20px ;color:white"><mat-spinner class="stroke" diameter="30"></mat-spinner> Waiting for {{waiting}} to call...</div>
+      <div class="font" style="font-size:x-large  ;color:white ;">Call number: <span style="color:red;font-weight: bold;">{{call_number}}</span><span class="font" style="color:red;font-size:x-large ;font-weight: bold;float:right;min-width: 80px; max-width: 90px;">00:{{ones}}</span><br></div>  
+      <div class="font" *ngIf="waiting" style="font-size:x-large  ;color:white"><mat-spinner class="stroke" diameter="35"></mat-spinner> Waiting for {{waiting}} to call...</div>
           <br>
          &nbsp;&nbsp; 
         </div>
@@ -72,7 +72,7 @@
               </mat-grid-list>    
               
      
-        <mat-table fxFlex  #table [dataSource]="dataSource">
+        <mat-table class="font" fxFlex  #table [dataSource]="dataSource">
       
           <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->

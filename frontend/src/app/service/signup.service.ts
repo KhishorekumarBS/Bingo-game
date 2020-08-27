@@ -41,8 +41,8 @@ export class SignupService {
     }
 
 
-    signinstore(signin_data) {
-      return this.http.post('/api/users/login', {'username':signin_data.EMAILADDRESS,'password':signin_data.PASSWORD})
+    signinstore(EMAILADDRESS,PASSWORD) {
+      return this.http.post('/api/users/login', {'username':EMAILADDRESS,'password': PASSWORD})
         /*.subscribe((res)=>{
           console.log('res is ', res);
           //This line stores the user name, token in auth.service 

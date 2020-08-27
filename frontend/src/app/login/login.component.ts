@@ -69,7 +69,15 @@ export class LoginComponent implements OnInit {
       {
         if(data['success']) 
         {
-          this.infoMessage = "Registration successful. Please SignIn to continue";
+          this.signupservice.signinstore(this.signup.EMAILADDRESS,this.signup.PASSWORD).subscribe(data=>
+            {
+              this.authservice.storeUserCredentials(data);
+        if(data['success']==true){
+          //console.log(res['success']);
+        this.router.navigate(['/roomcode'])
+        }
+      });
+          //this.infoMessage = "Registration successful. Please SignIn to continue";
           //this.router.navigate(['/roomcode']);
         }
         else
@@ -97,7 +105,7 @@ export class LoginComponent implements OnInit {
     else{
     this.signin = this.signinForm.value;
     
-    this.signupservice.signinstore(this.signin).subscribe(data=>
+    this.signupservice.signinstore(this.signin.EMAILADDRESS,this.signin.PASSWORD).subscribe(data=>
       {
         if(data['status']=="IncorrectUsernameError"){
           this.infoMessage="Incorrect Email address!"
